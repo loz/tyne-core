@@ -10,8 +10,8 @@ Gem::Specification.new do |s|
   s.authors     = ["Tobias Haar"]
   s.email       = ["tobias.haar@gmail.com"]
   s.homepage    = "http://www.tobiashaar.de"
-  s.summary     = "TODO: Summary of TyneCore."
-  s.description = "TODO: Description of TyneCore."
+  s.summary     = "Core functionality for Tyne"
+  s.description = "Core functionality for Tyne"
 
   s.files = Dir["{app,config,db,lib}/**/*"] + ["MIT-LICENSE", "Rakefile", "README.rdoc"]
 
