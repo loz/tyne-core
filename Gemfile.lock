@@ -5,11 +5,16 @@ GIT
     active_model_serializers (0.5.0)
       activemodel (~> 3.0)
 
-GIT
-  remote: git@github.com:tyne/tyne-dev.git
-  revision: cb70f0ba00cb97448885bfae9e6e533fa9c29083
+PATH
+  remote: .
   specs:
-    tyne-dev (0.0.1)
+    tyne_core (0.0.1)
+      rails (~> 3.2.8)
+
+PATH
+  remote: ../tyne-dev
+  specs:
+    tyne_dev (0.0.1)
       capybara
       factory_girl_rails
       guard-rspec
@@ -22,17 +27,10 @@ GIT
       shoulda-matchers
       simplecov
 
-GIT
-  remote: git@github.com:tyne/tyne-ui.git
-  revision: 2f9d531cd7d5190da94adb76372e8223dcc5a0f3
-  specs:
-    tyne-ui (0.0.1)
-      rails (~> 3.2.8)
-
 PATH
-  remote: .
+  remote: ../tyne-ui
   specs:
-    tyne-core (0.0.1)
+    tyne_ui (0.0.1)
       rails (~> 3.2.8)
 
 GEM
@@ -225,6 +223,6 @@ DEPENDENCIES
   responders
   sqlite3
   thin
-  tyne-core!
-  tyne-dev!
-  tyne-ui!
+  tyne_core!
+  tyne_dev!
+  tyne_ui!

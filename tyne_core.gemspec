@@ -1,11 +1,11 @@
 $:.push File.expand_path("../lib", __FILE__)
 
 # Maintain your gem's version:
-require "tyne-core/version"
+require "tyne_core/version"
 
 # Describe your gem and declare its dependencies:
 Gem::Specification.new do |s|
-  s.name        = "tyne-core"
+  s.name        = "tyne_core"
   s.version     = TyneCore::VERSION
   s.authors     = ["Tobias Haar"]
   s.email       = ["tobias.haar@gmail.com"]
