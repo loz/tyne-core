@@ -17,7 +17,6 @@ group :production do
  gem 'pg'
 end
 
-
 # Testing
 group :test, :development do
   gem 'tyne-dev', :git => "git@github.com:tyne/tyne-dev.git"
