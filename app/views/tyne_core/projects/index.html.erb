@@ -1,5 +1,6 @@
 <h2>Projects</h2>
 
-<a href="#">Create project</a>
+<a href="#" data-modal="project_dialog" id="new_project_link">Create project</a>
 
 <%= render "list", :projects => @projects %>
+<%= render "dialog", :project => @project %>

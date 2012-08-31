@@ -1,0 +1,10 @@
+<%= cache ["v1", "project", "dialog"] do %>
+  <div id="project_dialog" class="modal" title="Create project">
+    <%= simple_form_for(project, :html => { :data => { :resource_url => url_for(:projects) }, :method => "put" }) do |f| %>
+      <%= f.input :key %>
+      <%= f.input :name %>
+      <%= f.input :description %>
+      <%= f.button :submit %>
+    <% end %>
+  </div>
+<% end %>

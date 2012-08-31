@@ -1,4 +1,4 @@
 Rails.application.routes.draw do
 
-  mount TyneCore::Engine => "/tyne-core"
+  mount TyneCore::Engine => "/core"
 end

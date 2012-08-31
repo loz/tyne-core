@@ -6,10 +6,13 @@ gem "jquery-rails"
 
 gem 'responders'
 gem "active_model_serializers", :git => "git://github.com/josevalim/active_model_serializers.git"
+gem "simple_form"
 
 # Tyne
-#gem 'tyne_ui', :git => "git@github.com:tyne/tyne-ui.git"
 gem 'tyne_ui', :path => '../tyne-ui'
+gem 'modernizr-rails'
+gem 'jquery-ui-themes'
+
 
 # Webserver
 gem 'thin'
@@ -20,6 +23,5 @@ end
 
 # Testing
 group :test, :development do
-  #gem 'tyne_dev', :git => "git@github.com:tyne/tyne-dev.git"
   gem 'tyne_dev', :path => '../tyne-dev'
 end
