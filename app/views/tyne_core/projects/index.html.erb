@@ -1,6 +1,8 @@
 <h2>Projects</h2>
 
-<a href="#" data-modal="project_dialog" id="new_project_link">Create project</a>
+<div class="UIGrid">
+  <a href="#" data-modal="project_dialog" id="new_project_link" class="new_link">Create project</a>
 
-<%= render "list", :projects => @projects %>
-<%= render "dialog", :project => @project %>
+  <%= render "list", :projects => @projects %>
+  <%= render "dialog", :project => @project %>
+</div>

@@ -1,34 +1,52 @@
-$ ->
-  $("#new_project_link").click ->
-    resource_url = $("#project_dialog form").data("resource-url")
-    $("#project_dialog form").attr("action", resource_url)
-    $("#project_dialog form input[name=_method]").val("post")
-    $("#project_dialog form").populate({})
+class @ProjectGrid
+  constructor: (@target) ->
+    @link = $(@target).find(".new_link").first
+    @dialog = $(@target).find(".modal").first
+    @form = $(@dialog).find("form").first
+    @grid = $(@target).find(".grid").first
+
+    @resourceUrl = $(@form).data("resource-url")
+
+    $(@link).on "click", @.toNewForm
+    $(@grid).on "click", @.toUpdateForm
+    $(@grid).on "click", "tr .destroy", @.destroy
+
+  toNewForm: (event) =>
+    $(@form).attr("action", @resourceUrl)
+    @.setMethod("post")
+    @.populateForm({})
     options =
       success: (responseText, status, xhr) ->
-        $("table.projects tbody").append(responseText)
-        $("#project_dialog").dialog('close')
-    $("#project_dialog form").ajaxForm(options)
+        $(@grid).find("tbody").append(responseText)
+        $(@dialog).dialog('close')
+    @.makeAjaxForm(options)
 
-  $(".projects tbody").on "click", "tr", (event) ->
+  toUpdateForm: (event) =>
     return if event.target.className == "destroy"
     $project = $(@)
-    resource_url = $("#project_dialog form").data("resource-url")
     data = $(@).data("serialized")
-    edit_url = resource_url + "/" + data.id
-    $("#project_dialog form").attr("action", edit_url)
-    $("#project_dialog form input[name=_method]").val("put")
-    $("#project_dialog form").populate(project: data)
+    edit_url = @resourceUrl + "/" + data.id
+    $(@form).attr("action", edit_url)
+    self.setMethod("put")
+    @.populateForm(project: data)
     options =
       success: (responseText, status, xhr) ->
         $project.replaceWith(responseText)
-        $("#project_dialog").dialog('close')
-    $("#project_dialog form").ajaxForm(options)
+        $(@dialog).dialog('close')
+    $(@form).ajaxForm(options)
 
-  $(".projects tbody").on "click", "tr .destroy", (event) ->
+  setMethod: (method) ->
+    $(@form).find("input[name=_method]").val(method)
+
+  populateForm: (data) =>
+    $(@form).populate(data)
+
+  makeAjaxForm: (options) ->
+    $(@form).ajaxForm(options)
+
+  destroy: (event) ->
     $project = $(event.target).closest("tr")
-    resource_url = $("#project_dialog form").data("resource-url")
     data = $project.data("serialized")
-    delete_url = resource_url + "/" + data.id
+    delete_url = @resourceUrl + "/" + data.id
     $.post delete_url, _method: "delete", (data, textStatus, jqXHR) ->
       $project.remove()
