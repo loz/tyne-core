@@ -3,8 +3,10 @@ source "http://rubygems.org"
 gemspec
 
 gem "jquery-rails"
+gem 'execjs'
+gem 'therubyracer'
 
-gem 'responders'
+gem 'responders', :git => 'git://github.com/plataformatec/responders.git'
 gem "active_model_serializers", :git => "git://github.com/josevalim/active_model_serializers.git"
 gem "simple_form"
 

@@ -30,7 +30,7 @@ module TyneCore
     def destroy
       @project = Project.find(params[:id])
       @project.destroy
-      respond_with(@project)
+      render :json => { :ok => true }
     end
   end
 end
