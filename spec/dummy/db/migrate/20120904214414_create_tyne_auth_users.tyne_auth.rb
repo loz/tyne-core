@@ -4,6 +4,7 @@ class CreateTyneAuthUsers < ActiveRecord::Migration
     create_table :tyne_auth_users do |t|
       t.string :uid
       t.string :name
+      t.string :username
       t.string :email
       t.string :token
 

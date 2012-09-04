@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120904205158) do
+ActiveRecord::Schema.define(:version => 20120904214414) do
 
   create_table "tyne_auth_organizations", :force => true do |t|
     t.string   "name"
@@ -22,6 +22,7 @@ ActiveRecord::Schema.define(:version => 20120904205158) do
   create_table "tyne_auth_users", :force => true do |t|
     t.string   "uid"
     t.string   "name"
+    t.string   "username"
     t.string   "email"
     t.string   "token"
     t.datetime "created_at", :null => false
