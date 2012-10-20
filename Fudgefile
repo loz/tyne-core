@@ -1,4 +1,5 @@
 build :default do
   yard 'stats --list-undoc', :coverage => 100
   task :rspec, :coverage => 100
+  shell "cat /home/travis/builds/tyne/tyne-core/coverage"
 end
