@@ -1,16 +1,19 @@
 require_dependency "tyne_core/application_controller"
 
 module TyneCore
+  # Handles requests to project creation, updates, deletions
   class ProjectsController < ApplicationController
     self.responder = ::ApplicationResponder
     respond_to :html, :json
 
+    # Displays a list of all projects
     def index
       @projects = TyneCore::Project.all
       @project = Project.new
       respond_with(@projects)
     end
 
+    # Creates a new project.
     def create
       @project = Project.new(params[:project])
       @project.save
@@ -19,6 +22,7 @@ module TyneCore
       end
     end
 
+    # Upates an existing project.
     def update
       @project = Project.find(params[:id])
       @project.update_attributes(params[:project])
@@ -27,17 +31,20 @@ module TyneCore
       end
     end
 
+    # Destroys an existing project.
     def destroy
       @project = Project.find(params[:id])
       @project.destroy
       render :json => { :ok => true }
     end
 
+    # Displays the list of all available github projects.
     def github
       github = current_user.github_client
       @repositories = github.repositories
     end
 
+    # Imports the selected github repos.
     def import
       projects = params[:name]
       projects.each do |project|

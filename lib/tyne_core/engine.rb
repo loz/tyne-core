@@ -1,4 +1,5 @@
 module TyneCore
+  # Core engine
   class Engine < ::Rails::Engine
     isolate_namespace TyneCore
 
