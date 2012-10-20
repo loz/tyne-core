@@ -1,15 +1,8 @@
 <h2>Projects</h2>
 
 <div class="GridDialog">
-  <div class="btn-group">
-    <button class="btn btn-primary new_link" data-modal="project_dialog" id="new_project_link">Create</button>
-    <button class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
-      <span class="caret"></span>
-    </button>
-    <ul class="dropdown-menu">
-      <li><%= link_to "Import", tyne_core.github_projects_path %></li>
-    </ul>
-  </div>
+  <button class="btn btn-primary new_link" data-modal="project_dialog" id="new_project_link">Create</button>
+  or <%= link_to "Import", tyne_core.github_projects_path, :class => "btn" %> from Github
 
   <%= render "list", :projects => @projects %>
   <%= render "dialog", :project => @project %>

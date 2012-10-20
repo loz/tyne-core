@@ -1,8 +1,8 @@
 <% cache ["v1", project] do %>
   <tr data-serialized="<%= project.to_json %>" class="project" data-modal="project_dialog">
+    <td><a href="#" class="destroy"><i class="icon-trash" /></a></td>
     <td><%= project.key %></td>
     <td><%= project.name %></td>
     <td><%= project.description %></td>
-    <td><a href="#" class="destroy">Destroy</a></td>
   </tr>
 <% end %>
