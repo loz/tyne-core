@@ -1,5 +1,5 @@
 require 'spec_helper'
 
-describe ProjectsController do
+describe TyneCore::ProjectsController do
 
 end
