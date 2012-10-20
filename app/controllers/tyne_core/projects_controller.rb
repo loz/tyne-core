@@ -32,5 +32,19 @@ module TyneCore
       @project.destroy
       render :json => { :ok => true }
     end
+
+    def github
+      github = current_user.github_client
+      @repositories = github.repositories
+    end
+
+    def import
+      projects = params[:name]
+      projects.each do |project|
+        TyneCore::Project.create(:key => project.upcase, :name => project)
+      end
+
+      redirect_to :action => :index
+    end
   end
 end

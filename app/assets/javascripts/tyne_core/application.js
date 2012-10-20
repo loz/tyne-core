@@ -16,7 +16,3 @@
 //= require modernizr
 //= require tyne_ui
 //= require_tree .
-
-//$(document).ready(function() {
-//  new ProjectGrid($(".UIGrid").first);
-//});

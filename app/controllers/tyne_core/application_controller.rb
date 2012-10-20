@@ -1,4 +1,2 @@
-module TyneCore
-  class ApplicationController < ActionController::Base
-  end
+class TyneCore::ApplicationController < ApplicationController
 end

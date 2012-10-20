@@ -7,3 +7,4 @@ spec/dummy/tmp/
 spec/dummy/.sass-cache
 *.swp
 .sass-cache
+coverage/
