@@ -1,0 +1,8 @@
+en:
+  headlines:
+    tyne_core/projects:
+      import: "Import"
+      index: "Projects"
+  descriptions:
+    tyne_core/projects:
+      import: "I have found the following projects on Github:"
