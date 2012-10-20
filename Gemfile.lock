@@ -14,7 +14,7 @@ GIT
 
 GIT
   remote: https://github.com/tyne/tyne-auth.git
-  revision: fb21b2d22c6f2e737960e0c5fc8a2905c4a013e1
+  revision: 170e1e11386f246a666ecc9b10c0c882c3bcdc75
   branch: master
   specs:
     tyne_auth (0.0.1)
@@ -43,7 +43,7 @@ GIT
 
 GIT
   remote: https://github.com/tyne/tyne-ui.git
-  revision: 8c7b6935e71094aac29a7d7aad6352b00ccef111
+  revision: 2fd63e96f5be86384da833a4405d066cffc07565
   branch: master
   specs:
     tyne_ui (0.0.1)
@@ -56,7 +56,10 @@ PATH
   remote: .
   specs:
     tyne_core (0.0.1)
+      client_side_validations
+      client_side_validations-simple_form
       rails (~> 3.2.8)
+      simple_form
 
 GEM
   remote: http://rubygems.org/
