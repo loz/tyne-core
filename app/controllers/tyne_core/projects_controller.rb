@@ -8,14 +8,14 @@ module TyneCore
 
     # Displays a list of all projects
     def index
-      @projects = TyneCore::Project.all
+      @projects = current_user.projects
       @project = TyneCore::Project.new
       respond_with(@projects)
     end
 
     # Creates a new project.
     def create
-      @project = TyneCore::Project.new(params[:project])
+      @project = current_user.projects.new(params[:project])
       @project.save
       respond_with(@project) do |format|
         format.html { render @project }
@@ -24,7 +24,7 @@ module TyneCore
 
     # Upates an existing project.
     def update
-      @project = TyneCore::Project.find(params[:id])
+      @project = current_user.projects.find(params[:id])
       @project.update_attributes(params[:project])
       respond_with(@project) do |format|
         format.html { render @project }
@@ -33,7 +33,7 @@ module TyneCore
 
     # Destroys an existing project.
     def destroy
-      @project = TyneCore::Project.find(params[:id])
+      @project = current_user.projects.find(params[:id])
       @project.destroy
       render :json => { :ok => true }
     end
@@ -48,7 +48,7 @@ module TyneCore
     def import
       projects = params[:name]
       projects.each do |project|
-        TyneCore::Project.create(:key => project.upcase, :name => project)
+        current_user.projects.create!(:key => project.upcase, :name => project)
       end
 
       redirect_to :action => :index

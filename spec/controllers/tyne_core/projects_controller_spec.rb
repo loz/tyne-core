@@ -24,7 +24,7 @@ describe TyneCore::ProjectsController do
 
   context :logged_in do
     let(:user) do
-      TyneAuth::User.new
+      user = TyneAuth::User.create!(:name => "Foo", :uid => "foo", :token => "foo")
     end
 
     before :each do
@@ -37,8 +37,9 @@ describe TyneCore::ProjectsController do
       end
 
       it "should assign the list of all projects" do
+        user.projects.create!(:key => "FOO", :name => "Foo")
         assigns(:project).should be_new_record
-        assigns(:projects).should == TyneCore::Project.all
+        assigns(:projects).should == user.projects
       end
 
       it "should render the correct view" do
@@ -53,7 +54,7 @@ describe TyneCore::ProjectsController do
         end
 
         it "should create a new project" do
-          TyneCore::Project.find_by_key("FOO").should be_present
+          project = TyneCore::Project.find_by_key("FOO").should be_present
         end
 
         it "should render the correct view" do
@@ -73,19 +74,29 @@ describe TyneCore::ProjectsController do
     describe :update do
       context :success do
         let(:existing) do
-          TyneCore::Project.create!(:key => "FOO", :name => "Foo")
-        end
-
-        before :each do
-          put :update, :id => existing.id, :project => { :key => "BAR" }, :use_route => :tyne_core
+          user.projects.create!(:key => "FOO", :name => "Foo")
         end
 
         it "should update the record" do
+          put :update, :id => existing.id, :project => { :key => "BAR" }, :use_route => :tyne_core
           TyneCore::Project.find_by_id(existing.id).key.should == "BAR"
         end
 
         it "should render the correct view" do
+          put :update, :id => existing.id, :project => { :key => "BAR" }, :use_route => :tyne_core
           response.should render_template "projects/_project"
+        end
+
+        it "should only destroy the projects for the current user" do
+          project = TyneCore::Project.create!(:key => "BAR", :name => "Bar") do |p|
+            p.user_id = 1337
+          end
+
+          expect do
+            put :update, :id => project.id, :project => { :key => "BAZ" }, :use_route => :tyne_core
+          end.to raise_error
+
+          TyneCore::Project.find_by_id(project.id).key.should == "BAR"
         end
       end
 
@@ -100,19 +111,29 @@ describe TyneCore::ProjectsController do
 
     describe :destroy do
       let(:project) do
-        TyneCore::Project.create!(:key => "FOO", :name => "Foo")
-      end
-
-      before :each do
-        delete :destroy, :id => project.id, :format => :json
+        user.projects.create!(:key => "FOO", :name => "Foo")
       end
 
       it "should destroy the record" do
-        TyneCore::Project.find_by_id(project.id).should_not be_present
+        delete :destroy, :id => project.id, :format => :json
+        user.projects.find_by_id(project.id).should_not be_present
       end
 
       it "should respond with ok" do
+        delete :destroy, :id => project.id, :format => :json
         response.should be_success
+      end
+
+      it "should only destroy the projects for the current user" do
+        project = TyneCore::Project.create!(:key => "BAR", :name => "Bar") do |p|
+          p.user_id = 1337
+        end
+
+        expect do
+          delete :destroy, :id => 1337, :format => :json
+        end.to raise_error
+
+        TyneCore::Project.find_by_id(project.id).should be_present
       end
     end
 
@@ -137,8 +158,8 @@ describe TyneCore::ProjectsController do
       end
 
       it "should create a project for each selected github repo" do
-        TyneCore::Project.find_by_name("Foo").should be_present
-        TyneCore::Project.find_by_name("Bar").should be_present
+        TyneCore::Project.find_by_name("Foo").user_id.should == user.id
+        TyneCore::Project.find_by_name("Bar").user_id.should == user.id
       end
 
       it "should redirect back to the index page" do
