@@ -54,6 +54,7 @@ module TyneCore
       redirect_to :action => :index
     end
 
+    # Returns a rendered dialog partial
     def dialog
       project = TyneCore::Project.new
 

@@ -145,5 +145,15 @@ describe TyneCore::ProjectsController do
         response.should redirect_to :action => :index
       end
     end
+
+    describe :index do
+      before :each do
+        get :dialog, :use_route => :tyne_core
+      end
+
+      it "should render the correct view" do
+        response.should render_template "projects/_dialog"
+      end
+    end
   end
 end
