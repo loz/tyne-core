@@ -53,5 +53,11 @@ module TyneCore
 
       redirect_to :action => :index
     end
+
+    def dialog
+      project = TyneCore::Project.new
+
+      render :partial => 'dialog', :locals => { :project => project }
+    end
   end
 end

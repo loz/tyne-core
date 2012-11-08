@@ -1,10 +1,19 @@
-<%= cache ["v1", "project", "dialog"] do %>
-  <div id="project_dialog" class="dialog" title="Create project">
+<%= cache ["v2", "project", "dialog"] do %>
+  <div id="project_dialog" class="modal hide fade" tabindex="-1" role="dialog">
     <%= simple_form_for(project, :validate => true, :html => { :data => { :resource_url => url_for(:projects) }, :method => "put" }) do |f| %>
-      <%= f.input :key %>
-      <%= f.input :name %>
-      <%= f.input :description %>
-      <%= f.button :submit, :class => "btn btn-primary" %>
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+        <h3>Create Project</h3>
+      </div>
+      <div class="modal-body">
+        <%= f.input :key %>
+        <%= f.input :name %>
+        <%= f.input :description %>
+      </div>
+      <div class="modal-footer">
+        <button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
+        <%= f.button :submit, :class => "btn btn-primary" %>
+      </div>
     <% end %>
   </div>
-<% end %>
+<%= end %>

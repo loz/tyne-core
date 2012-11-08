@@ -3,6 +3,7 @@ TyneCore::Engine.routes.draw do
     collection do
       get :github
       post :import
+      get :dialog
     end
   end
 end
