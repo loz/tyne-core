@@ -61,7 +61,7 @@ module TyneCore
 
     # Returns a rendered dialog partial
     def dialog
-      project = TyneCore::Project.new
+      project = current_user.projects.build
 
       render :partial => 'dialog', :locals => { :project => project }
     end
