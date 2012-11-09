@@ -16,9 +16,14 @@ module TyneCore
     # Creates a new project.
     def create
       @project = current_user.projects.new(params[:project])
-      @project.save
-      respond_with(@project) do |format|
-        format.html { render @project }
+      if @project.save
+        respond_with(@project) do |format|
+          format.html do
+            render @project
+          end
+        end
+      else
+        render :json => @project.errors, :status => :unprocessable_entity
       end
     end
 
