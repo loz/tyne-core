@@ -4,7 +4,7 @@ describe TyneCore::ProjectsController do
   before(:each) { @routes = TyneCore::Engine.routes }
 
   context :not_logged_in do
-    it "should not allows any actions" do
+    it "should not allow any actions" do
       get :index, :use_route => :tyne_core
       response.should redirect_to login_path
 

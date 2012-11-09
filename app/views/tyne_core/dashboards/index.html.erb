@@ -1,0 +1,8 @@
+<% content_for :sidebar do %>
+  <ul class="nav nav-list">
+    <li class="nav-header">My projects (<%= @projects.count %>)</li>
+    <% @projects.each do |project| %>
+      <li><%= link_to project.name, project_path(project) %></li>
+    <% end %>
+  </ul>
+<% end %>

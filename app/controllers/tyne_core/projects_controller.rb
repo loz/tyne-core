@@ -2,7 +2,7 @@ require_dependency "tyne_core/application_controller"
 
 module TyneCore
   # Handles requests to project creation, updates, deletions
-  class ProjectsController < ApplicationController
+  class ProjectsController < TyneAuth::AdminController
     self.responder = ::ApplicationResponder
     respond_to :html, :json
 
