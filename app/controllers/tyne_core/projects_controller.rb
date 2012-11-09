@@ -30,9 +30,12 @@ module TyneCore
     # Upates an existing project.
     def update
       @project = current_user.projects.find(params[:id])
-      @project.update_attributes(params[:project])
-      respond_with(@project) do |format|
-        format.html { render @project }
+      if @project.update_attributes(params[:project])
+        respond_with(@project) do |format|
+          format.html { render @project }
+        end
+      else
+        render :json => @project.errors, :status => :unprocessable_entity
       end
     end
 

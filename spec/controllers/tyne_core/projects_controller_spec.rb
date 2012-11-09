@@ -63,8 +63,9 @@ describe TyneCore::ProjectsController do
       end
 
       context :failure do
-        xit "should return the error message" do
-          post :create, :use_route => :tyne_core
+        it "should return the error message" do
+          TyneCore::Project.any_instance.stub(:valid?).and_return(false)
+          post :create, :project => { :key => "FOO", :name => "Foo" }, :use_route => :tyne_core
 
           response.should_not be_success
         end
@@ -72,11 +73,11 @@ describe TyneCore::ProjectsController do
     end
 
     describe :update do
-      context :success do
-        let(:existing) do
-          user.projects.create!(:key => "FOO", :name => "Foo")
-        end
+      let!(:existing) do
+        user.projects.create!(:key => "FOO", :name => "Foo")
+      end
 
+      context :success do
         it "should update the record" do
           put :update, :id => existing.id, :project => { :key => "BAR" }, :use_route => :tyne_core
           TyneCore::Project.find_by_id(existing.id).key.should == "BAR"
@@ -101,8 +102,9 @@ describe TyneCore::ProjectsController do
       end
 
       context :failure do
-        xit "should return the error message" do
-          put :update, :use_route => :tyne_core
+        it "should return the error message" do
+          TyneCore::Project.any_instance.stub(:valid?).and_return(false)
+          put :update, :id => existing.id, :project => { :key => "BAR" }, :use_route => :tyne_core
 
           response.should_not be_success
         end
