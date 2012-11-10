@@ -7,6 +7,8 @@ module TyneCore
       included do
         has_many :projects, :class_name => "TyneCore::Project"
         has_many :dashboards, :class_name => "TyneCore::Dashboard"
+        has_many :issues, :through => :projects, :class_name => "TyneCore::Issue"
+        has_many :reported_issues, :class_name => "TyneCore::Issue", :foreign_key => :reported_by_id
 
         after_initialize :set_defaults
       end

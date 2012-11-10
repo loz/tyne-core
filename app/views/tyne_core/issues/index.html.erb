@@ -1,0 +1,10 @@
+<table class="table">
+  <% @issues.each do |issue| %>
+    <tr>
+      <td><%= check_box_tag "issue[id[]]", issue.id, false, :id => "issue_#{issue.id}" %></td>
+      <td><%= issue.summary %></td>
+      <td><%= issue.description %></td>
+      <td><%= avatar(issue.reported_by) %></td>
+    </tr>
+  <% end %>
+</table>

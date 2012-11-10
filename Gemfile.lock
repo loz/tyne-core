@@ -14,7 +14,7 @@ GIT
 
 GIT
   remote: https://github.com/tyne/tyne-auth.git
-  revision: b1e3fddc55bc853e0a2a63dc9d5660c005f9903c
+  revision: 7cc6a065097e55fcac4000a5b2f94a39588e8a65
   branch: master
   specs:
     tyne_auth (0.0.1)
@@ -140,7 +140,7 @@ GEM
       railties (>= 3.0.0)
     faraday (0.8.4)
       multipart-post (~> 1.1)
-    faraday_middleware (0.8.8)
+    faraday_middleware (0.9.0)
       faraday (>= 0.7.4, < 0.9)
     ffi (1.1.5)
     fssm (0.2.9)
