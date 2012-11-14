@@ -13,12 +13,9 @@ gem 'client_side_validations'
 gem 'client_side_validations-simple_form'
 
 # Tyne
-gem 'tyne_ui', :git => 'https://github.com/tyne/tyne-ui.git', :branch => 'master'
 gem 'tyne_auth', :git => 'https://github.com/tyne/tyne-auth.git', :branch => 'master'
 
 gem 'modernizr-rails'
-gem 'jquery-ui-themes'
-
 
 # Webserver
 gem 'thin'
