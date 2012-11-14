@@ -1,9 +1,7 @@
-<h1>Projects</h1>
-
 <div class="GridDialog" data-dialog="<%= dialog_projects_path %>">
-  <p>
-    <button class="btn btn-primary new_link">Create</button>
-    or <%= link_to "Import", tyne_core.github_projects_path, :class => "btn" %> from Github
-  </p>
+  <div class="options">
+    <button class="btn btn-small btn-primary new_link">Create</button>
+    <%= link_to "Import", tyne_core.github_projects_path, :class => "btn btn-small" %>
+  </div>
   <%= render "list", :projects => @projects %>
 </div>
