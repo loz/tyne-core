@@ -1,7 +1,9 @@
+<% cache ["v1", "view", @issue] do %>
 <h1>Show Issue</h1>
 <h2><%= @issue.summary %></h2>
 <p><%= markup_to_html(@issue.description) %></p>
 
 <% content_for :sidebar do %>
   <h1>Sidebar</h1>
+<% end %>
 <% end %>
