@@ -4,11 +4,12 @@ module TyneCore
   class Issue < ActiveRecord::Base
     belongs_to :reported_by, :class_name => "TyneAuth::User"
     belongs_to :project, :class_name => "TyneCore::Project"
+    belongs_to :issue_type, :class_name => "TyneCore::IssueType"
 
-    attr_accessible :project_id, :summary, :description
+    attr_accessible :project_id, :summary, :description, :issue_type_id
 
-    validates :project_id, :summary, :presence => true
+    validates :project_id, :summary, :issue_type_id, :presence => true
 
-    default_scope includes(:project).includes(:reported_by)
+    default_scope includes(:project).includes(:reported_by).includes(:issue_type)
   end
 end

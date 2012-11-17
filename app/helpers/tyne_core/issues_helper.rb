@@ -6,6 +6,11 @@ module TyneCore
       issue_label("Reporter", issue.reported_by.name)
     end
 
+    # Displays a label with the issue type
+    def issue_type(issue)
+      issue_label("Type", issue.issue_type.name, [issue.issue_type.name.underscore]) if issue.issue_type
+    end
+
     # Displays a label with the date when the issue has been reported
     def issue_reported_at(issue)
       date = issue.created_at.to_date

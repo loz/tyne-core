@@ -1,4 +1,4 @@
-<%= cache ["v2", current_user, "issue", "dialog"] do %>
+<%= cache ["v3", current_user, "issue", "dialog"] do %>
   <div id="issue_dialog" class="modal hide fade issue-dialog" tabindex="-1" role="dialog">
     <%= simple_form_for(@issue, :url => main_app.issues_path, :validate => true) do |f| %>
       <div class="modal-header">
@@ -10,6 +10,7 @@
           <%= f.select :project_id, current_user.projects.all.map { |x| [x.name, x.id, { :"data-key" => x.key }] }, :include_blank => true %>
         <% end %>
         <%= f.input :summary %>
+        <%= f.association :issue_type %>
         <%= f.input :description %>
       </div>
       <div class="modal-footer">
