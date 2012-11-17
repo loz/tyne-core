@@ -6,5 +6,8 @@ module TyneCore
     #   options = args.extract_options!
     #   simple_form_for(object, *(args << options.merge(:builder => TyneCore::FormBuilder::DisabledFormBuilder)), &block)
     # end
+    def markup_to_html(markup)
+      Redcarpet::Markdown.new(Redcarpet::Render::HTML, :autolink => true, :space_after_headers => true, :no_intra_emphasis => true).render(markup).html_safe
+    end
   end
 end
