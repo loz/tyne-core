@@ -20,6 +20,7 @@ gem 'tyne_auth', :git => 'https://github.com/tyne/tyne-auth.git', :branch => 'ma
 gem 'modernizr-rails'
 gem "mousetrap-rails"
 gem "redcarpet"
+gem "md_emoji"
 
 # Webserver
 gem 'thin'
