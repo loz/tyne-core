@@ -4,6 +4,7 @@
     var _this = this;
 
     _this.$target = $(_target);
+    _this.urlPattern = null;
     _this.$dialog = function() {
       var dialogs = $("body").find('#issue_dialog');
       if (dialogs.length > 0) {
@@ -13,7 +14,9 @@
       }
     };
     _this.$form = function() {
-      return $(_this.$dialog.call(_this).find("form")[0]);
+      var form = $(_this.$dialog.call(_this).find("form")[0]);
+      if (!_this.urlPattern) _this.urlPattern = form.attr('action');
+      return form;
     };
 
     _this.validationEnabled = null;
@@ -36,7 +39,8 @@
   CreateIssue.prototype.toNewForm = function() {
     var _this = this;
 
-    this.$form.call(this).populate({});
+    var form = this.$form.call(this);
+    form.populate({});
 
     var options = {
       dataType: 'json',
@@ -44,15 +48,15 @@
         _this.$dialog.call(_this).modal('hide');
         Notification.showSuccess(I18n.t("flash.actions.create.notice", {resource_name: "Issue"}));
       },
-      error: function(response, message, statusText) {
-        var errors = $.parseJSON(response.responseText);
-
-        console.log("Error");
+      beforeSubmit: function(arr, $form, options) {
+        // Look for project url in selected project
+        var key = $form.find("select option:selected").data('key');
+        options.url = options.url.replace(':key', key);
       }
     };
 
     _this.$dialog.call(_this).modal("show");
-    _this.$form.call(this).ajaxForm(options);
+    form.ajaxForm(options);
   };
 
   exports.CreateIssue = CreateIssue;

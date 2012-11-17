@@ -13,7 +13,7 @@ TyneCore::Engine.routes.draw do
 end
 
 Rails.application.routes.draw do
-  get '/:user/:key', :controller => 'tyne_core/issues', :action => 'index'
+  get '/:user/:key', :controller => 'tyne_core/issues', :action => 'index', :as => :backlog
   scope '/:user/:key' do
     resources :issues, :controller => 'tyne_core/issues' do
       collection do
