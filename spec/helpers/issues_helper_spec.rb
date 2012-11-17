@@ -4,6 +4,16 @@ describe TyneCore::IssuesHelper do
   let(:user) { TyneAuth::User.new(:name => "Foo") }
   let(:issue) { TyneCore::Issue.new }
 
+  describe :issue_type do
+    it "should render a tag with the name of the reporter" do
+      issue.stub_chain(:issue_type, :name).and_return("Bug")
+
+      content = helper.issue_type(issue)
+      content.should have_selector "span.tag"
+      content.should have_content "Bug"
+    end
+  end
+
   describe :issue_reported_by do
     it "should render a tag with the name of the reporter" do
       issue.stub(:reported_by).and_return(user)

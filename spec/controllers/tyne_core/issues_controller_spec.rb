@@ -27,7 +27,7 @@ describe TyneCore::IssuesController do
       end
 
       it "should assign the list of the issues reported by the user" do
-        user.reported_issues.create!(:summary => "FOO", :description => "Foo") do |issue|
+        user.reported_issues.create!(:summary => "FOO", :description => "Foo", :issue_type_id => 1) do |issue|
           issue.project_id = project.id
         end
         assigns(:issues).should == TyneCore::Issue.where(:project_id => project.id)
@@ -40,7 +40,7 @@ describe TyneCore::IssuesController do
 
     describe :show do
       before :each do
-        post :create, :user => user.username, :key => project.key, :issue => { :summary => "Foo", :description => "Bar", :project_id => project.id }
+        post :create, :user => user.username, :key => project.key, :issue => { :summary => "Foo", :description => "Bar", :project_id => project.id, :issue_type_id => 1 }
       end
 
       it "should create a new issue" do
@@ -59,7 +59,7 @@ describe TyneCore::IssuesController do
     end
 
     describe :show do
-      let(:issue) { TyneCore::Issue.create!(:summary => "Foo", :project_id => project.id) }
+      let(:issue) { TyneCore::Issue.create!(:summary => "Foo", :project_id => project.id, :issue_type_id => 1) }
 
       before :each do
         get :show, :user => user.username, :key => project.key, :id => issue.id
