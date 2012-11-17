@@ -10,9 +10,15 @@ TyneCore::Engine.routes.draw do
   end
 
   resources :dashboards
-  resources :issues do
-    collection do
-      get :dialog
+end
+
+Rails.application.routes.draw do
+  get '/:user/:key', :controller => 'tyne_core/issues', :action => 'index'
+  scope '/:user/:key' do
+    resources :issues, :controller => 'tyne_core/issues' do
+      collection do
+        get :dialog
+      end
     end
   end
 end
