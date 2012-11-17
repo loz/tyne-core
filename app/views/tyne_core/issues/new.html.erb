@@ -1,0 +1,7 @@
+<h3>Create Issue</h3>
+<%= simple_form_for(@issue, :validate => true) do |f| %>
+  <%= f.association :project %>
+  <%= f.input :summary %>
+  <%= f.input :description %>
+  <%= f.button :submit, :class => "btn btn-primary" %>
+<% end %>

@@ -16,26 +16,18 @@ module TyneCore
     # Creates a new project.
     def create
       @project = current_user.projects.new(params[:project])
-      if @project.save
-        respond_with(@project) do |format|
-          format.html do
-            render @project
-          end
-        end
-      else
-        render :json => @project.errors, :status => :unprocessable_entity
+      @project.save
+      respond_with(@project) do |format|
+        format.pjax { render @project }
       end
     end
 
     # Upates an existing project.
     def update
       @project = current_user.projects.find(params[:id])
-      if @project.update_attributes(params[:project])
-        respond_with(@project) do |format|
-          format.html { render @project }
-        end
-      else
-        render :json => @project.errors, :status => :unprocessable_entity
+      @project.update_attributes(params[:project])
+      respond_with(@project) do |format|
+        format.pjax { render @project }
       end
     end
 
@@ -64,9 +56,7 @@ module TyneCore
 
     # Returns a rendered dialog partial
     def dialog
-      project = current_user.projects.build
-
-      render :partial => 'dialog', :locals => { :project => project }
+      @project = current_user.projects.build
     end
   end
 end

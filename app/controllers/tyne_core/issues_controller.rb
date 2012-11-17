@@ -6,16 +6,39 @@ module TyneCore
     self.responder = ::ApplicationResponder
     respond_to :html, :json
 
-    before_filter :load_project
-
     # Displays the index view with the default dashboard
     def index
-      @issues = current_user.reported_issues
+      reflection = TyneCore::Issue.scoped
+      reflection = reflection.where(params[:filter]) if params[:filter]
+
+      @issues = reflection
     end
 
-    private
-    def load_project
-      @project = TyneCore::Project.find(params[:project_id])
+    # Creates a new issue
+    def create
+      @issue = TyneCore::Issue.new(params[:issue])
+      @issue.reported_by = current_user
+      @issue.save
+
+      respond_with(@issue)
+    end
+
+    # Displays the new page for issue creation
+    def new
+      @issue = TyneCore::Issue.new
+    end
+
+    # Displays an existing Issue
+    def show
+      @issue = TyneCore::Issue.find(params[:id])
+      respond_with(@issue)
+    end
+
+    # Renders a dialog partial
+    def dialog
+      @issue = TyneCore::Issue.new
+
+      render 'dialog'
     end
   end
 end

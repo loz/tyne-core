@@ -1,10 +1,13 @@
-<table class="table">
-  <% @issues.each do |issue| %>
-    <tr>
-      <td><%= check_box_tag "issue[id[]]", issue.id, false, :id => "issue_#{issue.id}" %></td>
-      <td><%= issue.summary %></td>
-      <td><%= issue.description %></td>
-      <td><%= avatar(issue.reported_by) %></td>
-    </tr>
-  <% end %>
-</table>
+<div class="options">
+  <%= link_to "Create", new_issue_path, :class => "btn btn-small btn-primary" %>
+  <%= link_to "Refresh", url_for(params), :class => "btn btn-small" %>
+  <div class="btn-group" data-toggle="buttons-radio" data-behaviour="issue-view">
+    <button type="button" class="btn btn-small" data-view="minimal">List</button>
+    <button type="button" class="btn btn-small" data-view="compact">Compact</button>
+    <button type="button" class="btn btn-small active" data-view="detailed">Detailed</button>
+  </div>
+</div>
+
+<div class="issue-list">
+  <%= render @issues %>
+</div>

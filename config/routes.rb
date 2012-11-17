@@ -10,7 +10,9 @@ TyneCore::Engine.routes.draw do
   end
 
   resources :dashboards
-  resources :projects, :only => [] do
-    resources :issues
+  resources :issues do
+    collection do
+      get :dialog
+    end
   end
 end

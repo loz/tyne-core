@@ -50,11 +50,11 @@ describe TyneCore::ProjectsController do
     describe :create do
       context :success do
         before :each do
-          post :create, :project => { :key => "FOO", :name => "Foo" }, :use_route => :tyne_core
+          post :create, :project => { :key => "FOO", :name => "Foo" }, :format => :pjax, :use_route => :tyne_core
         end
 
         it "should create a new project" do
-          project = TyneCore::Project.find_by_key("FOO").should be_present
+          TyneCore::Project.find_by_key("FOO").should be_present
         end
 
         it "should render the correct view" do
@@ -84,7 +84,7 @@ describe TyneCore::ProjectsController do
         end
 
         it "should render the correct view" do
-          put :update, :id => existing.id, :project => { :key => "BAR" }, :use_route => :tyne_core
+          put :update, :id => existing.id, :project => { :key => "BAR" }, :format => :pjax, :use_route => :tyne_core
           response.should render_template "projects/_project"
         end
 
@@ -169,13 +169,13 @@ describe TyneCore::ProjectsController do
       end
     end
 
-    describe :index do
+    describe :dialog do
       before :each do
-        get :dialog, :use_route => :tyne_core
+        get :dialog, :format => :pjax, :use_route => :tyne_core
       end
 
       it "should render the correct view" do
-        response.should render_template "projects/_dialog"
+        response.should render_template "projects/dialog"
       end
     end
   end
