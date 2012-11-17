@@ -1,18 +1,16 @@
 require 'spec_helper'
 
 describe TyneCore::IssuesController do
-  before(:each) { @routes = TyneCore::Engine.routes }
-
   context :not_logged_in do
     it "should not allow any actions" do
-      get :index, :project_id => 1, :use_route => :tyne_core
+      get :index, :user => "Foo", :key => "Foo"
       response.should redirect_to login_path
     end
   end
 
   context :logged_in do
     let(:user) do
-      TyneAuth::User.create!(:name => "Foo", :uid => "foo", :token => "foo")
+      TyneAuth::User.create!(:name => "Foo", :username => "Foo", :uid => "foo", :token => "foo")
     end
 
     let(:project) do
@@ -25,7 +23,7 @@ describe TyneCore::IssuesController do
 
     describe :index do
       before :each do
-        get :index, :filter => { :project_id => project.id }, :use_route => :tyne_core
+        get :index, :user => user.username, :key => project.key
       end
 
       it "should assign the list of the issues reported by the user" do
@@ -42,7 +40,7 @@ describe TyneCore::IssuesController do
 
     describe :show do
       before :each do
-        post :create, :issue => { :summary => "Foo", :description => "Bar", :project_id => project.id }
+        post :create, :user => user.username, :key => project.key, :issue => { :summary => "Foo", :description => "Bar", :project_id => project.id }
       end
 
       it "should create a new issue" do
@@ -52,7 +50,7 @@ describe TyneCore::IssuesController do
 
     describe :new do
       before :each do
-        get :new
+        get :new, :user => user.username, :key => project.key
       end
 
       it "should render the correct view" do
@@ -64,7 +62,7 @@ describe TyneCore::IssuesController do
       let(:issue) { TyneCore::Issue.create!(:summary => "Foo", :project_id => project.id) }
 
       before :each do
-        get :show, :id => issue.id
+        get :show, :user => user.username, :key => project.key, :id => issue.id
       end
 
       it "should render the correct view" do
@@ -75,7 +73,7 @@ describe TyneCore::IssuesController do
 
     describe :dialog do
       before :each do
-        get :dialog, :format => :pjax
+        get :dialog, :user => user.username, :key => project.key, :format => :pjax
       end
 
       it "should render the correct view" do
