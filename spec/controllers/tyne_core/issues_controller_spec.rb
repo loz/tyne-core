@@ -34,7 +34,7 @@ describe TyneCore::IssuesController do
         user.reported_issues.create!(:summary => "FOO", :description => "Foo", :issue_type_id => 1) do |issue|
           issue.project_id = project.id
         end
-        assigns(:issues).should == TyneCore::Issue.where(:project_id => project.id)
+        assigns(:issues).should == project.issues.not_completed
       end
 
       it "render the correct view" do

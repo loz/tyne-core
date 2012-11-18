@@ -20,6 +20,7 @@ Gem::Specification.new do |s|
   s.add_dependency "client_side_validations"
   s.add_dependency "client_side_validations-simple_form"
   s.add_dependency "rack-pjax"
+  s.add_dependency "state_machine"
 
   s.add_development_dependency "sqlite3"
 end

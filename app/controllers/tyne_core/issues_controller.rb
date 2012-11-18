@@ -10,7 +10,7 @@ module TyneCore
 
     # Displays the index view with the default dashboard
     def index
-      @issues = @project.issues
+      @issues = @project.issues.not_completed
     end
 
     # Creates a new issue

@@ -1,3 +1,5 @@
+require 'state_machine'
+
 module TyneCore
   # Core engine
   class Engine < ::Rails::Engine
