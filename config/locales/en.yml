@@ -3,6 +3,14 @@ en:
     tyne_core/projects:
       import: "Import"
       index: "Projects"
+
   descriptions:
     tyne_core/projects:
       import: "I have found the following projects on Github:"
+
+  states:
+    transitions:
+      start_working: "Start Progress"
+      task_is_done: "Resolved"
+      task_is_invalid: "Invalid"
+      reopen: "Reopen"

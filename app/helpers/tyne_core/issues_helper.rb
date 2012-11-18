@@ -28,6 +28,19 @@ module TyneCore
       "#{issue.project.key}-#{issue.id}"
     end
 
+    def default_action(issue)
+      transition = case issue.state
+                   when "open", "reopened"
+                     :start_working
+                   when "wip"
+                     :task_is_done
+                   when "invalid", "done"
+                     :reopen
+                   end
+      label = I18n.t("states.transitions.#{transition}")
+      link_to(label, "#", :class => "btn btn-small")
+    end
+
     private
     def issue_label(name, value, classes=[])
       classes << "tag" unless classes.include? "tag"
