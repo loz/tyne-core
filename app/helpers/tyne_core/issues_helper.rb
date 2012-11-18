@@ -25,7 +25,7 @@ module TyneCore
     # Displays a formatted string in the following format:
     # {ProjectKey}-{IssueId} e.g. TYNE-1337
     def issue_id(issue)
-      "#{issue.project.key}-#{issue.id}"
+      "#{issue.project.key}-#{issue.number}"
     end
 
     # Returns the default workflow action as a link
@@ -39,7 +39,7 @@ module TyneCore
                      :reopen
                    end
       label = I18n.t("states.transitions.#{transition}")
-      url = main_app.workflow_issue_path(:user => issue.project.user.username, :key => issue.project.key, :id => issue.id, :transition => transition)
+      url = main_app.workflow_issue_path(:user => issue.project.user.username, :key => issue.project.key, :id => issue.number, :transition => transition)
       link_to(label, url, :class => "btn btn-small")
     end
 

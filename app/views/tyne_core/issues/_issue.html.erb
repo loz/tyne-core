@@ -1,11 +1,11 @@
-<% cache ["v2", issue] do %>
+<% cache ["v3", issue] do %>
 <div>
 <table>
 <tr class="issue">
-  <td class="issue-options"><%= check_box_tag "issue[id[]]", issue.id, false, :id => "issue_#{issue.id}" %></td>
+  <td class="issue-options"><%= check_box_tag "issue[id[]]", issue.number, false, :id => "issue_#{issue.number}" %></td>
   <td>
     <p class="issue-headline issue-line-1">
-      <%= link_to issue_id(issue), main_app.issue_path(:user => @project.user.username, :key => @project.key, :id => issue.id) %>
+      <%= link_to issue_id(issue), main_app.issue_path(:user => @project.user.username, :key => @project.key, :id => issue.number) %>
       <span class="issue-summary"><%= issue.summary %></span>
     </p>
     <p class="issue-description issue-line-2">

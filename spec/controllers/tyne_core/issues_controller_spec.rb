@@ -64,7 +64,7 @@ describe TyneCore::IssuesController do
 
     describe :edit do
       before :each do
-        get :edit, :user => user.username, :key => project.key, :id => issue.id
+        get :edit, :user => user.username, :key => project.key, :id => issue.number
       end
 
       it "should render the correct view" do
@@ -74,7 +74,7 @@ describe TyneCore::IssuesController do
 
     describe :update do
       before :each do
-        put :update, :user => user.username, :key => project.key, :id => issue.id, :issue => { :summary => 'Bar' }
+        put :update, :user => user.username, :key => project.key, :id => issue.number, :issue => { :summary => 'Bar' }
       end
 
       it "should update the issue" do
@@ -85,7 +85,7 @@ describe TyneCore::IssuesController do
     describe :workflow do
       context 'when a valid transition is given' do
         before :each do
-          get :workflow, :user => user.username, :key => project.key, :id => issue.id, :transition => 'task_is_done'
+          get :workflow, :user => user.username, :key => project.key, :id => issue.number, :transition => 'task_is_done'
         end
 
         it "should run the transition" do
@@ -95,7 +95,7 @@ describe TyneCore::IssuesController do
 
       context 'when an invalid transition is given' do
         before :each do
-          get :workflow, :user => user.username, :key => project.key, :id => issue.id, :transition => 'foo'
+          get :workflow, :user => user.username, :key => project.key, :id => issue.number, :transition => 'foo'
         end
 
         it "should not run the transition" do
@@ -107,7 +107,7 @@ describe TyneCore::IssuesController do
 
     describe :show do
       before :each do
-        get :show, :user => user.username, :key => project.key, :id => issue.id
+        get :show, :user => user.username, :key => project.key, :id => issue.number
       end
 
       it "should render the correct view" do

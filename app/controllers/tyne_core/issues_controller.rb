@@ -29,27 +29,27 @@ module TyneCore
 
     # Performs a workflow transition
     def workflow
-      @issue = TyneCore::Issue.find(params[:id])
+      @issue = TyneCore::Issue.find_by_number(params[:id])
       @issue.send(params[:transition]) if @issue.state_transitions.any? { |x| x.event == params[:transition].to_sym }
       redirect_to(main_app.issue_path(:user => @project.user.username, :key => @project.key, :id => @issue.id))
     end
 
     # Displays the edit page for an issue.
     def edit
-      @issue = TyneCore::Issue.find(params[:id])
+      @issue = TyneCore::Issue.find_by_number(params[:id])
       respond_with(@issue)
     end
 
     # Updates a given issue
     def update
-      @issue = TyneCore::Issue.find(params[:id])
+      @issue = TyneCore::Issue.find_by_number(params[:id])
       @issue.update_attributes(params[:issue])
       respond_with(@issue, :location => main_app.issue_path(:user => @project.user.username, :key => @project.key, :id => @issue.id))
     end
 
     # Displays an existing Issue
     def show
-      @issue = TyneCore::Issue.find(params[:id])
+      @issue = TyneCore::Issue.find_by_number(params[:id])
       respond_with(@issue)
     end
 
