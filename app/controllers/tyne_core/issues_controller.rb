@@ -7,6 +7,7 @@ module TyneCore
     respond_to :html, :json
 
     before_filter :load_project
+    before_filter :load_issue, :only => [:workflow, :edit, :update, :show]
 
     # Displays the index view with the default dashboard
     def index
@@ -19,7 +20,7 @@ module TyneCore
       @issue.reported_by = current_user
       @issue.save
 
-      respond_with(@issue, :location => main_app.issue_path(:user => @project.user.username, :key => @project.key, :id => @issue.id))
+      respond_with(@issue, :location => show_path)
     end
 
     # Displays the new page for issue creation
@@ -29,27 +30,23 @@ module TyneCore
 
     # Performs a workflow transition
     def workflow
-      @issue = TyneCore::Issue.find_by_number(params[:id])
       @issue.send(params[:transition]) if @issue.state_transitions.any? { |x| x.event == params[:transition].to_sym }
-      redirect_to(main_app.issue_path(:user => @project.user.username, :key => @project.key, :id => @issue.id))
+      redirect_to show_path
     end
 
     # Displays the edit page for an issue.
     def edit
-      @issue = TyneCore::Issue.find_by_number(params[:id])
       respond_with(@issue)
     end
 
     # Updates a given issue
     def update
-      @issue = TyneCore::Issue.find_by_number(params[:id])
       @issue.update_attributes(params[:issue])
-      respond_with(@issue, :location => main_app.issue_path(:user => @project.user.username, :key => @project.key, :id => @issue.id))
+      respond_with(@issue, :location => show_path)
     end
 
     # Displays an existing Issue
     def show
-      @issue = TyneCore::Issue.find_by_number(params[:id])
       respond_with(@issue)
     end
 
@@ -63,6 +60,14 @@ module TyneCore
     private
     def load_project
       @project = TyneCore::Project.joins(:user).where(:key => params[:key]).where(:tyne_auth_users => {:username => params[:user]  }).first
+    end
+
+    def load_issue
+      @issue = @project.issues.find_by_number(params[:id])
+    end
+
+    def show_path
+      main_app.issue_path(:user => @project.user.username, :key => @project.key, :id => @issue.number)
     end
   end
 end
