@@ -28,6 +28,7 @@ module TyneCore
       "#{issue.project.key}-#{issue.id}"
     end
 
+    # Returns the default workflow action as a link
     def default_action(issue)
       transition = case issue.state
                    when "open", "reopened"
@@ -38,7 +39,7 @@ module TyneCore
                      :reopen
                    end
       label = I18n.t("states.transitions.#{transition}")
-      url = main_app.workflow_issue_path(:user => @project.user.username, :key => @project.key, :id => @issue.id, :transition => transition)
+      url = main_app.workflow_issue_path(:user => issue.project.user.username, :key => issue.project.key, :id => issue.id, :transition => transition)
       link_to(label, url, :class => "btn btn-small")
     end
 

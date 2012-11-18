@@ -82,6 +82,29 @@ describe TyneCore::IssuesController do
       end
     end
 
+    describe :workflow do
+      context 'when a valid transition is given' do
+        before :each do
+          get :workflow, :user => user.username, :key => project.key, :id => issue.id, :transition => 'task_is_done'
+        end
+
+        it "should run the transition" do
+          issue.class.find_by_id(issue.id).should be_completed
+        end
+      end
+
+      context 'when an invalid transition is given' do
+        before :each do
+          get :workflow, :user => user.username, :key => project.key, :id => issue.id, :transition => 'foo'
+        end
+
+        it "should not run the transition" do
+          issue.class.find_by_id(issue.id).should_not be_completed
+          response.should_not be_success
+        end
+      end
+    end
+
     describe :show do
       before :each do
         get :show, :user => user.username, :key => project.key, :id => issue.id

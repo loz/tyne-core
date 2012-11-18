@@ -12,6 +12,7 @@ require 'rspec/autorun'
 Dir[Rails.root.join("spec/support/**/*.rb")].each {|f| require f}
 
 require "dummy/db/schema"
+require "dummy/db/seeds"
 
 RSpec.configure do |config|
   # ## Mock Framework

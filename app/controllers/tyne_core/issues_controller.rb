@@ -27,6 +27,7 @@ module TyneCore
       @issue = TyneCore::Issue.new
     end
 
+    # Performs a workflow transition
     def workflow
       @issue = TyneCore::Issue.find(params[:id])
       @issue.send(params[:transition]) if @issue.state_transitions.any? { |x| x.event == params[:transition].to_sym }
