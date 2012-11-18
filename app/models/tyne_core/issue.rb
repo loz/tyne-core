@@ -15,5 +15,12 @@ module TyneCore
     validates :project_id, :summary, :issue_type_id, :presence => true
 
     default_scope includes(:project).includes(:reported_by).includes(:issue_type)
+
+    after_initialize :set_defaults
+
+    def set_defaults
+      self.issue_type_id ||= TyneCore::IssueType.first.id
+    end
+    private :set_defaults
   end
 end
