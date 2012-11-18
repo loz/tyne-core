@@ -1,16 +1,16 @@
 GIT
-  remote: https://github.com/josevalim/active_model_serializers.git
-  revision: a21529370cb1fef30af92393ee209c53a6c86ba8
-  specs:
-    active_model_serializers (0.5.0)
-      activemodel (~> 3.0)
-
-GIT
   remote: https://github.com/plataformatec/responders.git
   revision: a37a56211a3b5c2aa5e812f297f33647fa38c813
   specs:
     responders (0.9.2)
       railties (~> 3.1)
+
+GIT
+  remote: https://github.com/rails-api/active_model_serializers.git
+  revision: 9f5e1b1776b67e2a601b0205fbba705a0cde55e6
+  specs:
+    active_model_serializers (0.5.2)
+      activemodel (>= 3.0)
 
 GIT
   remote: https://github.com/tyne/tyne-auth.git

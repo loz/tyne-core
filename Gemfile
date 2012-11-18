@@ -9,7 +9,7 @@ gem 'sass-rails'
 gem 'compass-rails'
 
 gem 'responders', :git => 'https://github.com/plataformatec/responders.git'
-gem "active_model_serializers", :git => "https://github.com/josevalim/active_model_serializers.git"
+gem "active_model_serializers", :git => "https://github.com/rails-api/active_model_serializers.git"
 gem "simple_form"
 gem 'client_side_validations'
 gem 'client_side_validations-simple_form'
