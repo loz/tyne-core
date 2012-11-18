@@ -45,4 +45,12 @@ describe TyneCore::Issue do
       issue.completed?.should be_true
     end
   end
+
+  describe :number do
+    it "should use the next available number in the project context" do
+      max = (project.issues.maximum('number') || 0)
+      issue = project.issues.create!(:summary => "Foo", :issue_type_id => 1)
+      issue.number.should == max + 1
+    end
+  end
 end

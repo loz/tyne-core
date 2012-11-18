@@ -12,15 +12,22 @@ module TyneCore
 
     attr_accessible :project_id, :summary, :description, :issue_type_id
 
-    validates :project_id, :summary, :issue_type_id, :presence => true
+    validates :project_id, :summary, :issue_type_id, :number, :presence => true
+    validates :number, :uniqueness => { :scope => :project_id }
 
     default_scope includes(:project).includes(:reported_by).includes(:issue_type)
 
     after_initialize :set_defaults
+    before_validation :set_number, :on => :create
 
     def set_defaults
       self.issue_type_id ||= TyneCore::IssueType.first.id
     end
     private :set_defaults
+
+    def set_number
+      self.number = (project.issues.maximum('number') || 0) + 1
+    end
+    private :set_number
   end
 end
