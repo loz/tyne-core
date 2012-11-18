@@ -10,7 +10,7 @@
       if (dialogs.length > 0) {
         return $(dialogs[0]);
       } else {
-        return Loader.load(_this.$target.data("dialog"), $("body"));
+        return Loader.load(_this.$target.data("dialog"), $("body"), "#issue_dialog");
       }
     };
     _this.$form = function() {
