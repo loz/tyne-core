@@ -1,9 +1,4 @@
-<% cache ["v2", "issue", "new"] do %>
+<% cache ["v3", "issue", "new"] do %>
 <h3>Create Issue</h3>
-<%= simple_form_for(@issue, :url => main_app.issues_path, :validate => true) do |f| %>
-  <%= f.input :summary %>
-  <%= f.association :issue_type %>
-  <%= f.input :description %>
-  <%= f.button :submit, :class => "btn btn-primary" %>
-<% end %>
+  <%= render :partial => 'form', :locals => { :issue => @issue, :url => main_app.issues_path } %>
 <% end %>

@@ -17,6 +17,10 @@ describe TyneCore::IssuesController do
       user.projects.create!(:key => "Foo", :name => "Foo")
     end
 
+    let(:issue) do
+      TyneCore::Issue.create!(:summary => "Foo", :project_id => project.id, :issue_type_id => 1)
+    end
+
     before :each do
       controller.stub(:current_user).and_return(user)
     end
@@ -38,7 +42,7 @@ describe TyneCore::IssuesController do
       end
     end
 
-    describe :show do
+    describe :create do
       before :each do
         post :create, :user => user.username, :key => project.key, :issue => { :summary => "Foo", :description => "Bar", :project_id => project.id, :issue_type_id => 1 }
       end
@@ -58,9 +62,27 @@ describe TyneCore::IssuesController do
       end
     end
 
-    describe :show do
-      let(:issue) { TyneCore::Issue.create!(:summary => "Foo", :project_id => project.id, :issue_type_id => 1) }
+    describe :edit do
+      before :each do
+        get :edit, :user => user.username, :key => project.key, :id => issue.id
+      end
 
+      it "should render the correct view" do
+        response.should render_template 'issues/edit'
+      end
+    end
+
+    describe :update do
+      before :each do
+        put :update, :user => user.username, :key => project.key, :id => issue.id, :issue => { :summary => 'Bar' }
+      end
+
+      it "should update the issue" do
+        issue.class.find_by_id(issue.id).summary.should == 'Bar'
+      end
+    end
+
+    describe :show do
       before :each do
         get :show, :user => user.username, :key => project.key, :id => issue.id
       end

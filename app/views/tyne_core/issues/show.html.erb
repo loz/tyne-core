@@ -1,5 +1,8 @@
-<% cache ["v2", "view", @issue] do %>
+<% cache ["v3", "view", @issue] do %>
 <h1>Show Issue</h1>
+<div class="options">
+  <%= link_to "Edit", main_app.edit_issue_path(:user => @project.user.username, :key => @project.key, :id => @issue.id), :class => 'btn btn-primary btn-small' %>
+</div>
 <h2><%= @issue.summary %></h2>
 <p class="tag-list">
   <%= issue_type(@issue) %>
