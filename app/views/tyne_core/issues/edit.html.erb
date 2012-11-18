@@ -1,4 +1,4 @@
-<% cache ["v1", "issue", 'edit', @issue] do %>
+<% cache ["v2", "issue", 'edit', @issue] do %>
 <h3>Update Issue</h3>
 <%= render :partial => 'form', :locals => { :issue => @issue, :url => main_app.issue_path(:user => @project.user.username, :key => @project.key, :id => @issue.id) } %>
 <% end %>
