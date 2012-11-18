@@ -19,6 +19,9 @@ Rails.application.routes.draw do
       collection do
         get :dialog
       end
+      member do
+        get :workflow
+      end
     end
   end
 end

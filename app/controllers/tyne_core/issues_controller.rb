@@ -27,6 +27,12 @@ module TyneCore
       @issue = TyneCore::Issue.new
     end
 
+    def workflow
+      @issue = TyneCore::Issue.find(params[:id])
+      @issue.send(params[:transition]) if @issue.state_transitions.any? { |x| x.event == params[:transition].to_sym }
+      redirect_to(main_app.issue_path(:user => @project.user.username, :key => @project.key, :id => @issue.id))
+    end
+
     # Displays the edit page for an issue.
     def edit
       @issue = TyneCore::Issue.find(params[:id])

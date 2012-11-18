@@ -9,7 +9,7 @@
     </button>
     <ul class="dropdown-menu">
       <% @issue.state_transitions.each do |transition| %>
-        <li><%= link_to I18n.t("states.transitions.#{transition.event}"), "#" %></li>
+        <li><%= link_to I18n.t("states.transitions.#{transition.event}"), main_app.workflow_issue_path(:user => @project.user.username, :key => @project.key, :id => @issue.id, :transition => transition.event) %></li>
       <% end %>
     </ul>
   </div>

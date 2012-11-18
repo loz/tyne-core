@@ -38,7 +38,8 @@ module TyneCore
                      :reopen
                    end
       label = I18n.t("states.transitions.#{transition}")
-      link_to(label, "#", :class => "btn btn-small")
+      url = main_app.workflow_issue_path(:user => @project.user.username, :key => @project.key, :id => @issue.id, :transition => transition)
+      link_to(label, url, :class => "btn btn-small")
     end
 
     private
