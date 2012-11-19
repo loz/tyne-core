@@ -1,4 +1,4 @@
-<%= projects = current_user.projects %>
+<% projects = current_user.projects %>
 <%= cache ["v4", current_user, "issue", "dialog", projects.cache_key] do %>
   <div id="issue_dialog" class="modal hide fade issue-dialog" tabindex="-1" role="dialog">
     <%= simple_form_for(@issue, :url => main_app.issues_path, :validate => true) do |f| %>
