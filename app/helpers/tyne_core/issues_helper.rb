@@ -29,6 +29,13 @@ module TyneCore
       issue_label("Opened", content)
     end
 
+    # Displays a label for the current state
+    def issue_state(issue)
+      content = I18n.t("states.#{issue.state}")
+      issue_label("State", content, [issue.state.to_s.underscore])
+    end
+
+
     # Displays a formatted string in the following format:
     # {ProjectKey}-{IssueId} e.g. TYNE-1337
     def issue_id(issue)

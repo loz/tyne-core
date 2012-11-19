@@ -27,6 +27,16 @@ describe TyneCore::IssuesHelper do
     end
   end
 
+  describe :issue_state do
+    it "should render a tag with the current state" do
+      issue.stub(:state).and_return(:wip)
+
+      content = helper.issue_state(issue)
+      content.should have_selector "span.tag"
+      content.should have_content I18n.t("states.wip")
+    end
+  end
+
   describe :issue_reported_at do
     it "should render a tag with the date of creation" do
       date = 3.days.ago

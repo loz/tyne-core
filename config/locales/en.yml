@@ -9,6 +9,11 @@ en:
       import: "I have found the following projects on Github:"
 
   states:
+    open: "Open"
+    reopened: "Reopened"
+    wip: "In Progress"
+    done: "Done"
+    invalid: "Invalid"
     transitions:
       start_working: "Start Progress"
       task_is_done: "Resolved"
