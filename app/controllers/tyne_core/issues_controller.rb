@@ -2,10 +2,11 @@ require_dependency "tyne_core/application_controller"
 
 module TyneCore
   # Handles requests for issue creation, updates, deletions
-  class IssuesController < ApplicationController
+  class IssuesController < TyneCore::ApplicationController
     self.responder = ::ApplicationResponder
     respond_to :html, :json
 
+    before_filter :load_user
     before_filter :load_project
     before_filter :load_issue, :only => [:workflow, :edit, :update, :show]
 
@@ -58,14 +59,6 @@ module TyneCore
     end
 
     private
-    def load_project
-      @project = TyneCore::Project.joins(:user).where(:key => params[:key]).where(:tyne_auth_users => {:username => params[:user]  }).first
-    end
-
-    def load_issue
-      @issue = @project.issues.find_by_number(params[:id])
-    end
-
     def show_path
       main_app.issue_path(:user => @project.user.username, :key => @project.key, :id => @issue.number)
     end

@@ -1,0 +1,19 @@
+<% cache ['v1', @user, 'overview'] do %>
+  <div class="span4">
+    <div class="overview">
+      <p class="user">
+        <%= image_tag avatar_url(@user, :width => 128), :class => 'portrait', :width => 128 %>
+        <span class="user-name"><%= @user.name %></span>
+        <span class="user-nickname"><%= @user.username %> (<%= link_to "Github", "http://github.com/#{@user.username}" %>)</span>
+      </p>
+    </div>
+  </div>
+  <div class="span8">
+    <h2>Public projects</h2>
+    <ul class="projects">
+      <% @user.projects.each do |project| %>
+        <li><%= link_to(project.name, main_app.backlog_path(:user => @user.username, :key => project.key)) %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>

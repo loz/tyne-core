@@ -5,3 +5,12 @@
   </ul>
   <%= link_to "New project", projects_path, :class => 'btn btn-inverse btn-small' %>
 <% end %>
+
+<h1>Activity</h1>
+<% cache ["v1", "activity", @new_projects.cache_key] do %>
+  <ul>
+    <% @new_projects.each do |project| %>
+      <li>User <%= link_to project.user.username, main_app.overview_path(:user => project.user.username) %> created project <%= link_to project.name, main_app.backlog_path(:user => project.user.username, :key => project.key) %></li>
+    <% end %>
+  </ul>
+<% end %>

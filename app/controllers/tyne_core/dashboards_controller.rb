@@ -9,6 +9,7 @@ module TyneCore
     # Displays the index view with the default dashboard
     def index
       @projects = current_user.projects
+      @new_projects = TyneCore::Project.order("created_at DESC")
     end
   end
 end
