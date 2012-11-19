@@ -1,6 +1,7 @@
 require "tyne_core/engine"
 require "tyne_auth"
 require "tyne_core/extensions"
+require "tyne_core/extensions/active_record/relation"
 
 # Contains core functionality
 module TyneCore
