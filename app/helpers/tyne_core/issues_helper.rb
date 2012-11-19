@@ -53,11 +53,7 @@ module TyneCore
     private
     def issue_label(name, value, classes=[])
       classes << "tag" unless classes.include? "tag"
-      title = if name.present?
-                  "#{name}: #{value}"
-                else
-                  value
-                end
+      title = "#{name}: #{value}"
 
       content_tag :span, value, :class => classes.join(' '), :title => title
     end

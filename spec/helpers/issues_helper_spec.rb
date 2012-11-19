@@ -11,6 +11,9 @@ describe TyneCore::IssuesHelper do
       content = helper.issue_type(issue)
       content.should have_selector "span.tag"
       content.should have_content "Bug"
+
+      content = helper.issue_type(issue, true)
+      content.should have_content "B"
     end
   end
 
