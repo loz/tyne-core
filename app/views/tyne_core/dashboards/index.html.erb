@@ -3,4 +3,5 @@
     <li class="nav-header">My projects (<%= @projects.count %>)</li>
     <%= render :partial => "project", :collection => @projects %>
   </ul>
+  <%= link_to "New project", projects_path, :class => 'btn btn-inverse btn-small' %>
 <% end %>
