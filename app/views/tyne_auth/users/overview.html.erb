@@ -1,4 +1,4 @@
-<% cache ['v1', @user, 'overview'] do %>
+<% cache ['v1', @user, 'overview', @user.projects.cache_key] do %>
   <div class="span4">
     <div class="overview">
       <p class="user">
