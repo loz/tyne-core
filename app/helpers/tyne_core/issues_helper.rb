@@ -7,8 +7,15 @@ module TyneCore
     end
 
     # Displays a label with the issue type
-    def issue_type(issue)
-      issue_label("Type", issue.issue_type.name, [issue.issue_type.name.underscore]) if issue.issue_type
+    def issue_type(issue, short = false)
+      name = if short
+                      issue.issue_type.name[0].upcase
+                     else
+                      issue.issue_type.name
+                     end
+      classes = [issue.issue_type.name.underscore]
+      classes << "tag-short" if short
+      issue_label("Type", name, classes) if issue.issue_type
     end
 
     # Displays a label with the date when the issue has been reported
@@ -46,8 +53,13 @@ module TyneCore
     private
     def issue_label(name, value, classes=[])
       classes << "tag" unless classes.include? "tag"
-      content = "#{name}: #{value}"
-      content_tag :span, content, :class => classes.join(' ')
+      title = if name.present?
+                  "#{name}: #{value}"
+                else
+                  value
+                end
+
+      content_tag :span, value, :class => classes.join(' '), :title => title
     end
   end
 end

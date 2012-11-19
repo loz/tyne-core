@@ -1,13 +1,11 @@
 .issue-list {
   > div {
-    background-color: #fafafa;
     &:hover {
       background-color: #eee;
     }
 
-    border: 1px solid #ccc;
+    border-top: 1px solid #ccc;
     margin-bottom: 0px;
-    @include border-radius(2px);
 
     &.selected {
       background-color: #E9F3FD;
@@ -17,27 +15,33 @@
 
   &.issue-minimal {
     .issue-line-1 { display: auto; }
+    .issue-type-short { display: auto; }
     .issue-line-2 { display: none; }
     .issue-line-3 { display: none; }
   }
 
   &.issue-compact {
     .issue-line-1 { display: auto; }
+    .issue-type-short { display: none; }
     .issue-line-2 { display: none; }
     .issue-line-3 { display: auto; }
   }
 
   &.issue-detailed {
     .issue-line-1 { display: auto; }
+    .issue-type-short { display: none; }
     .issue-line-2 { display: auto; }
     .issue-line-3 { display: auto; }
+  }
+
+  .issue-line-3 {
+    padding-bottom: 4px;
   }
 
   table {
     width: 100%;
 
     tr.issue {
-      @include background-image(linear-gradient(#fff, #f0f0f0));
       .issue-options {
         width: 50px;
         vertical-align: top;
