@@ -11,3 +11,11 @@
 <div class="issue-list issue-detailed">
   <%= render @issues %>
 </div>
+
+<% content_for :sidebar do %>
+  <% cache ["v1", "issues", "backlog", "sidebar"] do %>
+    <%= render_cell :"tyne_core/backlog_sidebar", :filter %>
+    <%= render_cell :"tyne_core/backlog_sidebar", :sorting %>
+    <%= render_cell :"tyne_core/backlog_sidebar", :grouping %>
+  <% end %>
+<% end %>
