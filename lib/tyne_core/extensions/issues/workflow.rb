@@ -10,6 +10,7 @@ module TyneCore
       # open or reopened -> wip
       # open or reopened or wip -> done
       # open or reopened or wip -> invalid
+      # wip -> open
       # done or invalid -> reopened
       module Workflow
         extend ActiveSupport::Concern
@@ -18,6 +19,10 @@ module TyneCore
           state_machine :state, :initial => :open do
             event :start_working do
               transition [:open, :reopened] => :wip
+            end
+
+            event :stop_working do
+              transition :wip => :open
             end
 
             event :task_is_done do

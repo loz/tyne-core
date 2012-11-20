@@ -16,6 +16,7 @@ en:
     invalid: "Invalid"
     transitions:
       start_working: "Start Progress"
+      stop_working: "Stop Progress"
       task_is_done: "Resolved"
       task_is_invalid: "Invalid"
       reopen: "Reopen"
