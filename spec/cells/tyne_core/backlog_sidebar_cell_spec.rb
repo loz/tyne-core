@@ -1,20 +1,26 @@
 require 'spec_helper'
 
-describe BacklogSidebarCell do
+describe TyneCore::BacklogSidebarCell do
+  subject { cell(:"tyne_core/backlog_sidebar") }
 
-  context "cell instance" do
-    subject { cell(:tyne_core/backlog_sidebar) }
-
-    it { should respond_to(:filter) }
-  end
-
-  context "cell rendering" do
-    context "rendering filter" do
-      subject { render_cell(:tyne_core/backlog_sidebar, :filter) }
-
-      it { should have_selector("h1", :content => "BacklogSidebar#filter") }
-      it { should have_selector("p", :content => "Find me in app/cells/tyne_core/backlog_sidebar/filter.html") }
+  describe :filter do
+    it "should render the view" do
+      subject.should_receive(:render)
+      subject.filter
     end
   end
 
+  describe :sorting do
+    it "should render the view" do
+      subject.should_receive(:render)
+      subject.sorting
+    end
+  end
+
+  describe :grouping do
+    it "should render the view" do
+      subject.should_receive(:render)
+      subject.grouping
+    end
+  end
 end
