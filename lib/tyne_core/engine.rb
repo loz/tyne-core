@@ -15,6 +15,7 @@ module TyneCore
     initializer "tyne_auth.extensions" do
       ActionDispatch::Reloader.to_prepare do
         TyneAuth::User.send(:include, TyneCore::Extensions::User)
+        TyneCore::ApplicationController.send(:include, TyneCore::Extensions::ActionController::Sorting)
       end
     end
   end

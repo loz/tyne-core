@@ -66,29 +66,5 @@ module TyneCore
     def show_path
       main_app.issue_path(:user => @project.user.username, :key => @project.key, :id => @issue.number)
     end
-
-    def apply_sorting(reflection)
-      if params[:sorting]
-        sorting = params[:sorting]
-        column = if reflection.klass.column_names.include?(sorting[:field])
-                   sorting[:field]
-                 else
-                   "id"
-                 end
-
-        order = case sorting[:order]
-                when "asc"
-                  "ASC"
-                when "desc"
-                  "DESC"
-                else
-                  "ASC"
-                end
-        reflection = reflection.order("#{column} #{order}")
-      else
-        reflection = reflection.order("created_at ASC")
-      end
-      reflection
-    end
   end
 end

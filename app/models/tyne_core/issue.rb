@@ -20,6 +20,8 @@ module TyneCore
     after_initialize :set_defaults
     before_validation :set_number, :on => :create
 
+    scope :sort_by_issue_type, lambda { |sord| joins(:issue_type).order("tyne_core_issue_types.name #{sord}") }
+
     def set_defaults
       self.issue_type_id ||= TyneCore::IssueType.first.id
     end
