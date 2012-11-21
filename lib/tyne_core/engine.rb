@@ -1,4 +1,5 @@
 require 'state_machine'
+require 'tyne_ui'
 
 module TyneCore
   # Core engine
