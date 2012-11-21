@@ -7,7 +7,7 @@ GIT
 
 GIT
   remote: https://github.com/rails-api/active_model_serializers.git
-  revision: 5d839e57255729526c33723b83e19eef6198b278
+  revision: 6b88f1b6ef32d87761b29f29708c7afbd730725c
   specs:
     active_model_serializers (0.5.2)
       activemodel (>= 3.0)
@@ -47,7 +47,7 @@ GIT
 
 GIT
   remote: https://github.com/tyne/tyne-ui.git
-  revision: c89c2274f335b4273a69833c8c534b79acbc18f2
+  revision: e8e12094b5e617257aaf65a0b65913fe35026c52
   branch: master
   specs:
     tyne_ui (0.0.1)
@@ -196,7 +196,7 @@ GEM
     libv8 (3.3.10.4)
     libwebsocket (0.1.6.1)
       websocket
-    listen (0.5.3)
+    listen (0.6.0)
     lumberjack (1.0.2)
     mail (2.4.4)
       i18n (>= 0.4.0)
