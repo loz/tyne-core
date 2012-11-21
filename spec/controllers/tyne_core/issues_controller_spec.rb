@@ -26,18 +26,35 @@ describe TyneCore::IssuesController do
     end
 
     describe :index do
-      before :each do
-        get :index, :user => user.username, :key => project.key
-      end
-
       it "should assign the list of the issues reported by the user" do
+        get :index, :user => user.username, :key => project.key
+
         user.reported_issues.create!(:summary => "FOO", :description => "Foo", :issue_type_id => 1) do |issue|
           issue.project_id = project.id
         end
-        assigns(:issues).should == project.issues.not_completed
+        assigns(:issues).should == project.issues.not_completed.order("created_at ASC")
+      end
+
+      it "should apply sort options when given" do
+        get :index, :user => user.username, :key => project.key, :sorting => { :field => 'created_at', :order => 'desc' }
+
+        user.reported_issues.create!(:summary => "FOO", :description => "Foo", :issue_type_id => 1) do |issue|
+          issue.project_id = project.id
+        end
+        assigns(:issues).should == project.issues.not_completed.order("created_at DESC")
+
+        # Fallback for field
+        get :index, :user => user.username, :key => project.key, :sorting => { :field => 'foo', :order => 'asc' }
+        assigns(:issues).should == project.issues.not_completed.order("id ASC")
+
+        # Fallback for order
+        get :index, :user => user.username, :key => project.key, :sorting => { :field => 'created_at', :order => 'foo' }
+        assigns(:issues).should == project.issues.not_completed.order("created_at ASC")
       end
 
       it "render the correct view" do
+        get :index, :user => user.username, :key => project.key
+
         response.should render_template "issues/index"
       end
     end

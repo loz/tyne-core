@@ -18,9 +18,14 @@
   Backlog.prototype.refresh = function() {
     var _this = this;
 
+    var sorting = Sorting.instances[0];
+
     LoadingIndicator.addTo(".issue-list");
 
     var options = {
+      data: {
+        sorting: sorting.options()
+      },
       success: function(data) {
         _this.list.html(data);
       }

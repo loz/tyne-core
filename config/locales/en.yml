@@ -20,3 +20,7 @@ en:
       task_is_done: "Resolved"
       task_is_invalid: "Invalid"
       reopen: "Reopen"
+
+  order:
+    asc: "Ascending"
+    desc: "Descending"

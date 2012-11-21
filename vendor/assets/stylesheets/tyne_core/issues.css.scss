@@ -65,3 +65,16 @@
     }
   }
 }
+
+.Sorting {
+  .control-group {
+    display: inline-block;
+    select {
+      width: auto;
+    }
+  }
+
+  form {
+    margin: 0;
+  }
+}
