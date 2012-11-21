@@ -18,9 +18,11 @@
   Backlog.prototype.refresh = function() {
     var _this = this;
 
+    LoadingIndicator.addTo(".issue-list");
+
     var options = {
       success: function(data) {
-        _this.list.replaceWith(data);
+        _this.list.html(data);
       }
     };
 
