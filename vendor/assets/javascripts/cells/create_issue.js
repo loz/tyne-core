@@ -1,9 +1,10 @@
-(function($, exports) {
+(function($) {
 
-  CreateIssue = function(_target) {
+  var IssueCreate = Cell.create("IssueCreate");
+
+  IssueCreate.prototype.initialize = function() {
     var _this = this;
 
-    _this.$target = $(_target);
     _this.urlPattern = null;
     _this.$dialog = function() {
       var dialogs = $("body").find('#issue_dialog');
@@ -24,7 +25,7 @@
     _this.attachEvents();
   };
 
-  CreateIssue.prototype.attachEvents = function() {
+  IssueCreate.prototype.attachEvents = function() {
     var _this = this;
 
     _this.$target.on("click", function() {
@@ -36,7 +37,7 @@
     });
   };
 
-  CreateIssue.prototype.toNewForm = function() {
+  IssueCreate.prototype.toNewForm = function() {
     var _this = this;
 
     var form = this.$form.call(this);
@@ -46,7 +47,9 @@
       dataType: 'json',
       success: function(responseText, status, xhr) {
         _this.$dialog.call(_this).modal('hide');
-        Notification.showSuccess(I18n.t("flash.actions.create.notice", {resource_name: "Issue"}));
+        Notification.show('success', I18n.t("flash.actions.create.notice", {resource_name: "Issue"}));
+
+        if (Backlog.instances.length > 0) Backlog.instances[0].refresh();
       },
       beforeSubmit: function(arr, $form, options) {
         // Look for project url in selected project
@@ -58,12 +61,4 @@
     _this.$dialog.call(_this).modal("show");
     form.ajaxForm(options);
   };
-
-  exports.CreateIssue = CreateIssue;
-})(jQuery, window);
-
-$(document).ready(function() {
-  $(".btn-create-issue").each(function() {
-    new CreateIssue(this);
-  });
-});
+})(jQuery);
