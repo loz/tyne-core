@@ -1,4 +1,4 @@
-<%= cache ["v3", "project", "dialog"] do %>
+<%= cache ["v3", "project", "dialog", current_user] do %>
   <div id="project_dialog" class="modal hide fade" tabindex="-1" role="dialog">
     <%= simple_form_for(@project, :validate => true, :html => { :method => "put" }) do |f| %>
       <div class="modal-header">
