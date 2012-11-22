@@ -1,4 +1,4 @@
-<% cache ["v2", project] do %>
+<% cache ["v2", project, current_user] do %>
   <tr data-serialized="<%= project.to_json %>" class="project">
     <td><a href="#" class="destroy btn btn-small btn-danger">Destroy</a></td>
     <td><%= project.key %></td>
