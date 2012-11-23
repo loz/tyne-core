@@ -1,0 +1,22 @@
+.comments {
+  .comment {
+    clear: both;
+    border-top: 1px solid #ccc;
+    > div {
+      float: left;
+    }
+
+    .comment-avatar {
+      margin: 5px 10px 5px 0px;
+    }
+
+    .comment-body {
+      margin: 5px 10px 5px 10px;
+      .comment-headline {
+        a {
+          font-weight: bold;
+        }
+      }
+    }
+  }
+}

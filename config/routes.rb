@@ -23,6 +23,8 @@ Rails.application.routes.draw do
       member do
         get :workflow
       end
+
+      resources :comments, :controller => 'tyne_core/comments'
     end
   end
 end

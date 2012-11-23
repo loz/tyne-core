@@ -1,0 +1,15 @@
+<% cache ["v1", comment] do %>
+<div class="comment">
+  <div class="comment-avatar">
+    <%= avatar(comment.user) %>
+  </div>
+  <div class="comment-body">
+    <div class="comment-headline">
+      <p><%= link_to(comment.user.name, main_app.overview_path(:user => comment.user.username)) %></p>
+    </div>
+    <div class="comment-message">
+      <p><%= markup_to_html(comment.message) %></p>
+    </div>
+    </div>
+  </div>
+<% end %>

@@ -10,12 +10,14 @@ module TyneCore
     belongs_to :project, :class_name => "TyneCore::Project"
     belongs_to :issue_type, :class_name => "TyneCore::IssueType"
 
+    has_many :comments, :class_name => "TyneCore::Comment"
+
     attr_accessible :project_id, :summary, :description, :issue_type_id
 
     validates :project_id, :summary, :issue_type_id, :number, :presence => true
     validates :number, :uniqueness => { :scope => :project_id }
 
-    default_scope includes(:project).includes(:reported_by).includes(:issue_type)
+    default_scope includes(:project).includes(:reported_by).includes(:issue_type).includes(:comments)
 
     after_initialize :set_defaults
     before_validation :set_number, :on => :create

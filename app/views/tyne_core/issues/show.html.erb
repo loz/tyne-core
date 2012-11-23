@@ -1,4 +1,4 @@
-<% cache ["v5", "view", @issue] do %>
+<% cache ["v6", "view", @issue] do %>
 <h1>Show Issue</h1>
 <div class="options">
   <%= link_to "Edit", main_app.edit_issue_path(:user => @project.user.username, :key => @project.key, :id => @issue.number), :class => 'btn btn-primary btn-small' %>
@@ -22,7 +22,9 @@
 </p>
 <p><%= markup_to_html(@issue.description) %></p>
 
+  <%= render :partial => "tabs", :locals => { :issue => @issue } %>
+<% end %>
+
 <% content_for :sidebar do %>
   <h1>Sidebar</h1>
-<% end %>
 <% end %>
