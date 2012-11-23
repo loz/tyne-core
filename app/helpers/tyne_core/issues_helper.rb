@@ -57,6 +57,12 @@ module TyneCore
       link_to(label, url, :class => "btn btn-small")
     end
 
+    def issue_comments(issue)
+      klasses = ["tag-short"]
+      klasses << "comments-present" if issue.comments.count > 0
+      issue_label("Comments", issue.comments.count, klasses)
+    end
+
     private
     def issue_label(name, value, classes=[])
       classes << "tag" unless classes.include? "tag"
