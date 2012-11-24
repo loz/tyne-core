@@ -4,8 +4,9 @@
   </ul>
   <div class="tab-content">
     <div class="tab-pane active" id="comments">
-      <%= render :partial => "tyne_core/comments/form", :locals => { :comment => issue.comments.build } %>
       <%= render :partial => "tyne_core/comments/list", :locals => { :comments => issue.comments.scoped } %>
+      <br style="clear: both;" />
+      <%= render :partial => "tyne_core/comments/form", :locals => { :comment => issue.comments.build } %>
     </div>
   </div>
 </div>
