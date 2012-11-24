@@ -1,5 +1,4 @@
-<% cache ["v7", "view", @issue] do %>
-<h1>Show Issue</h1>
+<% cache ["v8", "view", @issue] do %>
 <div class="options">
   <%= link_to "Edit", main_app.edit_issue_path(:user => @project.user.username, :key => @project.key, :id => @issue.number), :class => 'btn btn-primary btn-small' %>
   <div class="btn-group">
@@ -15,16 +14,26 @@
   </div>
 </div>
 <h2><%= @issue.summary %></h2>
+<p><%= markup_to_html(@issue.description) %></p>
 <p class="tag-list">
   <%= issue_type(@issue) %>
-  <%= issue_reported_by(@issue) %>
-  <%= issue_reported_at(@issue) %>
 </p>
-<p><%= markup_to_html(@issue.description) %></p>
 
   <%= render :partial => "tabs", :locals => { :issue => @issue } %>
 <% end %>
 
 <% content_for :sidebar do %>
-  <h1>Sidebar</h1>
+  <% cache ["v1", "view", @issue, "sidebar"] do %>
+    <%= render_cell :pod, :collapsable, "People" do |cell| %>
+      <% cell.content = render :partial => 'people', :locals => { :issue => @issue } %>
+    <% end %>
+
+    <%= render_cell :pod, :collapsable, "Dates" do |cell| %>
+      <% cell.content = render :partial => 'dates', :locals => { :issue => @issue } %>
+    <% end %>
+
+    <%= render_cell :pod, :collapsable, "Workflow" do |cell| %>
+      <% cell.content = render :partial => 'workflow', :locals => { :issue => @issue } %>
+    <% end %>
+  <% end %>
 <% end %>
