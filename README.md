@@ -1,4 +1,6 @@
-# tyne-core [![travis-ci](https://secure.travis-ci.org/tyne/tyne-core.png)](http://travis-ci.org/#!/tyne/tyne-core)
+# tyne-core
+
+[![travis-ci](https://secure.travis-ci.org/tyne/tyne-core.png)](http://travis-ci.org/#!/tyne/tyne-core) [![Code Climate](https://codeclimate.com/badge.png)](https://codeclimate.com/github/tyne/tyne-core)
 
 ## Description
 
