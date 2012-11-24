@@ -31,9 +31,11 @@ ActiveRecord::Schema.define(:version => 20121123184313) do
   end
 
   create_table "tyne_core_comments", :force => true do |t|
-    t.text    "mesage"
-    t.integer "issue_id"
-    t.integer "user_id"
+    t.text     "message"
+    t.integer  "issue_id"
+    t.integer  "user_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   add_index "tyne_core_comments", ["issue_id"], :name => "index_tyne_core_comments_on_issue_id"

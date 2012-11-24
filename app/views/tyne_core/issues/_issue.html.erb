@@ -10,7 +10,7 @@
       </span>
 
       <%= issue_comments(issue) %>
-      <%= link_to issue_id(issue), main_app.issue_path(:user => @project.user.username, :key => @project.key, :id => issue.number) %>
+      <%= link_to issue_id(issue), main_app.issue_path(:user => @project.user.username, :key => @project.key, :id => issue.number), :class => "issue-identifier" %>
       <span class="issue-summary"><%= issue.summary %></span>
     </p>
     <p class="issue-description issue-line-2">

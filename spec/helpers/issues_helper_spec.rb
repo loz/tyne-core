@@ -61,6 +61,14 @@ describe TyneCore::IssuesHelper do
     end
   end
 
+  describe :issue_comments do
+    it "should return a tag with the number of comments" do
+      issue.stub_chain(:comments, :count).and_return(5)
+
+      helper.issue_comments(issue).should =~ /5/
+    end
+  end
+
   describe :default_action do
     it "should return a link with the correct transition" do
       issue.stub_chain(:project, :user).and_return(user)

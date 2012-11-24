@@ -57,6 +57,7 @@ module TyneCore
       link_to(label, url, :class => "btn btn-small")
     end
 
+    # Renders a tag with the amount of comments as text.
     def issue_comments(issue)
       klasses = ["tag-short"]
       klasses << "comments-present" if issue.comments.count > 0
