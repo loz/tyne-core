@@ -13,6 +13,7 @@
     </ul>
   </div>
 </div>
+
 <h2><%= @issue.summary %></h2>
 <p><%= markup_to_html(@issue.description) %></p>
 <p class="tag-list">
@@ -23,16 +24,16 @@
 <% end %>
 
 <% content_for :sidebar do %>
-  <% cache ["v1", "view", @issue, "sidebar"] do %>
-    <%= render_cell :pod, :collapsable, "People" do |cell| %>
+  <% cache ["v2", "view", @issue, "sidebar"] do %>
+    <%= render_cell :pod, :collapsable, I18n.t("pod.titles.people") do |cell| %>
       <% cell.content = render :partial => 'people', :locals => { :issue => @issue } %>
     <% end %>
 
-    <%= render_cell :pod, :collapsable, "Dates" do |cell| %>
+    <%= render_cell :pod, :collapsable, I18n.t("pod.titles.dates") do |cell| %>
       <% cell.content = render :partial => 'dates', :locals => { :issue => @issue } %>
     <% end %>
 
-    <%= render_cell :pod, :collapsable, "Workflow" do |cell| %>
+    <%= render_cell :pod, :collapsable, I18n.t("pod.titles.workflow") do |cell| %>
       <% cell.content = render :partial => 'workflow', :locals => { :issue => @issue } %>
     <% end %>
   <% end %>

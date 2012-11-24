@@ -24,3 +24,9 @@ en:
   order:
     asc: "Ascending"
     desc: "Descending"
+
+  pod:
+    titles:
+      dates: "Dates"
+      workflow: "Workflow"
+      people: "People"
