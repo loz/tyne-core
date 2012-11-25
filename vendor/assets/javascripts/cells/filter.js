@@ -72,7 +72,7 @@
       _target.find(":checked").removeAttr("checked");
       var field = _target.data('filter');
 
-      if (data.filter[field]) {
+      if (data.filter && data.filter[field]) {
         // Select entry
         var value = data.filter[field];
 

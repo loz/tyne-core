@@ -61,9 +61,11 @@
     var url = document.URL;
     var params = $.String.deparam((url.split('?')[1] || ''));
 
-    filter.resetState(params);
-    sorting.resetState(params);
+    if (filter) filter.resetState(params);
+    if (sorting) sorting.resetState(params);
 
-    history.replaceState({ sorting: params.sorting, filter: params.filter });
+    if (filter && sorting) {
+      history.replaceState({ sorting: params.sorting, filter: params.filter });
+    }
   });
 })(jQuery);
