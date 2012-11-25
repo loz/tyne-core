@@ -54,6 +54,10 @@ describe TyneCore::IssuesController do
         # Custom sorting
         get :index, :user => user.username, :key => project.key, :sorting => { :field => 'issue_type', :order => 'ASC' }
         assigns(:issues).should == project.issues.not_completed.joins(:issue_type).order("tyne_core_issue_types.name ASC")
+
+        # Session
+        get :index, :user => user.username, :key => project.key
+        assigns(:issues).should == project.issues.not_completed.joins(:issue_type).order("tyne_core_issue_types.name ASC")
       end
 
       it "render the correct view" do
