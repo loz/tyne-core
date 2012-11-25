@@ -1,7 +1,10 @@
 .comments {
+  margin-bottom: 5px;
   .comment {
-    clear: both;
-    border-top: 1px solid #ccc;
+    overflow: auto;
+    width: 100%;
+
+    border-bottom: 1px solid #ccc;
     > div {
       float: left;
     }
@@ -11,7 +14,7 @@
     }
 
     .comment-body {
-      margin: 5px 10px 5px 10px;
+      margin: 5px 10px 0px 10px;
       .comment-headline {
         a {
           font-weight: bold;
