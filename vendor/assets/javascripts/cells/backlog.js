@@ -13,9 +13,17 @@
 
       _this.refresh();
     });
+
+    $(window).bind("popstate", function() {
+      if (event.state && event.state.sorting) {
+        _this.refresh(false, event.state);
+        Sorting.instances[0].resetState(event.state);
+        Filter.instances[0].resetState(event.state);
+      }
+    });
   };
 
-  Backlog.prototype.refresh = function() {
+  Backlog.prototype.refresh = function(updateHistory, data) {
     var _this = this;
 
     var sorting = Sorting.instances[0];
@@ -23,16 +31,34 @@
 
     LoadingIndicator.addTo(".issue-list");
 
-    var options = {
-      data: {
+    if (!data) {
+      var data = {
         sorting: sorting.options(),
-        filter: filter.options()
-      },
+      filter: filter.options()
+      }
+    }
+
+    var options = {
+      data: data,
       success: function(data) {
         _this.list.html(data);
       }
     };
 
+    if (updateHistory) {
+      var baseUrl = document.URL.substring(0, document.URL.indexOf("?"));
+      var params = $.param(data);
+      var decoded = decodeURIComponent(params);
+      history.pushState(data, null, baseUrl + "?" + decoded)
+    }
+
     $.ajax(_this.url, options);
   };
+
+  $(function() {
+    var sorting = Sorting.instances[0];
+    var filter = Filter.instances[0];
+
+    history.replaceState({ sorting: sorting.options(), filter: filter.options() });
+  });
 })(jQuery);

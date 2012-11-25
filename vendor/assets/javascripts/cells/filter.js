@@ -24,7 +24,7 @@
       _option.addClass("selected");
       _link.removeClass("icon-plus").addClass("icon-remove");
 
-      Backlog.instances[0].refresh();
+      Backlog.instances[0].refresh(true);
     });
 
     _this.$target.on("click", ".filter-add", function() {
@@ -55,12 +55,47 @@
         _filterOption.addClass("selected");
       };
 
-      Backlog.instances[0].refresh();
+      Backlog.instances[0].refresh(true);
+    });
+  };
+
+  Filter.prototype.resetState = function(data) {
+    var _this = this;
+    var prefix = "filter";
+    var _filter = _this.$target.find(".filter");
+
+    // Set values
+    _filter.each(function(index, element) {
+      var _target = $(element);
+      _target.find(".selected").removeClass("selected");
+      _target.find(".icon-remove").addClass("icon-plus");
+      _target.find(":checked").removeAttr("checked");
+      var field = _target.data('filter');
+
+      if (data.filter[field]) {
+        // Select entry
+        var value = data.filter[field];
+
+        $.each(value, function(innerIndex, innerElement) {
+          console.log(innerElement);
+          var identifier = prefix + "_" + field + "_" + innerElement;
+          var element = _target.find("#" + identifier);
+          element.attr("checked", "checked");
+          element.closest(".filter-options").addClass("selected");
+        });
+      } else {
+        // Select all
+        _target.find('input[id*="_all"]').closest(".filter-options").addClass("selected");
+      }
     });
   };
 
   Filter.prototype.options = function() {
     var _this = this;
-    return _this.form.formParams()["filter"];
+    var filter = _this.form.formParams()["filter"];
+    for (var k in filter) {
+      if (!filter[k]) delete filter[k];
+    }
+    return filter;
   };
 })(jQuery);

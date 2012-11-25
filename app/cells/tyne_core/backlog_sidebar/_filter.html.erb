@@ -1,7 +1,7 @@
 <%= content_tag :div, :data => { :cell => "Filter" }, :class => "Filter" do %>
   <%= simple_form_for :filter, :html => { :class => 'form-horizontal' } do |f| %>
     <% @fields.each do |field| %>
-      <ul class="filter">
+      <ul class="filter" data-filter="<%= field[0] %>">
         <li class="filter-name"><%= TyneCore::Issue.human_attribute_name(field[0]) %></li>
         <li class="filter-options selected">
           <%= f.input field[0], :label => "All", :required => false, :input_html => { :id => "filer_#{field[0]}_all", :type => :checkbox, :value => ''}, :label_html => { :for => "filter_#{field[0]}_all", :class => "selected" }, :wrapper_html => { :class => "filter-controls-hidden" } %>
