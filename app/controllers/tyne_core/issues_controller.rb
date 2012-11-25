@@ -14,8 +14,8 @@ module TyneCore
     # The backlog can be sorted by passing a sorting parameter.
     def index
       reflection = @project.issues.not_completed
-      reflection = apply_sorting(reflection)
       reflection = apply_filter(reflection)
+      reflection = apply_sorting(reflection)
 
       @issues = reflection
     end

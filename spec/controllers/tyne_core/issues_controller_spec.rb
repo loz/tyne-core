@@ -27,12 +27,23 @@ describe TyneCore::IssuesController do
 
     describe :index do
       it "should assign the list of the issues reported by the user" do
-        get :index, :user => user.username, :key => project.key
-
         user.reported_issues.create!(:summary => "FOO", :description => "Foo", :issue_type_id => 1) do |issue|
           issue.project_id = project.id
         end
+
+        get :index, :user => user.username, :key => project.key
+
         assigns(:issues).should == project.issues.not_completed.order("created_at ASC")
+      end
+
+      it "should apply a filter when given" do
+        user.reported_issues.create!(:summary => "FOO", :description => "Foo", :issue_type_id => 1) do |issue|
+          issue.project_id = project.id
+        end
+
+        get :index, :user => user.username, :key => project.key, :filter => { "issue_type_id" => ["1"] }
+
+        assigns(:issues).should == project.issues.not_completed.where(:issue_type_id => [1]).order("created_at ASC")
       end
 
       it "should apply sort options when given" do
