@@ -8,7 +8,7 @@ module TyneCore
 
         private
         def apply_sorting(reflection)
-          return reflection.order("created_at ASC") unless params[:sorting]
+          persist_sort_information!
 
           column = get_sort_column(reflection)
           order = get_sort_order
@@ -43,6 +43,18 @@ module TyneCore
         def sort_scope(reflection)
           sort_method = :"sort_by_#{params[:sorting][:field]}"
           sort_method if reflection.respond_to? sort_method
+        end
+
+        def persist_sort_information!
+          unless params[:sorting]
+            if session[:sorting]
+              params[:sorting] = session[:sorting]
+            else
+              params[:sorting] = { :field => "created_at", :order => "ASC" }
+            end
+          end
+
+          session[:sorting] = params[:sorting]
         end
       end
     end

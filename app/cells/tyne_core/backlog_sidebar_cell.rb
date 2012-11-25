@@ -12,7 +12,9 @@ module TyneCore
       order = [:asc, :desc]
 
       @fields = fields.map { |x| [TyneCore::Issue.human_attribute_name(x), x] }
-      @order = order.map { |x| [I18n.t("order.#{x}"), x] }
+      @orders = order.map { |x| [I18n.t("order.#{x}"), x] }
+      @field = session[:sorting] ? session[:sorting][:field] : :created_at
+      @order = session[:sorting] ? session[:sorting][:order] : :asc
 
       render
     end
