@@ -1,0 +1,35 @@
+.filter {
+  list-style-type: none;
+  margin: 0;
+  .filter-name {
+    color: #999;
+    font-size: smaller;
+    text-transform: uppercase;
+    font-weight: bold;
+  }
+
+  .filter-controls-hidden {
+    margin: 0px;
+    label {
+      font-weight: normal;
+      cursor: pointer;
+      padding: 0px 5px 0px 5px;
+      width: 150px;
+      line-height: 18px;
+
+      &.selected, &:hover {
+        background-color: #333;
+        color: white;
+      }
+
+      &:hover {
+        @include transition-property(background-color);
+        @include transition-duration(100ms);
+        @include transition-timing-function(ease-in);
+      }
+    }
+    .controls {
+      display: none;
+    }
+  }
+}

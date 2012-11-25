@@ -15,6 +15,7 @@ module TyneCore
     def index
       reflection = @project.issues.not_completed
       reflection = apply_sorting(reflection)
+      reflection = apply_filter(reflection)
 
       @issues = reflection
     end

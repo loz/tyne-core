@@ -16,6 +16,7 @@ module TyneCore
       ActionDispatch::Reloader.to_prepare do
         TyneAuth::User.send(:include, TyneCore::Extensions::User)
         TyneCore::ApplicationController.send(:include, TyneCore::Extensions::ActionController::Sorting)
+        TyneCore::ApplicationController.send(:include, TyneCore::Extensions::ActionController::Filter)
       end
     end
   end

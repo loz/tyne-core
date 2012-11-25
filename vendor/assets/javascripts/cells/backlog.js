@@ -19,12 +19,14 @@
     var _this = this;
 
     var sorting = Sorting.instances[0];
+    var filter = Filter.instances[0];
 
     LoadingIndicator.addTo(".issue-list");
 
     var options = {
       data: {
-        sorting: sorting.options()
+        sorting: sorting.options(),
+        filter: filter.options()
       },
       success: function(data) {
         _this.list.html(data);
