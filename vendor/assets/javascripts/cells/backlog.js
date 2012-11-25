@@ -58,7 +58,12 @@
   $(function() {
     var sorting = Sorting.instances[0];
     var filter = Filter.instances[0];
+    var url = document.URL;
+    var params = $.String.deparam((url.split('?')[1] || ''));
 
-    history.replaceState({ sorting: sorting.options(), filter: filter.options() });
+    filter.resetState(params);
+    sorting.resetState(params);
+
+    history.replaceState({ sorting: params.sorting, filter: params.filter });
   });
 })(jQuery);

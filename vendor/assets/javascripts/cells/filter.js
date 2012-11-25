@@ -77,11 +77,11 @@
         var value = data.filter[field];
 
         $.each(value, function(innerIndex, innerElement) {
-          console.log(innerElement);
           var identifier = prefix + "_" + field + "_" + innerElement;
           var element = _target.find("#" + identifier);
           element.attr("checked", "checked");
           element.closest(".filter-options").addClass("selected");
+          element.closest(".filter-options").find("a").removeClass("icon-plus").addClass("icon-remove");
         });
       } else {
         // Select all
