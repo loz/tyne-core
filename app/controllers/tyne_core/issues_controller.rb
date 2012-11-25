@@ -13,9 +13,10 @@ module TyneCore
     # Displays the index view with the backlog.
     # The backlog can be sorted by passing a sorting parameter.
     def index
-      reflection = @project.issues.not_completed
+      reflection = @project.issues
       reflection = apply_filter(reflection)
       reflection = apply_sorting(reflection)
+      reflection = reflection.not_completed unless params[:filter]
 
       @issues = reflection
     end
