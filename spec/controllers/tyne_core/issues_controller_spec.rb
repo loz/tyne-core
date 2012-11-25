@@ -43,7 +43,7 @@ describe TyneCore::IssuesController do
 
         get :index, :user => user.username, :key => project.key, :filter => { "issue_type_id" => ["1"] }
 
-        assigns(:issues).should == project.issues.not_completed.where(:issue_type_id => [1]).order("created_at ASC")
+        assigns(:issues).should == project.issues.where(:issue_type_id => [1]).order("created_at ASC")
       end
 
       it "should apply sort options when given" do
