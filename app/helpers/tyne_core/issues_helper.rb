@@ -53,7 +53,9 @@ module TyneCore
     # Displays a formatted string in the following format:
     # {ProjectKey}-{IssueId} e.g. TYNE-1337
     def issue_id(issue)
-      "#{issue.project.key}-#{issue.number}"
+      klasses = ["issue-key"]
+      klasses << "issue-closed" if issue.closed?
+      link_to issue.key, main_app.issue_path(:user => issue.project.user.username, :key => issue.project.key, :id => issue.number), :class => klasses.join(" ")
     end
 
     # Returns the default workflow action as a link

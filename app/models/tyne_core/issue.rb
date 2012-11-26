@@ -25,6 +25,20 @@ module TyneCore
 
     scope :sort_by_issue_type, lambda { |sord| joins(:issue_type).order("tyne_core_issue_types.name #{sord}") }
 
+    # Returns the issue number prefixed with the projecy key
+    # to better identify issues.
+    #
+    # e.g. TYNE-1337
+    #
+    # @return [String] issue-key
+    def key
+      "#{project.key}-#{number}"
+    end
+
+    def closed?
+      %w(done invalid).include? self.state
+    end
+
     def set_defaults
       self.issue_type_id ||= TyneCore::IssueType.first.id
     end

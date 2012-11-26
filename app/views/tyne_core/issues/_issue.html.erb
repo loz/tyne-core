@@ -1,4 +1,4 @@
-<% cache ["v7", issue] do %>
+<% cache ["v8", issue] do %>
 <div>
 <table>
 <tr class="issue">
@@ -10,8 +10,8 @@
       </span>
 
       <%= issue_comments(issue) %>
-      <%= link_to issue_id(issue), main_app.issue_path(:user => @project.user.username, :key => @project.key, :id => issue.number), :class => "issue-identifier" %>
-      <span class="issue-summary"><%= issue.summary %></span>
+      <%= issue_id(issue) %>
+      <span class="issue-summary"><%= content_tag :span, issue.summary, :class => "issue-#{issue.state}" %></span>
     </p>
     <p class="issue-description issue-line-2">
       <%= issue.description %>

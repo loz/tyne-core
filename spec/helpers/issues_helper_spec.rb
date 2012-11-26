@@ -68,9 +68,12 @@ describe TyneCore::IssuesHelper do
   describe :issue_id do
     it "should return a combined string of the project key and the issue id" do
       issue.stub_chain(:project, :key).and_return("TYNE")
+      issue.stub_chain(:project, :user).and_return(user)
       issue.stub(:number).and_return(1337)
 
-      helper.issue_id(issue).should == "TYNE-1337"
+      content = helper.issue_id(issue)
+      content.should have_selector "a.issue-key"
+      content.should have_content "TYNE-1337"
     end
   end
 

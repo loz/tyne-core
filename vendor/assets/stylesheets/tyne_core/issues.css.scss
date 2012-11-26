@@ -66,9 +66,13 @@
         color: #bbb;
       }
 
-      .issue-identifier {
+      .issue-key {
         display: inline-block;
         width: 60px;
+      }
+
+      .issue-closed, .issue-done, .issue-invalid {
+        text-decoration: line-through;
       }
     }
   }
