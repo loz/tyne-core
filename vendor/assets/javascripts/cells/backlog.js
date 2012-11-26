@@ -15,7 +15,7 @@
     });
 
     $(window).bind("popstate", function() {
-      if (event.state && event.state.sorting) {
+      if (event.state && event.state.tag) {
         _this.refresh(false, event.state);
         Sorting.instances[0].resetState(event.state);
         Filter.instances[0].resetState(event.state);
@@ -46,6 +46,7 @@
     };
 
     if (updateHistory) {
+      data.tag = "tyne";
       var baseUrl = document.URL.substring(0, document.URL.indexOf("?"));
       var params = $.param(data);
       var decoded = decodeURIComponent(params);
@@ -65,7 +66,7 @@
     if (sorting) sorting.resetState(params);
 
     if (filter && sorting) {
-      history.replaceState({ sorting: params.sorting, filter: params.filter });
+      history.replaceState({ sorting: params.sorting, filter: params.filter, tag: "tyne" });
     }
   });
 })(jQuery);
