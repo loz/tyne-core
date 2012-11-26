@@ -17,6 +17,19 @@ describe TyneCore::IssuesHelper do
     end
   end
 
+  describe :issue_priority do
+    it "should render a tag with the name of the reporter" do
+      issue.stub_chain(:issue_priority, :name).and_return("High")
+
+      content = helper.issue_priority(issue)
+      content.should have_selector "span.tag"
+      content.should have_content "High"
+
+      content = helper.issue_priority(issue, true)
+      content.should have_content "H"
+    end
+  end
+
   describe :issue_reported_by do
     it "should render a tag with the name of the reporter" do
       issue.stub(:reported_by).and_return(user)
