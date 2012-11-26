@@ -1,4 +1,4 @@
-<% cache ["v6", issue] do %>
+<% cache ["v7", issue] do %>
 <div>
 <table>
 <tr class="issue">
@@ -19,6 +19,7 @@
     <p class="issue-labels issue-line-3">
       <%= issue_type(issue) %>
       <%= issue_state(issue) %>
+      <%= issue_priority(issue) %>
       <%= issue_reported_by(issue) %>
       <%= issue_reported_at(issue) %>
     </p>

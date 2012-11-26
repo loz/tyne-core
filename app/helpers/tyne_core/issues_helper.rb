@@ -9,13 +9,27 @@ module TyneCore
     # Displays a label with the issue type
     def issue_type(issue, short = false)
       name = if short
-                      issue.issue_type.name[0].upcase
-                     else
-                      issue.issue_type.name
-                     end
+              issue.issue_type.name[0].upcase
+             else
+              issue.issue_type.name
+             end
       classes = [issue.issue_type.name.underscore]
       classes << "tag-short" if short
       issue_label("Type", name, classes) if issue.issue_type
+    end
+
+    # Displays a label with the issue priority
+    def issue_priority(issue, short = false)
+      return unless issue.issue_priority
+
+      name = if short
+              issue.issue_priority.name[0].upcase
+             else
+              issue.issue_priority.name
+             end
+      classes = [issue.issue_priority.name.underscore]
+      classes << "tag-short" if short
+      issue_label("Priority", name, classes) if issue.issue_priority
     end
 
     # Displays a label with the date when the issue has been reported

@@ -10,6 +10,7 @@ module TyneCore
     def filter
       @fields = [
         [:issue_type_id, TyneCore::IssueType.all.map { |x| [x.name, x.id] } ],
+        [:issue_priority_id, TyneCore::IssuePriority.all.map { |x| [x.name, x.id] }],
         [:state, TyneCore::Issue.state_machine.states.map { |x| [I18n.t("states.#{x.name}"),  x.name] } ]
       ]
       render

@@ -9,15 +9,16 @@ module TyneCore
     belongs_to :reported_by, :class_name => "TyneAuth::User"
     belongs_to :project, :class_name => "TyneCore::Project"
     belongs_to :issue_type, :class_name => "TyneCore::IssueType"
+    belongs_to :issue_priority, :class_name => "TyneCore::IssuePriority"
 
     has_many :comments, :class_name => "TyneCore::Comment"
 
-    attr_accessible :project_id, :summary, :description, :issue_type_id
+    attr_accessible :project_id, :summary, :description, :issue_type_id, :issue_priority_id
 
     validates :project_id, :summary, :issue_type_id, :number, :presence => true
     validates :number, :uniqueness => { :scope => :project_id }
 
-    default_scope includes(:project).includes(:reported_by).includes(:issue_type).includes(:comments)
+    default_scope includes(:project).includes(:reported_by).includes(:issue_type).includes(:comments).includes(:issue_priority)
 
     after_initialize :set_defaults
     before_validation :set_number, :on => :create

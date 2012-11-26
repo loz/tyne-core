@@ -1,6 +1,7 @@
 <%= simple_form_for(issue, :url => url, :validate => true) do |f| %>
   <%= f.input :summary %>
   <%= f.association :issue_type %>
+  <%= f.association :issue_priority %>
   <%= f.input :description, :hint => "Markdown enabled" %>
   <%= f.button :submit, :class => "btn btn-primary" %>
 <% end %>
