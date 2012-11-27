@@ -1,6 +1,6 @@
 $(document).ready(function() {
   $(".issue-list").on("click", "div", function() {
-    $(".selected").removeClass("selected");
+    $(".issue-list .selected").removeClass("selected");
 
     $(this).addClass("selected");
   });
