@@ -16,7 +16,7 @@ module TyneCore
       reflection = @project.issues
       reflection = apply_filter(reflection)
       reflection = apply_sorting(reflection)
-      reflection = reflection.not_completed unless params[:filter]
+      reflection = apply_pagination(reflection)
 
       @issues = reflection
     end

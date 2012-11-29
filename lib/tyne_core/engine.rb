@@ -17,6 +17,7 @@ module TyneCore
         TyneAuth::User.send(:include, TyneCore::Extensions::User)
         TyneCore::ApplicationController.send(:include, TyneCore::Extensions::ActionController::Sorting)
         TyneCore::ApplicationController.send(:include, TyneCore::Extensions::ActionController::Filter)
+        TyneCore::ApplicationController.send(:include, TyneCore::Extensions::ActionController::Pagination)
       end
     end
   end

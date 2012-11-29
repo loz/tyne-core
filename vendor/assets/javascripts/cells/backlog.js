@@ -19,6 +19,7 @@
         _this.refresh(false, event.state);
         Sorting.instances[0].resetState(event.state);
         Filter.instances[0].resetState(event.state);
+        Pagination.instances[0].resetState(event.state);
       }
     });
   };
@@ -28,13 +29,15 @@
 
     var sorting = Sorting.instances[0];
     var filter = Filter.instances[0];
+    var pagination = Pagination.instances[0];
 
     LoadingIndicator.addTo(".issue-list");
 
     if (!data) {
       var data = {
         sorting: sorting.options(),
-      filter: filter.options()
+        filter: filter.options(),
+        pagination: pagination.options()
       }
     }
 
@@ -42,6 +45,8 @@
       data: data,
       success: function(data) {
         _this.list.html(data);
+        Pagination.instances = [];
+        new Pagination(_this.list.find('[data-cell="Pagination"]'));
       }
     };
 

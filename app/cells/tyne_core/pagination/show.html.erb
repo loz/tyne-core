@@ -1,0 +1,13 @@
+<div class="pagination" data-cell="Pagination" data-page="<%= @current_page %>">
+  <%= simple_form_for :pagination do |f| %>
+    <ul>
+      <li><%= link_to "Prev", "#", :data => { :pagination => "prev" } if @current_page > 1 %></li>
+      <li class="page-information"><span>Page <%= @current_page %> of <%= @page_count %></span></li>
+      <li><%= link_to "Next", "#", :data => { :pagination => "next" } if @current_page < @page_count %></li>
+    </ul>
+    <div class="page-information">
+      <span>Total: <%= @total %></span>
+<%= f.input :size, :collection => @sizes, :as => :select, :label => false, :include_blank => false, :selected => @page_size %> per page
+    </div>
+  <% end %>
+</div>

@@ -33,7 +33,7 @@ describe TyneCore::IssuesController do
 
         get :index, :user => user.username, :key => project.key
 
-        assigns(:issues).should == project.issues.not_completed.order("created_at ASC")
+        assigns(:issues).should == project.issues.order("created_at ASC").limit(25).offset(0)
       end
 
       it "should apply a filter when given" do
@@ -43,7 +43,7 @@ describe TyneCore::IssuesController do
 
         get :index, :user => user.username, :key => project.key, :filter => { "issue_type_id" => ["1"] }
 
-        assigns(:issues).should == project.issues.where(:issue_type_id => [1]).order("created_at ASC")
+        assigns(:issues).should == project.issues.where(:issue_type_id => [1]).order("created_at ASC").limit(25).offset(0)
       end
 
       it "should apply sort options when given" do
@@ -52,23 +52,23 @@ describe TyneCore::IssuesController do
         user.reported_issues.create!(:summary => "FOO", :description => "Foo", :issue_type_id => 1) do |issue|
           issue.project_id = project.id
         end
-        assigns(:issues).should == project.issues.not_completed.order("created_at DESC")
+        assigns(:issues).should == project.issues.order("created_at DESC").limit(25).offset(0)
 
         # Fallback for field
         get :index, :user => user.username, :key => project.key, :sorting => { :field => 'foo', :order => 'asc' }
-        assigns(:issues).should == project.issues.not_completed.order("id ASC")
+        assigns(:issues).should == project.issues.order("id ASC").limit(25).offset(0)
 
         # Fallback for order
         get :index, :user => user.username, :key => project.key, :sorting => { :field => 'created_at', :order => 'foo' }
-        assigns(:issues).should == project.issues.not_completed.order("created_at ASC")
+        assigns(:issues).should == project.issues.order("created_at ASC").limit(25).offset(0)
 
         # Custom sorting
         get :index, :user => user.username, :key => project.key, :sorting => { :field => 'issue_type', :order => 'ASC' }
-        assigns(:issues).should == project.issues.not_completed.joins(:issue_type).order("tyne_core_issue_types.name ASC")
+        assigns(:issues).should == project.issues.joins(:issue_type).order("tyne_core_issue_types.name ASC").limit(25).offset(0)
 
         # Session
         get :index, :user => user.username, :key => project.key
-        assigns(:issues).should == project.issues.not_completed.joins(:issue_type).order("tyne_core_issue_types.name ASC")
+        assigns(:issues).should == project.issues.joins(:issue_type).order("tyne_core_issue_types.name ASC").limit(25).offset(0)
       end
 
       it "render the correct view" do

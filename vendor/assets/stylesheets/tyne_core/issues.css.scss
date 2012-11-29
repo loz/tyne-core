@@ -1,5 +1,5 @@
 .issue-list {
-  > div {
+  > div:not(.pagination) {
     &:hover {
       background-color: #eee;
     }

@@ -1,0 +1,15 @@
+.pagination {
+  .page-information {
+    display: inline;
+    .control-group {
+      display: inline;
+      .controls {
+        display: inline;
+        select {
+          width: 75px;
+          height: 25px;
+        }
+      }
+    }
+  }
+}
