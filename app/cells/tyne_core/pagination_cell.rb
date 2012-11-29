@@ -1,5 +1,7 @@
 module TyneCore
+  # Displays some elements to pagiate your records
   class PaginationCell < Cell::Rails
+    # Renders the main pagination view
     def show(*args)
       options = args.extract_options!
       @collection = options[:collection]
