@@ -14,7 +14,7 @@
     <div class="group-header">Danger!</div>
     <div class="group-content">
       <p class="text-error">Once you have deleted a project you won't be able to restore it.</p>
-      <%= button_to "Delete this project", @project, :method => :delete, :class => "btn btn-danger", :confirm => "Are you sure?" %>
+      <%= button_to "Delete this project", @project, :method => :delete, :class => "btn btn-danger", :confirm => "Are you sure you want to delete this project?", :data => { :"confirm-title" => "Delete #{@project.name}", :"confirm-proceed" => "Delete (forever!)", :"confirm-proceed-class" => "btn-danger" } %>
     </div>
   </div>
 <% end %>
