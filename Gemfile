@@ -34,4 +34,6 @@ end
 group :test, :development do
   gem 'tyne_dev', :git => 'https://github.com/tyne/tyne-dev.git', :branch => 'master'
   gem 'evergreen', :require => 'evergreen/rails'
+  gem 'rb-inotify', '~> 0.8.8'
+  gem 'shoulda-matchers'
 end

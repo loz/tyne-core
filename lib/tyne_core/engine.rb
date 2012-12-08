@@ -7,6 +7,11 @@ module TyneCore
     require 'sass-rails'
     config.sass.load_paths << File.expand_path('../../vendor/assets/stylesheets/')
 
+    config.generators do |g|
+      g.test_framework = :rspec
+      g.integration_tool = :rspec
+    end
+
     isolate_namespace TyneCore
 
     config.autoload_paths << File.expand_path('../../', __FILE__)

@@ -5,6 +5,12 @@ describe TyneCore::Issue do
   let(:project) { user.projects.create!(:key => "Foo", :name => "Foo") }
   let(:issue) { project.issues.create!(:summary => "Foo", :issue_type_id => 1) }
 
+  describe :votable do
+    subject { issue }
+
+    it_should_behave_like :votable
+  end
+
   describe :available_transitions do
     context "for a new ticket" do
       it "should return the current state without an action" do

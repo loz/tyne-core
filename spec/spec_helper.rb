@@ -7,10 +7,11 @@ require File.expand_path("../../spec/dummy/config/environment", __FILE__)
 require 'rspec/rails'
 require 'rspec/autorun'
 require 'rspec/cells'
+require 'shoulda-matchers'
 
 # Requires supporting ruby files with custom matchers and macros, etc,
 # in spec/support/ and its subdirectories.
-Dir[Rails.root.join("spec/support/**/*.rb")].each {|f| require f}
+Dir[File.expand_path("../../spec/support", __FILE__) + '/**/*.rb'].each {|f| require f}
 
 require "dummy/db/schema"
 require "dummy/db/seeds"

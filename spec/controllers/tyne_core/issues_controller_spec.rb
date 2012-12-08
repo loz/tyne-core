@@ -161,5 +161,63 @@ describe TyneCore::IssuesController do
         response.should render_template "issues/dialog"
       end
     end
+
+    context :votes do
+      before(:each) { issue.votes.destroy_all }
+
+      describe '#upvote' do
+        it 'should vote the issue up by 1' do
+          expect {
+            post :upvote, :use_route => :tyne_core, :user => user.username, :key => project.key, :id => issue.number
+          }.to change { issue.total_votes }.by(1)
+        end
+
+        it 'should not allow multiple votes by the same user' do
+          expect {
+            2.times { post :upvote, :use_route => :tyne_core, :user => user.username, :key => project.key, :id => issue.number }
+          }.to change { issue.total_votes }.by(1)
+        end
+
+        it 'should allow a user to take back, or invert his vote' do
+          issue.downvote_for(user)
+
+          expect {
+            3.times { post :upvote, :use_route => :tyne_core, :user => user.username, :key => project.key, :id => issue.number }
+          }.to change { issue.total_votes }.by(2)
+        end
+
+        it 'should return the total votes' do
+          post :upvote, :use_route => :tyne_core, :user => user.username, :key => project.key, :id => issue.number
+          response.body.should == "1"
+        end
+      end
+
+      describe '#downvote' do
+        it 'should vote the issue down by 1' do
+          expect {
+            post :downvote, :use_route => :tyne_core, :user => user.username, :key => project.key, :id => issue.number
+          }.to change { issue.total_votes }.by(-1)
+        end
+
+        it 'should not allow multiple votes by the same user' do
+          expect {
+            2.times { post :downvote, :use_route => :tyne_core, :user => user.username, :key => project.key, :id => issue.number }
+          }.to change { issue.total_votes }.by(-1)
+        end
+
+        it 'should allow a user to take back, or invert his vote' do
+          issue.upvote_for(user)
+
+          expect {
+            3.times { post :downvote, :use_route => :tyne_core, :user => user.username, :key => project.key, :id => issue.number }
+          }.to change { issue.total_votes }.by(-2)
+        end
+
+        it 'should return the total votes' do
+          post :downvote, :use_route => :tyne_core, :user => user.username, :key => project.key, :id => issue.number
+          response.body.should == "-1"
+        end
+      end
+    end
   end
 end

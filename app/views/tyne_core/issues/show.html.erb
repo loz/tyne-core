@@ -14,7 +14,14 @@
   </div>
 </div>
 
-<h2><%= @issue.summary %></h2>
+<h2>
+  <%= render_cell :'tyne_core/votes', :show, @issue,
+                  :upvote_path   => main_app.upvote_issue_path(:user => @project.user.username, :key => @project.key, :id => @issue.id),
+                  :downvote_path => main_app.downvote_issue_path(:user => @project.user.username, :key => @project.key, :id => @issue.id) %>
+
+  <%= @issue.summary %>
+</h2>
+
 <p><%= markup_to_html(@issue.description) %></p>
 <p class="tag-list">
   <%= issue_type(@issue) %>
