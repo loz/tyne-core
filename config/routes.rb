@@ -5,10 +5,6 @@ TyneCore::Engine.routes.draw do
       post :import
       get :dialog
     end
-
-    member do
-      get :admin
-    end
   end
 
   resources :dashboards
@@ -18,6 +14,7 @@ Rails.application.routes.draw do
   get '/:user', :controller => 'tyne_auth/users', :action => :overview, :as => :overview
   get '/:user/:key', :controller => 'tyne_core/issues', :action => 'index', :as => :backlog
   scope '/:user/:key' do
+    get :admin, :controller => 'tyne_core/projects', :action => :admin, :as => :admin_project
     resources :issues, :controller => 'tyne_core/issues' do
       collection do
         get :dialog

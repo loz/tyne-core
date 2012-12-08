@@ -1,0 +1,20 @@
+<% cache ["v1", "projects", "edit", @project] do %>
+  <div class="group">
+    <div class="group-header">Options</div>
+    <div class="group-content">
+      <%= simple_form_for(@project, :validate => true) do |f| %>
+        <%= f.input :name %>
+        <%= f.input :description, :hint => "Markdown is enabled." %>
+        <%= f.button :submit, :class => "btn" %>
+      <% end %>
+    </div>
+  </div>
+
+  <div class="group">
+    <div class="group-header">Danger!</div>
+    <div class="group-content">
+      <p class="text-error">Once you have deleted a project you won't be able to restore it.</p>
+      <%= button_to "Delete this project", @project, :method => :delete, :class => "btn btn-danger", :confirm => "Are you sure?" %>
+    </div>
+  </div>
+<% end %>

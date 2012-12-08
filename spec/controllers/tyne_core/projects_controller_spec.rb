@@ -48,6 +48,10 @@ describe TyneCore::ProjectsController do
     end
 
     describe :create do
+      before :each do
+        controller.stub(:current_user).and_return(TyneAuth::User.new(:username => "Foo"))
+      end
+
       context :success do
         before :each do
           post :create, :project => { :key => "FOO", :name => "Foo" }, :format => :pjax, :use_route => :tyne_core

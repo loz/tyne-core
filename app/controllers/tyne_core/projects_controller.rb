@@ -2,7 +2,7 @@ require_dependency "tyne_core/application_controller"
 
 module TyneCore
   # Handles requests for project creation, updates, deletions
-  class ProjectsController < TyneAuth::AdminController
+  class ProjectsController < ApplicationController
     self.responder = ::ApplicationResponder
     respond_to :html, :json
 
@@ -22,9 +22,8 @@ module TyneCore
     def create
       @project = current_user.projects.new(params[:project])
       @project.save
-      respond_with(@project) do |format|
+      respond_with(@project, :location => main_app.backlog_path(:user => current_user.username, :key => @project.key)) do |format|
         format.pjax { render @project }
-        format.html { redirect_to main_app.backlog_path(:user => current_user.username, :key => @project.key) }
       end
     end
 
@@ -32,7 +31,7 @@ module TyneCore
     def update
       @project = current_user.projects.find(params[:id])
       @project.update_attributes(params[:project])
-      respond_with(@project) do |format|
+      respond_with(@project, :location => main_app.admin_project_path(:user => @project.user.username, :key => @project.key)) do |format|
         format.pjax { render @project }
       end
     end
@@ -41,7 +40,7 @@ module TyneCore
     def destroy
       @project = current_user.projects.find(params[:id])
       @project.destroy
-      render :json => { :ok => true }
+      respond_with(@project, :location => main_app.root_path)
     end
 
     # Displays the list of all available github projects.
@@ -63,6 +62,11 @@ module TyneCore
     # Returns a rendered dialog partial
     def dialog
       @project = current_user.projects.build
+    end
+
+    def admin
+      load_project
+      respond_with(@project)
     end
   end
 end
