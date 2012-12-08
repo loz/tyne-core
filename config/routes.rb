@@ -1,11 +1,13 @@
 TyneCore::Engine.routes.draw do
-  scope "/admin" do
-    resources :projects, :only => [:index, :create, :update, :destroy] do
-      collection do
-        get :github
-        post :import
-        get :dialog
-      end
+  resources :projects do
+    collection do
+      get :github
+      post :import
+      get :dialog
+    end
+
+    member do
+      get :admin
     end
   end
 

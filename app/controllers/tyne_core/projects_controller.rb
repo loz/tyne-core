@@ -13,12 +13,18 @@ module TyneCore
       respond_with(@projects)
     end
 
+    def new
+      @project = current_user.projects.new
+      respond_with(@project)
+    end
+
     # Creates a new project.
     def create
       @project = current_user.projects.new(params[:project])
       @project.save
       respond_with(@project) do |format|
         format.pjax { render @project }
+        format.html { redirect_to main_app.backlog_path(:user => current_user.username, :key => @project.key) }
       end
     end
 
