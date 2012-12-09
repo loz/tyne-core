@@ -5,5 +5,7 @@ module TyneCore
     belongs_to :votable, :polymorphic => true
 
     attr_accessible :user, :weight
+
+    validates :user, :presence => true
   end
 end
