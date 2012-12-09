@@ -1,0 +1,39 @@
+.Activities {
+  border: none;
+  width: 100%;
+
+  .Activity {
+    border-bottom: 1px solid #EEE;
+
+    td {
+      padding: 5px 0px;
+    }
+
+    .ActivityDescription {
+      vertical-align: top;
+
+      .comment-message {
+        color: #AAA;
+        padding: 0px 0px 0px 40px;
+        font-style: italic;
+        font-size: 10px;
+
+        > p:before, p:after {
+          content: "'";
+        }
+
+        > p {
+          margin: 0px;
+          padding: 0px;
+        }
+      }
+    }
+
+    .ActivityDate {
+      vertical-align: top;
+      text-align: right;
+      color: #AAA;
+      white-space: nowrap;
+    }
+  }
+}

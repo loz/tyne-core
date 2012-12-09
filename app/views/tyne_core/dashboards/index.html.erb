@@ -7,10 +7,14 @@
 <% end %>
 
 <h1>Activity</h1>
-<% cache ["v1", "activity", @new_projects.cache_key] do %>
-  <ul>
-    <% @new_projects.each do |project| %>
-      <li>User <%= link_to project.user.username, main_app.overview_path(:user => project.user.username) %> created project <%= link_to project.name, main_app.backlog_path(:user => project.user.username, :key => project.key) %></li>
+<% activities = merge_activities(@created_projects, @updated_projects, @created_issues, @updated_issues, @created_comments) %>
+<table class="Activities">
+  <tbody>
+    <% activities.each do |activity| %>
+      <tr class="Activity">
+        <td class="ActivityDescription"><%= activity[1].html_safe %></td>
+        <td class="ActivityDate"><%= activity[0] %></td>
+      </tr>
     <% end %>
-  </ul>
-<% end %>
+  </tbody>
+</table>
