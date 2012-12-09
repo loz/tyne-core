@@ -1,4 +1,5 @@
 require 'state_machine'
+require 'twitter-bootstrap-rails-confirm'
 require 'tyne_ui'
 
 module TyneCore

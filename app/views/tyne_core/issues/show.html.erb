@@ -1,6 +1,6 @@
 <% cache ["v10", "view", @issue] do %>
 <div class="options">
-  <%= link_to "Edit", main_app.edit_issue_path(:user => @project.user.username, :key => @project.key, :id => @issue.number), :class => 'btn btn-primary btn-small' %>
+  <%= link_to "Edit", main_app.edit_issue_path(:user => @project.user.username, :key => @project.key, :id => @issue.number), :class => 'btn btn-small' %>
   <div class="btn-group">
     <%= default_action(@issue) %>
     <button class="btn btn-small dropdown-toggle" data-toggle="dropdown">
@@ -16,8 +16,8 @@
 
 <h2>
   <%= render_cell :'tyne_core/votes', :show, @issue,
-                  :upvote_path   => main_app.upvote_issue_path(:user => @project.user.username, :key => @project.key, :id => @issue.id),
-                  :downvote_path => main_app.downvote_issue_path(:user => @project.user.username, :key => @project.key, :id => @issue.id) %>
+                  :upvote_path   => main_app.upvote_issue_path(:user => @project.user.username, :key => @project.key, :id => @issue.number),
+                  :downvote_path => main_app.downvote_issue_path(:user => @project.user.username, :key => @project.key, :id => @issue.number) %>
 
   <%= @issue.summary %>
 </h2>

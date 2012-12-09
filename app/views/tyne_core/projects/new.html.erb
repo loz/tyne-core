@@ -1,0 +1,10 @@
+<% cache ["v1", "projects", "new", current_user] do %>
+  <div class="centered">
+  <%= simple_form_for(@project, :validate => true) do |f| %>
+    <%= f.input :key, :hint => "The project key is used to identify your project and is used to build a unique issue key." %>
+    <%= f.input :name %>
+    <%= f.input :description, :hint => "Markdown is enabled." %>
+    <%= f.button :submit, :class => "btn btn-success" %>
+  <% end %>
+  </div>
+<% end %>

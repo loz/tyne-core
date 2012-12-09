@@ -1,11 +1,9 @@
 TyneCore::Engine.routes.draw do
-  scope "/admin" do
-    resources :projects, :only => [:index, :create, :update, :destroy] do
-      collection do
-        get :github
-        post :import
-        get :dialog
-      end
+  resources :projects do
+    collection do
+      get :github
+      post :import
+      get :dialog
     end
   end
 
@@ -16,6 +14,7 @@ Rails.application.routes.draw do
   get '/:user', :controller => 'tyne_auth/users', :action => :overview, :as => :overview
   get '/:user/:key', :controller => 'tyne_core/issues', :action => 'index', :as => :backlog
   scope '/:user/:key' do
+    get :admin, :controller => 'tyne_core/projects', :action => :admin, :as => :admin_project
     resources :issues, :controller => 'tyne_core/issues' do
       collection do
         get :dialog

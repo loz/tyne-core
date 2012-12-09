@@ -1,7 +1,0 @@
-<div class="GridDialog" data-dialog="<%= dialog_projects_path(:format => :pjax) %>" data-resource_url="<%= url_for(:projects) %>">
-  <div class="options">
-    <button class="btn btn-small btn-primary new_link">Create</button>
-    <%= link_to "Import", tyne_core.github_projects_path, :class => "btn btn-small" %>
-  </div>
-  <%= render "list", :projects => @projects %>
-</div>
