@@ -69,6 +69,7 @@ PATH
       rails (~> 3.2.8)
       simple_form
       state_machine
+      twitter-bootstrap-rails-confirm
 
 GEM
   remote: http://rubygems.org/
@@ -346,6 +347,7 @@ GEM
       actionpack (>= 3.1)
       execjs
       railties (>= 3.1)
+    twitter-bootstrap-rails-confirm (0.0.5)
     tzinfo (0.3.35)
     websocket (1.0.4)
     xpath (0.1.4)

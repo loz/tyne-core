@@ -56,7 +56,7 @@ module TyneCore
         current_user.projects.create!(:key => project.upcase, :name => project)
       end
 
-      redirect_to :action => :index
+      redirect_to tyne_core.projects_path
     end
 
     # Returns a rendered dialog partial

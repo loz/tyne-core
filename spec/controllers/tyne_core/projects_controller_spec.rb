@@ -1,8 +1,6 @@
 require 'spec_helper'
 
 describe TyneCore::ProjectsController do
-  before(:each) { @routes = TyneCore::Engine.routes }
-
   context :not_logged_in do
     it "should not allow any actions" do
       get :index, :use_route => :tyne_core
@@ -24,7 +22,7 @@ describe TyneCore::ProjectsController do
 
   context :logged_in do
     let(:user) do
-      user = TyneAuth::User.create!(:name => "Foo", :uid => "foo", :token => "foo")
+      user = TyneAuth::User.create!(:name => "Foo", :uid => "foo", :token => "foo", :username => "Foo")
     end
 
     before :each do
@@ -47,11 +45,21 @@ describe TyneCore::ProjectsController do
       end
     end
 
-    describe :create do
+    describe :index do
       before :each do
-        controller.stub(:current_user).and_return(TyneAuth::User.new(:username => "Foo"))
+        get :new, :use_route => :tyne_core
       end
 
+      it "should assign a new project" do
+        assigns(:project).should be_new_record
+      end
+
+      it "should render the correct view" do
+        response.should render_template "projects/new"
+      end
+    end
+
+    describe :create do
       context :success do
         before :each do
           post :create, :project => { :key => "FOO", :name => "Foo" }, :format => :pjax, :use_route => :tyne_core
@@ -121,12 +129,12 @@ describe TyneCore::ProjectsController do
       end
 
       it "should destroy the record" do
-        delete :destroy, :id => project.id, :format => :json
+        delete :destroy, :id => project.id, :format => :json, :use_route => :tyne_core
         user.projects.find_by_id(project.id).should_not be_present
       end
 
       it "should respond with ok" do
-        delete :destroy, :id => project.id, :format => :json
+        delete :destroy, :id => project.id, :format => :json, :use_route => :tyne_core
         response.should be_success
       end
 
@@ -169,7 +177,25 @@ describe TyneCore::ProjectsController do
       end
 
       it "should redirect back to the index page" do
-        response.should redirect_to :action => :index
+        response.should redirect_to :action => :index, :controller => "tyne_core/projects"
+      end
+    end
+
+    describe :admin do
+      let!(:existing) do
+        user.projects.create!(:key => "FOO", :name => "Foo")
+      end
+
+      before :each do
+        get :admin, :user => user.username, :key => existing.key
+      end
+
+      it "should assign a new project" do
+        assigns(:project).should == existing
+      end
+
+      it "should render the correct view" do
+        response.should render_template "projects/admin"
       end
     end
 
