@@ -3,9 +3,6 @@ require 'spec_helper'
 describe TyneCore::ProjectsController do
   context :not_logged_in do
     it "should not allow any actions" do
-      get :index, :use_route => :tyne_core
-      response.should redirect_to login_path
-
       post :create, :use_route => :tyne_core
       response.should redirect_to login_path
 
@@ -29,32 +26,12 @@ describe TyneCore::ProjectsController do
       controller.stub(:current_user).and_return(user)
     end
 
-    describe :index do
-      before :each do
-        get :index, :use_route => :tyne_core
-      end
-
-      it "should assign the list of all projects" do
-        user.projects.create!(:key => "FOO", :name => "Foo")
-        assigns(:project).should be_new_record
-        assigns(:projects).should == user.projects
-      end
-
-      it "should render the correct view" do
-        response.should render_template "projects/index"
-      end
-    end
-
-    describe :index do
+    describe :new do
       before :each do
         get :new, :use_route => :tyne_core
       end
 
-      it "should assign a new project" do
-        assigns(:project).should be_new_record
-      end
-
-      it "should render the correct view" do
+      it "should render the new view" do
         response.should render_template "projects/new"
       end
     end
@@ -62,15 +39,12 @@ describe TyneCore::ProjectsController do
     describe :create do
       context :success do
         before :each do
-          post :create, :project => { :key => "FOO", :name => "Foo" }, :format => :pjax, :use_route => :tyne_core
+          post :create, :project => { :key => "FOO", :name => "Foo" }, :use_route => :tyne_core
         end
 
-        it "should create a new project" do
-          TyneCore::Project.find_by_key("FOO").should be_present
-        end
-
-        it "should render the correct view" do
-          response.should render_template "projects/_project"
+        it "should redirect to the backlog path" do
+          project = TyneCore::Project.find_by_key("FOO")
+          response.should redirect_to backlog_path(:user => user.username, :key => project.key)
         end
       end
 
@@ -96,8 +70,8 @@ describe TyneCore::ProjectsController do
         end
 
         it "should render the correct view" do
-          put :update, :id => existing.id, :project => { :key => "BAR" }, :format => :pjax, :use_route => :tyne_core
-          response.should render_template "projects/_project"
+          put :update, :id => existing.id, :project => { :key => "BAR" }, :use_route => :tyne_core
+          response.should redirect_to admin_project_path(:user => user.username, :key => "BAR")
         end
 
         it "should only destroy the projects for the current user" do
@@ -196,16 +170,6 @@ describe TyneCore::ProjectsController do
 
       it "should render the correct view" do
         response.should render_template "projects/admin"
-      end
-    end
-
-    describe :dialog do
-      before :each do
-        get :dialog, :format => :pjax, :use_route => :tyne_core
-      end
-
-      it "should render the correct view" do
-        response.should render_template "projects/dialog"
       end
     end
   end
