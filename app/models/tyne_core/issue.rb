@@ -5,12 +5,12 @@ module TyneCore
   # Issues can be part of a sprint and they have an issue type.
   class Issue < ActiveRecord::Base
     include TyneCore::Extensions::Issues::Workflow
+    include TyneCore::Extensions::Votable
 
     belongs_to :reported_by, :class_name => "TyneAuth::User"
     belongs_to :project, :class_name => "TyneCore::Project"
     belongs_to :issue_type, :class_name => "TyneCore::IssueType"
     belongs_to :issue_priority, :class_name => "TyneCore::IssuePriority"
-
     has_many :comments, :class_name => "TyneCore::Comment"
 
     attr_accessible :project_id, :summary, :description, :issue_type_id, :issue_priority_id

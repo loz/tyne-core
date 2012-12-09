@@ -8,7 +8,7 @@ module TyneCore
 
     before_filter :load_user
     before_filter :load_project
-    before_filter :load_issue, :only => [:workflow, :edit, :update, :show]
+    before_filter :load_issue, :only => [:workflow, :edit, :update, :show, :upvote, :downvote]
 
     # Displays the index view with the backlog.
     # The backlog can be sorted by passing a sorting parameter.
@@ -62,6 +62,18 @@ module TyneCore
       @issue = TyneCore::Issue.new
 
       render 'dialog'
+    end
+
+    # Votes the issue up
+    def upvote
+      @issue.upvote_for(current_user) if @issue.votes.where(:user_id => current_user.id).sum(:weight) < 1
+      render :json => @issue.total_votes.to_json
+    end
+
+    # Votes the issue down
+    def downvote
+      @issue.downvote_for(current_user) if @issue.votes.where(:user_id => current_user.id).sum(:weight) > -1
+      render :json => @issue.total_votes.to_json
     end
 
     private

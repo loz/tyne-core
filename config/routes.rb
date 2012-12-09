@@ -19,8 +19,11 @@ Rails.application.routes.draw do
       collection do
         get :dialog
       end
+
       member do
         get :workflow
+        post :upvote
+        post :downvote
       end
 
       resources :comments, :controller => 'tyne_core/comments'
