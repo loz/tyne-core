@@ -13,5 +13,4 @@
 //= require jquery
 //= require jquery-ui
 //= require jquery_ujs
-//= require tyne-ui
 //= require_tree .

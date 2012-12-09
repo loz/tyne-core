@@ -29,7 +29,6 @@
     return false;
   };
 
-  // TODO: fancy voting animation
   Votes.prototype.updateTotalVotes = function(totalVotes) {
     var _this = this;
 
