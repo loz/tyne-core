@@ -16,8 +16,8 @@
 
 <h2>
   <%= render_cell :'tyne_core/votes', :show, @issue,
-                  :upvote_path   => main_app.upvote_issue_path(:user => @project.user.username, :key => @project.key, :id => @issue.id),
-                  :downvote_path => main_app.downvote_issue_path(:user => @project.user.username, :key => @project.key, :id => @issue.id) %>
+                  :upvote_path   => main_app.upvote_issue_path(:user => @project.user.username, :key => @project.key, :id => @issue.number),
+                  :downvote_path => main_app.downvote_issue_path(:user => @project.user.username, :key => @project.key, :id => @issue.number) %>
 
   <%= @issue.summary %>
 </h2>
