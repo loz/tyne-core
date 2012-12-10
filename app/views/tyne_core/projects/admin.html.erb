@@ -9,7 +9,9 @@
       <%= render :partial => "admin_options" %>
     </div>
     <div class="tab-pane" id="teams">
-      Teams
+      <% @project.teams.each do |team| %>
+        <%= team.name %>
+      <% end %>
     </div>
   </div>
 </div>
