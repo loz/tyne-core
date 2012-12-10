@@ -28,5 +28,9 @@ Rails.application.routes.draw do
 
       resources :comments, :controller => 'tyne_core/comments'
     end
+
+    resources :teams, :controller => 'tyne_core/teams' do
+      resources :team_members, :controller => 'tyne_core/team_members'
+    end
   end
 end
