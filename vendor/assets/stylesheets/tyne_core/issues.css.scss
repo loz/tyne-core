@@ -1,18 +1,18 @@
 .issue-list {
   > div:not(.pagination) {
     &:hover {
-      background-color: #eee;
+      background-color: #E0E9EA;
     }
 
     border-top: 1px solid #ccc;
-    border-left: 1px solid white;
-    border-right: 1px solid white;
-    border-bottom: 1px solid white;
+    border-left: 1px solid transparent;
+    border-right: 1px solid transparent;
+    border-bottom: 1px solid transparent;
     margin-bottom: 0px;
 
     &.selected {
-      background-color: #E9F3FD;
-      border: 1px solid #A8C6E7;
+      background-color: #E0E9EA;
+      border: 1px solid #668283;
     }
   }
 
