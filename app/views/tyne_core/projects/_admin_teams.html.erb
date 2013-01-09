@@ -1,0 +1,12 @@
+<% cache ["v1", "projects", "teams", @project] do %>
+  <div class="group">
+    <div class="group-header">Options</div>
+    <div class="group-content">
+      <ul>
+      <% @project.teams.all.each do |team| %>
+        <li><%= link_to "#{team.name} (#{team.members.count})", main_app.team_path(:user => @project.user.username, :key => @project.key, :id => team.id) %></li>
+      <% end %>
+      </ul>
+    </div>
+  </div>
+<% end %>

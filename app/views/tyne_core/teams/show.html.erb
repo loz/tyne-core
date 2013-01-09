@@ -1,0 +1,12 @@
+<div class="centered centered-50">
+  <h2><%= @team.name %></h2>
+  <ul>
+    <% @team.members.all.each do |member| %>
+      <li><%= link_to member.user.username, main_app.overview_path(:user => member.user.username) %></li>
+    <% end %>
+  </ul>
+  <%= simple_form_for @team.members.build, :validate => true, :url => "#" do |f| %>
+    <%= f.association :user, :collection => TyneAuth::User.where(TyneAuth::User.arel_table[:id].not_eq(current_user.id)).all %>
+    <%= f.button :submit, :class => "btn btn-small" %>
+  <% end %>
+</div>
