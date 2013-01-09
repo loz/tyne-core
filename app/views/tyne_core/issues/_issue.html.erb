@@ -1,7 +1,7 @@
 <% cache ["v8", issue] do %>
 <div>
 <table>
-<tr class="issue">
+<tr class="issue <%= issue.state %>">
   <td class="issue-options"><%= check_box_tag "issue[id[]]", issue.number, false, :id => "issue_#{issue.number}" %></td>
   <td>
     <p class="issue-headline issue-line-1">
