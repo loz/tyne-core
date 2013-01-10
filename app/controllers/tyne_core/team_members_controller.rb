@@ -12,5 +12,14 @@ module TyneCore
 
       respond_with(@team_member, :location => main_app.team_path(:user => current_user.username, :key => @project.key, :id => @team.id))
     end
+
+    def destroy
+      @team = @project.teams.find_by_id(params[:team_id])
+      @team_member = @team.members.find_by_id(params[:id])
+
+      @team_member.destroy
+
+      respond_with(@team_member, :location => main_app.team_path(:user => current_user.username, :key => @project.key, :id => @team.id))
+    end
   end
 end
