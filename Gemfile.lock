@@ -47,7 +47,7 @@ GIT
 
 GIT
   remote: https://github.com/tyne/tyne-ui.git
-  revision: 567042a7ac91250d2aaf7eacda470a6eef5ef603
+  revision: d3a9319636d2d73d7390d629a5ee48a8a2664138
   branch: master
   specs:
     tyne_ui (0.0.2)
@@ -62,7 +62,7 @@ GIT
 PATH
   remote: .
   specs:
-    tyne_core (0.0.1)
+    tyne_core (0.0.2)
       client_side_validations
       client_side_validations-simple_form
       rack-pjax
