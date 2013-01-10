@@ -2,6 +2,9 @@
   > div:not(.pagination) {
     &:hover {
       background-color: #E0E9EA;
+      tr.issue {
+        opacity: 1.0;
+      }
     }
 
     border-top: 1px solid #ccc;
@@ -54,6 +57,10 @@
       }
       p {
         margin: 0;
+      }
+
+      &.done, &.invalid {
+        opacity: 0.2;
       }
 
       .issue-summary {
