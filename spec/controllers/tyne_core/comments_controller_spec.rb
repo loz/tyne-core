@@ -1,6 +1,8 @@
 require 'spec_helper'
 
 describe TyneCore::CommentsController do
+  its (:is_admin_area?) { should be_false }
+
   let(:user) do
     TyneAuth::User.create!(:name => "Foo", :username => "Foo", :uid => "foo", :token => "foo")
   end

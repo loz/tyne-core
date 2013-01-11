@@ -13,7 +13,6 @@ class TyneCore::ApplicationController < ApplicationController
     @issue = @project.issues.find_by_number(params[:id])
   end
 
-  private
   def is_admin_area?
     false
   end

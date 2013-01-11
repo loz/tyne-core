@@ -1,10 +1,12 @@
 module TyneCore
+  # Handle request to add and remove team members from a team
   class TeamMembersController < AdminController
     self.responder = ::ApplicationResponder
     respond_to :html, :json
 
     before_filter :load_project
 
+    # Adds a team member to a team.
     def create
       @team = @project.teams.find_by_id(params[:team_id])
       @team_member = @team.members.build(params[:team_member])
@@ -13,6 +15,8 @@ module TyneCore
       respond_with(@team_member, :location => main_app.team_path(:user => current_user.username, :key => @project.key, :id => @team.id))
     end
 
+    # Removes a team member from a team. The current user cannot remove itself
+    # from the owner team to not lose admin privileges.
     def destroy
       @team = @project.teams.find_by_id(params[:team_id])
       @team_member = @team.members.find_by_id(params[:id])
@@ -22,7 +26,6 @@ module TyneCore
       else
         @team_member.destroy
       end
-
 
       respond_with(@team_member, :location => main_app.team_path(:user => current_user.username, :key => @project.key, :id => @team.id), :flash_now => false)
     end

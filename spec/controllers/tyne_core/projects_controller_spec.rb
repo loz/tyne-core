@@ -1,6 +1,8 @@
 require 'spec_helper'
 
 describe TyneCore::ProjectsController do
+  its (:is_admin_area?) { should be_false }
+
   context :not_logged_in do
     it "should not allow any actions" do
       post :create, :use_route => :tyne_core
@@ -156,6 +158,8 @@ describe TyneCore::ProjectsController do
     end
 
     describe :admin do
+      its (:is_admin_area?) { should be_true }
+
       let!(:existing) do
         user.projects.create!(:key => "FOO", :name => "Foo")
       end
