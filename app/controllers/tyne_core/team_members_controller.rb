@@ -1,5 +1,5 @@
 module TyneCore
-  class TeamMembersController < ApplicationController
+  class TeamMembersController < AdminController
     self.responder = ::ApplicationResponder
     respond_to :html, :json
 

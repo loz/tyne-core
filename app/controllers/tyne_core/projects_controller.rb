@@ -54,5 +54,10 @@ module TyneCore
       load_project
       respond_with(@project)
     end
+
+    private
+    def is_admin_area?
+      action_name == "admin"
+    end
   end
 end
