@@ -7,5 +7,9 @@ module TyneCore
     validates :user_id, :uniqueness => { :scope => :team_id }
 
     attr_accessible :user_id
+
+    def is_admin?
+      team.admin_privileges if team
+    end
   end
 end
