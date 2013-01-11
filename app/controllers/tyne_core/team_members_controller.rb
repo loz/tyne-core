@@ -24,7 +24,7 @@ module TyneCore
       end
 
 
-      respond_with(@team_member, :location => main_app.team_path(:user => current_user.username, :key => @project.key, :id => @team.id), :flash_now => :false)
+      respond_with(@team_member, :location => main_app.team_path(:user => current_user.username, :key => @project.key, :id => @team.id), :flash_now => false)
     end
 
     private
