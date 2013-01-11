@@ -1,13 +1,19 @@
 <div class="centered centered-50">
   <h2><%= @team.name %></h2>
-  <ul>
+  <table class="table team-members-list">
     <% @team.members.all.each do |member| %>
-      <li>
-      <%= avatar(member.user) %> <%= link_to member.user.username, main_app.overview_path(:user => member.user.username) %>
-        (<%= link_to "Remove", main_app.team_team_member_path(:user => current_user.username, :key => @team.project.key, :team_id => @team.id, :id => member.id), :method => :delete %>)
+      <tr>
+        <td class="team-members-avatar"><%= avatar(member.user) %></td>
+        <td>
+            <%= link_to member.user.username, main_app.overview_path(:user => member.user.username) %>
+            <span class="description"><%= member.user.name %></span>
+        </td>
+        <td>
+          <%= link_to "Remove", main_app.team_team_member_path(:user => current_user.username, :key => @team.project.key, :team_id => @team.id, :id => member.id), :method => :delete %>
+        </td>
       </li>
     <% end %>
-  </ul>
+  </table>
   <%= simple_form_for @team.members.build, :validate => true, :url => main_app.team_team_members_path(:user => current_user.username, :key => @team.project.key, :team_id => @team.id) do |f| %>
     <%= f.association :user, :collection => available_members(@team) %>
     <%= f.button :submit, :class => "btn btn-small" %>
