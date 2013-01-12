@@ -108,4 +108,17 @@ describe TyneCore::IssuesHelper do
       helper.default_action(issue).should have_content(I18n.t("states.transitions.reopen"))
     end
   end
+
+  describe :users_to_assign do
+    it "should return all workers of a project" do
+      user = TyneAuth::User.create!(:name => "Foo", :uid => "F", :token => "Foo")
+      bob = TyneAuth::User.create!(:name => "Bob", :uid => "B", :token => "Bob")
+      project = user.projects.create!(:key => "FOO", :name => "Foo")
+      issue = project.issues.build
+
+      users = users_to_assign(issue)
+      users.should include user
+      users.should_not include bob
+    end
+  end
 end

@@ -80,6 +80,12 @@ module TyneCore
       issue_label("Comments", issue.comments.count, klasses)
     end
 
+    # Returns the list of user which can be assigned to an issue.
+    # The user needs to be part of a team of the project.
+    def users_to_assign(issue)
+      issue.project.workers.map { |x| x.user }.uniq { |x| x.id }
+    end
+
     private
     def issue_label(name, value, classes=[])
       classes << "tag" unless classes.include? "tag"

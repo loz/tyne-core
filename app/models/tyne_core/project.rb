@@ -10,6 +10,7 @@ module TyneCore
     belongs_to :user, :class_name => "TyneAuth::User"
     has_many :issues, :class_name => "TyneCore::Issue"
     has_many :teams, :class_name => "TyneCore::Team", :autosave => true
+    has_many :workers, :class_name => "TyneCore::TeamMember", :through => :teams, :source => :members
     has_many :owners, :class_name => "TyneCore::TeamMember", :through => :teams, :conditions => { :tyne_core_teams => { :admin_privileges => true } }, :source => :members
 
     before_create :create_teams

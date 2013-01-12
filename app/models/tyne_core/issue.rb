@@ -11,12 +11,14 @@ module TyneCore
     belongs_to :project, :class_name => "TyneCore::Project"
     belongs_to :issue_type, :class_name => "TyneCore::IssueType"
     belongs_to :issue_priority, :class_name => "TyneCore::IssuePriority"
+    belongs_to :assigned_to, :class_name => "TyneAuth::User"
     has_many :comments, :class_name => "TyneCore::Comment"
 
-    attr_accessible :project_id, :summary, :description, :issue_type_id, :issue_priority_id
+    attr_accessible :project_id, :summary, :description, :issue_type_id, :issue_priority_id, :assigned_to_id
 
     validates :project_id, :summary, :issue_type_id, :number, :presence => true
     validates :number, :uniqueness => { :scope => :project_id }
+    validate :security_assigned_to
 
     default_scope includes(:project).includes(:reported_by).includes(:issue_type).includes(:comments).includes(:issue_priority)
 
@@ -39,14 +41,20 @@ module TyneCore
       %w(done invalid).include? self.state
     end
 
+    private
     def set_defaults
       self.issue_type_id ||= TyneCore::IssueType.first.id  unless attributes["issue_type_id"].nil?
     end
-    private :set_defaults
 
     def set_number
       self.number = (project.issues.maximum('number') || 0) + 1
     end
-    private :set_number
+
+    def security_assigned_to
+      return true if self.assigned_to_id.blank?
+
+      users = project.workers.uniq { |x| x.user_id }.map { |x| x.user_id }
+      errors.add(:assigned_to_id, :value_not_allowed) unless users.include?(self.assigned_to_id)
+    end
   end
 end

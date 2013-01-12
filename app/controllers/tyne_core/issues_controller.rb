@@ -32,7 +32,7 @@ module TyneCore
 
     # Displays the new page for issue creation
     def new
-      @issue = TyneCore::Issue.new
+      @issue = @project.issues.build
     end
 
     # Performs a workflow transition

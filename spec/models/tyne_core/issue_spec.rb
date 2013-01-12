@@ -59,4 +59,18 @@ describe TyneCore::Issue do
       issue.number.should == max + 1
     end
   end
+
+  describe :custom_validation do
+    it "should not allow to assign users which are not in any of teams" do
+      bob = TyneAuth::User.create!(:name => "Bob", :uid => "B", :token => "Bob")
+
+      expect do
+        project.issues.create!(:summary => "Foo", :assigned_to_id => bob.id, :issue_type_id => 1)
+      end.to raise_error ActiveRecord::RecordInvalid
+
+      expect do
+        project.issues.create!(:summary => "Foo", :assigned_to_id => user.id, :issue_type_id => 1)
+      end.to_not raise_error ActiveRecord::RecordInvalid
+    end
+  end
 end
