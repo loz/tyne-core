@@ -45,6 +45,14 @@ module TyneCore
     private
     def set_defaults
       self.issue_type_id ||= TyneCore::IssueType.first.id if attributes.include?("issue_type_id")
+      self.issue_priority_id ||= get_medium_priority if attributes.include?("issue_priority_id")
+    end
+
+    def get_medium_priority
+      priority_count = TyneCore::IssuePriority.count
+      return if priority_count == 0
+
+      TyneCore::IssuePriority.all[priority_count / 2].id
     end
 
     def set_number
