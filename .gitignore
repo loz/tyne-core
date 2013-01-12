@@ -11,3 +11,4 @@ spec/dummy/.sass-cache
 coverage/
 .yardoc/
 .DS_Store
+tmp/

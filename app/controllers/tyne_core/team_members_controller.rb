@@ -21,8 +21,8 @@ module TyneCore
       @team = @project.teams.find_by_id(params[:team_id])
       @team_member = @team.members.find_by_id(params[:id])
 
-      if check_if_is_loosing_admin_rights(@team_member)
-        @team_member.errors.add(:base, "Do not do this fool!")
+      if check_if_is_losing_admin_rights(@team_member)
+        @team_member.errors.add(:base, :losing_admin_rights)
       else
         @team_member.destroy
       end
@@ -31,7 +31,7 @@ module TyneCore
     end
 
     private
-    def check_if_is_loosing_admin_rights(team_member)
+    def check_if_is_losing_admin_rights(team_member)
       team_member.user == current_user && team_member.is_admin?
     end
   end
