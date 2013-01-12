@@ -43,7 +43,7 @@ module TyneCore
 
     private
     def set_defaults
-      self.issue_type_id ||= TyneCore::IssueType.first.id  unless attributes["issue_type_id"].nil?
+      self.issue_type_id ||= TyneCore::IssueType.first.id if attributes.include?("issue_type_id")
     end
 
     def set_number
