@@ -5,6 +5,7 @@ module TyneCore
   class ProjectsController < ApplicationController
     self.responder = ::ApplicationResponder
     respond_to :html, :json
+    helper :"tyne_core/teams"
 
     before_filter :load_project, :only => [:admin]
     before_filter :load_owned_project, :only => [:update, :destroy]

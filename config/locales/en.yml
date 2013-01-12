@@ -7,6 +7,9 @@ en:
   descriptions:
     tyne_core/projects:
       import: "I have found the following projects on Github:"
+    tyne_core/teams:
+      admin_html: "Owners have <b>full access</b> to the project and can <b>administrate</b> it."
+      default_html: "Contributors can be <b>assigned</b> to issues and contribute to the project. Contributors <b>don't have access to administrate</b> a project."
 
   states:
     open: "Open"

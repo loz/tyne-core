@@ -19,4 +19,15 @@ describe TyneCore::TeamsHelper do
       available.should include @sally
     end
   end
+
+  describe :team_description_for do
+    it "should return the correct i18n scope" do
+      team = TyneCore::Team.new
+      team.admin_privileges = true
+      helper.team_description_for(team).should == t("descriptions.tyne_core/teams.admin_html")
+
+      team.admin_privileges = false
+      helper.team_description_for(team).should == t("descriptions.tyne_core/teams.default_html")
+    end
+  end
 end

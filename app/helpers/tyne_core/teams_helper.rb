@@ -10,5 +10,16 @@ module TyneCore
       end
       scope.all
     end
+
+    # Returns the team description depending on the access level.
+    def team_description_for(team)
+      i18n_scope = "descriptions.tyne_core/teams"
+      scope = if team.admin_privileges
+                "admin_html"
+              else
+                "default_html"
+              end
+      t("#{i18n_scope}.#{scope}")
+    end
   end
 end
