@@ -5,6 +5,7 @@ module TyneCore
     respond_to :html, :json
 
     before_filter :load_project
+    before_filter :require_owner
 
     # Displays the list of all teams inside a project.
     def show

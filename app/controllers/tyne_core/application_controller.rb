@@ -17,4 +17,13 @@ class TyneCore::ApplicationController < ApplicationController
     false
   end
   helper_method :is_admin_area?
+
+  def require_owner
+    redirect_to main_app.root_path unless is_owner?
+  end
+
+  def is_owner?
+    @project.owners.map { |x| x.user }.include? current_user
+  end
+  helper_method :is_owner?
 end

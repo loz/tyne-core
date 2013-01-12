@@ -6,6 +6,9 @@ module TyneCore
 
       included do
         has_many :projects, :class_name => "TyneCore::Project"
+        has_many :team_members, :class_name => "TyneCore::TeamMember"
+        has_many :teams, :class_name => "TyneCore::Team", :through => :team_members
+        has_many :owned_projects, :through => :teams, :class_name => "TyneCore::Project", :source => :project, :conditions => { :tyne_core_teams => { :admin_privileges => true } }
         has_many :dashboards, :class_name => "TyneCore::Dashboard"
         has_many :issues, :through => :projects, :class_name => "TyneCore::Issue"
         has_many :reported_issues, :class_name => "TyneCore::Issue", :foreign_key => :reported_by_id

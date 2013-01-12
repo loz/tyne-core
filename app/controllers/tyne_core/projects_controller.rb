@@ -6,6 +6,10 @@ module TyneCore
     self.responder = ::ApplicationResponder
     respond_to :html, :json
 
+    before_filter :load_project, :only => [:admin]
+    before_filter :load_owned_project, :only => [:update, :destroy]
+    before_filter :require_owner, :only => [:update, :destroy, :admin]
+
     # Renders a view to create a new project
     def new
       @project = current_user.projects.new
@@ -21,14 +25,12 @@ module TyneCore
 
     # Upates an existing project.
     def update
-      @project = current_user.projects.find(params[:id])
       @project.update_attributes(params[:project])
       respond_with(@project, :location => main_app.admin_project_path(:user => @project.user.username, :key => @project.key))
     end
 
     # Destroys an existing project.
     def destroy
-      @project = current_user.projects.find(params[:id])
       @project.destroy
       respond_with(@project, :location => main_app.root_path)
     end
@@ -51,12 +53,16 @@ module TyneCore
 
     # Renders a view to administer a project (Edit, Delete, Teams).
     def admin
-      load_project
       respond_with(@project)
     end
 
     def is_admin_area?
       action_name == "admin"
+    end
+
+    private
+    def load_owned_project
+      @project = current_user.owned_projects.find(params[:id])
     end
   end
 end
