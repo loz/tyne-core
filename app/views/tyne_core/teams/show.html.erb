@@ -16,7 +16,7 @@
     <% end %>
   </table>
   <%= simple_form_for @team.members.build, :validate => true, :url => main_app.team_team_members_path(:user => current_user.username, :key => @team.project.key, :team_id => @team.id) do |f| %>
-    <%= f.association :user, :collection => available_members(@team) %>
+    <%= f.association :user, :collection => available_members(@team), :label_method => :username %>
     <%= f.button :submit, :class => "btn btn-small" %>
   <% end %>
 </div>
