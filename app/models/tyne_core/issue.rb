@@ -26,6 +26,7 @@ module TyneCore
     before_validation :set_number, :on => :create
 
     scope :sort_by_issue_type, lambda { |sord| joins(:issue_type).order("tyne_core_issue_types.name #{sord}") }
+    scope :sort_by_issue_priority, lambda { |sord| joins(:issue_priority).order("tyne_core_issue_priorities.number #{sord}") }
 
     # Returns the issue number prefixed with the projecy key
     # to better identify issues.

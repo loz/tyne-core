@@ -18,7 +18,7 @@ module TyneCore
 
     # Displays a sorting pod
     def sorting
-      fields = [:created_at, :updated_at, :issue_type, :state]
+      fields = [:created_at, :updated_at, :issue_type, :state, :issue_priority]
       order = [:asc, :desc]
 
       @fields = fields.map { |x| [TyneCore::Issue.human_attribute_name(x), x] }
