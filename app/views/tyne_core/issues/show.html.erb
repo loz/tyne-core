@@ -1,4 +1,4 @@
-<% cache ["v10", "view", @issue] do %>
+<% cache ["v11", "view", @issue] do %>
 <div class="options">
   <%= link_to "Edit", main_app.edit_issue_path(:user => @project.user.username, :key => @project.key, :id => @issue.number), :class => 'btn btn-small' %>
   <div class="btn-group">
@@ -32,7 +32,7 @@
 <% end %>
 
 <% content_for :sidebar do %>
-  <% cache ["v2", "view", @issue, "sidebar"] do %>
+  <% cache ["v3", "view", @issue, "sidebar"] do %>
     <%= render_cell :pod, :collapsable, I18n.t("pod.titles.people") do |cell| %>
       <% cell.content = render :partial => 'people', :locals => { :issue => @issue } %>
     <% end %>
