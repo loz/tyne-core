@@ -13,6 +13,7 @@ module TyneCore
           persist_filter_information!
 
           params[:filter].each do |filter|
+            filter[1][0] = nil if filter[1][0] == '-1'
             reflection = reflection.where(Hash[*filter])
           end
 

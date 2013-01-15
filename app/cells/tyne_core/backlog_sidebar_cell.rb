@@ -7,11 +7,16 @@ module TyneCore
     end
 
     # Displays a filter pod
-    def filter
+    def filter(project)
+      workers = project.workers.map { |x| [x.user.username, x.user.id] }
+      assignees = workers.dup.unshift ["Unassigned", "-1"]
+
       @fields = [
         [:issue_type_id, TyneCore::IssueType.all.map { |x| [x.name, x.id] } ],
         [:issue_priority_id, TyneCore::IssuePriority.all.map { |x| [x.name, x.id] }],
-        [:state, TyneCore::Issue.state_machine.states.map { |x| [I18n.t("states.#{x.name}"),  x.name] } ]
+        [:state, TyneCore::Issue.state_machine.states.map { |x| [I18n.t("states.#{x.name}"),  x.name] } ],
+        [:assigned_to_id, assignees],
+        [:reported_by_id, workers]
       ]
       render
     end

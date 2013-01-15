@@ -62,7 +62,7 @@ GIT
 PATH
   remote: .
   specs:
-    tyne_core (0.1.0)
+    tyne_core (0.1.1)
       client_side_validations
       client_side_validations-simple_form
       rack-pjax

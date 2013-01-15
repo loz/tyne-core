@@ -13,7 +13,7 @@ describe TyneCore::BacklogSidebarCell do
   describe :filter do
     it "should render the view" do
       subject.should_receive(:render)
-      subject.filter
+      subject.filter(TyneCore::Project.new)
     end
   end
 

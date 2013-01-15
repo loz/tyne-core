@@ -16,9 +16,9 @@
 </div>
 
 <% content_for :sidebar do %>
-  <% cache ["v9", "issues", "backlog", "sidebar", session[:sorting]] do %>
+  <% cache ["v10", "issues", "backlog", "sidebar", session[:sorting]] do %>
     <%= render_cell :"tyne_core/backlog_sidebar", :search %>
-    <%= render_cell :"tyne_core/backlog_sidebar", :filter %>
+    <%= render_cell :"tyne_core/backlog_sidebar", :filter, @project %>
     <%= render_cell :"tyne_core/backlog_sidebar", :sorting %>
     <%= render_cell :"tyne_core/backlog_sidebar", :grouping %>
   <% end %>

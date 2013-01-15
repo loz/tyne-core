@@ -9,6 +9,8 @@ module TyneCore
 
     attr_accessible :user_id
 
+    default_scope includes(:user)
+
     def is_admin?
       team.admin_privileges if team
     end
