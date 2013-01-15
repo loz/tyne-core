@@ -35,7 +35,7 @@
 <% end %>
 
 <% content_for :sidebar do %>
-  <% cache ["v3", "view", @issue, "sidebar"] do %>
+  <% cache ["v4", "view", @issue, "sidebar"] do %>
     <%= render_cell :pod, :collapsable, I18n.t("pod.titles.people") do |cell| %>
       <% cell.content = render :partial => 'people', :locals => { :issue => @issue } %>
     <% end %>
