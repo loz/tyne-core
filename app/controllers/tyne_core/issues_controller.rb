@@ -8,7 +8,8 @@ module TyneCore
 
     before_filter :load_user
     before_filter :load_project
-    before_filter :load_issue, :only => [:workflow, :edit, :update, :show, :upvote, :downvote]
+    before_filter :load_issue, :only => [:workflow, :edit, :update, :show, :upvote, :downvote, :assign_to_me]
+    before_filter :ensure_can_edit, :only => [:workflow, :edit, :update, :assign_to_me]
 
     # Displays the index view with the backlog.
     # The backlog can be sorted by passing a sorting parameter.
@@ -76,9 +77,25 @@ module TyneCore
       render :json => @issue.total_votes.to_json
     end
 
+    def assign_to_me
+      @issue.assigned_to = current_user
+      @issue.save
+      respond_with(@issue, :location => show_path)
+    end
+
     private
     def show_path
       main_app.issue_path(:user => @project.user.username, :key => @project.key, :id => @issue.number)
+    end
+
+    def can_edit?
+      users = @issue.project.workers.uniq { |x| x.user_id }.map { |x| x.user }
+      users.include?(current_user)
+    end
+    helper_method :can_edit?
+
+    def ensure_can_edit
+      redirect_to main_app.root_path unless can_edit?
     end
   end
 end

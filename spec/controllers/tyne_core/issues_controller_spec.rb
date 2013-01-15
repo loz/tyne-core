@@ -118,6 +118,16 @@ describe TyneCore::IssuesController do
       end
     end
 
+    describe :assign_to_me do
+      before :each do
+        post :assign_to_me, :user => user.username, :key => project.key, :id => issue.number
+      end
+
+      it "should assign the issue to the current user" do
+        issue.class.find_by_id(issue.id).assigned_to.should == user
+      end
+    end
+
     describe :workflow do
       context 'when a valid transition is given' do
         before :each do

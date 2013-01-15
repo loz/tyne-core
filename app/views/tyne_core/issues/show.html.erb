@@ -1,5 +1,6 @@
-<% cache ["v11", "view", @issue] do %>
+<% cache ["v12", "view", @issue, can_edit?] do %>
 <div class="options">
+  <% if can_edit? %>
   <%= link_to "Edit", main_app.edit_issue_path(:user => @project.user.username, :key => @project.key, :id => @issue.number), :class => 'btn btn-small' %>
   <div class="btn-group">
     <%= default_action(@issue) %>
@@ -12,6 +13,8 @@
       <% end %>
     </ul>
   </div>
+  <%= link_to "Assign to me", main_app.assign_to_me_issue_path(:user => @project.user.username, :key => @project.key, :id => @issue.number), :class => 'btn btn-small', :method => :post %>
+  <% end %>
 </div>
 
 <h2>

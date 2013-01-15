@@ -21,6 +21,10 @@ Rails.application.routes.draw do
       end
 
       member do
+        post :assign_to_me
+      end
+
+      member do
         get :workflow
         post :upvote
         post :downvote
