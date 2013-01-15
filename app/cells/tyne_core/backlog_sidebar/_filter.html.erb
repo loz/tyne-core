@@ -1,18 +1,10 @@
 <%= content_tag :div, :data => { :cell => "Filter" }, :class => "Filter" do %>
   <%= simple_form_for :filter, :html => { :class => 'form-horizontal' } do |f| %>
     <% @fields.each do |field| %>
-      <ul class="filter" data-filter="<%= field[0] %>">
-        <li class="filter-name"><%= TyneCore::Issue.human_attribute_name(field[0]) %></li>
-        <li class="filter-options">
-          <%= f.input field[0], :label => "All", :required => false, :input_html => { :id => "filer_#{field[0]}_all", :type => :checkbox, :value => ''}, :label_html => { :for => "filter_#{field[0]}_all", :class => "selected" }, :wrapper_html => { :class => "filter-controls-hidden" } %>
-        </li>
-          <% field[1].each do |option| %>
-            <li class="filter-options">
-              <%= link_to "", "#", :class => "icon-plus filter-add" %>
-              <%= f.input field[0], :label => option[0], :required => false, :input_html => { :id => "filter_#{field[0]}_#{option[1]}", :type => :checkbox, :value => option[1] }, :label_html => { :for => "filter_#{field[0]}_#{option[1]}" }, :wrapper_html => { :class => "filter-controls-hidden" } %>
-            </li>
-          <% end %>
-      </ul>
+      <% content = render :partial => 'filter_item', :locals => { :field => field, :f => f } %>
+      <%= render_cell :pod, :collapsable, TyneCore::Issue.human_attribute_name(field[0]), :state => :collapsed do |cell| %>
+        <% cell.content = content %>
+      <% end %>
     <% end %>
   <% end %>
 <% end %>

@@ -77,6 +77,7 @@ module TyneCore
       render :json => @issue.total_votes.to_json
     end
 
+    # Assign issue to me
     def assign_to_me
       @issue.assigned_to = current_user
       @issue.save
