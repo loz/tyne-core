@@ -19,18 +19,13 @@
       line-height: 18px;
 
       &:hover {
-        background-color: #333;
-        color: white;
-        @include transition-property(background-color);
-        @include transition-duration(100ms);
-        @include transition-timing-function(ease-in);
+        background-color: #eee;
       }
     }
 
     &.selected {
       label {
-        background-color: #333;
-        color: white;
+        font-weight: bold;
       }
     }
   }
