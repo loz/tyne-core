@@ -7,7 +7,9 @@ module TyneCore
     respond_to :html, :json
     helper :"tyne_core/teams"
 
+    before_filter :load_user, :only => [:admin]
     before_filter :load_project, :only => [:admin]
+    before_filter :prepare_breadcrumb, :only => [:admin]
     before_filter :load_owned_project, :only => [:update, :destroy]
     before_filter :require_owner, :only => [:update, :destroy, :admin]
 
@@ -64,6 +66,10 @@ module TyneCore
     private
     def load_owned_project
       @project = current_user.owned_projects.find(params[:id])
+    end
+
+    def prepare_breadcrumb
+      add_breadcrumb "Admin", main_app.admin_project_path(:user => params[:user], :key => params[:key])
     end
   end
 end

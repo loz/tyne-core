@@ -3,14 +3,20 @@ class TyneCore::ApplicationController < ApplicationController
   private
   def load_user
     @user = TyneAuth::User.find_by_username(params[:user])
+
+    add_breadcrumb @user.username, main_app.overview_path(:user => params[:user])
   end
 
   def load_project
     @project = TyneCore::Project.joins(:user).where(:key => params[:key]).where(:tyne_auth_users => {:username => params[:user]  }).first
+
+    add_breadcrumb @project.name, main_app.backlog_path(:user => params[:user], :key => params[:key])
   end
 
   def load_issue
     @issue = @project.issues.find_by_number(params[:id])
+
+    add_breadcrumb @issue.key, main_app.issue_path(:user => params[:user], :key => params[:key], :id => params[:id])
   end
 
   def is_admin_area?

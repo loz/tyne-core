@@ -12,7 +12,7 @@ describe TyneCore::TeamsController do
 
   context :logged_in do
     let(:user) do
-      user = TyneAuth::User.create!(:name => "Foo", :uid => "foo", :token => "foo")
+      user = TyneAuth::User.create!(:name => "Foo", :username => "Foo", :uid => "foo", :token => "foo")
     end
     let(:project) { user.projects.create!(:key => "FOO", :name => "Foo") }
 

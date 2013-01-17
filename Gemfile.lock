@@ -389,6 +389,7 @@ DEPENDENCIES
   sqlite3
   therubyracer
   thin
+  twitter-bootstrap-rails
   tyne_auth!
   tyne_core!
   tyne_dev!

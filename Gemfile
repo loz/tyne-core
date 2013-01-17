@@ -20,6 +20,7 @@ gem 'tyne_ui', :git => 'https://github.com/tyne/tyne-ui.git', :branch => 'master
 
 gem 'modernizr-rails'
 gem "mousetrap-rails"
+gem 'twitter-bootstrap-rails'
 gem "redcarpet"
 gem "md_emoji"
 
