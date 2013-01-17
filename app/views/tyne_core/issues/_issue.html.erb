@@ -1,9 +1,7 @@
-<% cache ["v10", issue] do %>
-<div>
-<table>
-<tr class="issue <%= issue.state %>">
-  <td class="issue-options"><%= check_box_tag "issue[id[]]", issue.number, false, :id => "issue_#{issue.number}" %></td>
-  <td>
+<% cache ["v11", issue] do %>
+<tr class="issue <%= issue.state %> state-<%= issue.issue_type.name.downcase %>">
+  <td class="td-first dragger"></td>
+  <td class="td-second">
     <p class="issue-headline issue-line-1">
       <span class="issue-type-short">
         <%= issue_type(issue, true) %>
@@ -26,6 +24,4 @@
     </p>
   </td>
 </tr>
-</table>
-</div>
 <% end %>

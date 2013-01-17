@@ -1,21 +1,91 @@
 .issue-list {
-  > div:not(.pagination) {
-    &:hover {
-      background-color: #E0E9EA;
-      tr.issue {
+  table {
+    width: 100%;
+
+    tr.issue {
+      @include border-radius(4px);
+
+      &.done, &.invalid {
+        opacity: 0.2;
+      }
+
+      &:hover {
         opacity: 1.0;
       }
-    }
 
-    border-top: 1px solid #ccc;
-    border-left: 1px solid transparent;
-    border-right: 1px solid transparent;
-    border-bottom: 1px solid transparent;
-    margin-bottom: 0px;
+      &.state-bug {
+        td:first-child { background-color: #F03826; }
+        &:hover { background: lighten(#F03826,44%);}
+      }
 
-    &.selected {
-      background-color: #E0E9EA;
-      border: 1px solid #668283;
+      &.state-feature {
+        td:first-child { background-color: #44A143; }
+        &:hover { background: lighten(#44A143, 52%);}
+      }
+
+      &.state-enhancement {
+        td:first-child { background-color: #3A5A64; }
+        &:hover { background: lighten(#3A5A6A,60%);}
+      }
+
+      &.state-story {
+        td:first-child { background-color: #A81F5E; }
+        &:hover { background: lighten(#A81F5E,58%);}
+      }
+
+      &.state-task {
+        td:first-child { background-color: #F2811D; }
+        &:hover { background: lighten(#F2811D,44%);}
+      }
+
+      td:first-child {
+        @include border-left-radius(4px);
+        background-color: #333;
+        border-bottom: 1px solid #ccc;
+
+        width: 10px;
+        padding: 0px;
+      }
+
+      td:last-child {
+        border-top: 1px solid #ccc;
+        border-bottom: 1px solid #ccc;
+        border-right: 1px solid #ccc;
+        padding: 5px;
+      }
+
+      background-color: #fff;
+
+      .issue-options {
+        width: 50px;
+        vertical-align: top;
+        > input {
+          margin: 4px;
+        }
+      }
+
+      p {
+        margin: 0;
+      }
+
+      .issue-summary {
+        font-weight: bold;
+        color: #555;
+      }
+
+      .issue-description {
+        font-size: small;
+        color: #bbb;
+      }
+
+      .issue-key {
+        display: inline-block;
+        width: 60px;
+      }
+
+      .issue-closed, .issue-done, .issue-invalid {
+        text-decoration: line-through;
+      }
     }
   }
 
@@ -46,48 +116,8 @@
 
   .issue-assigned_to {
     position: absolute;
-    right: 20px;
+    right: 25px;
     font-size: small;
-  }
-
-  table {
-    width: 100%;
-
-    tr.issue {
-      .issue-options {
-        width: 50px;
-        vertical-align: top;
-        > input {
-          margin: 4px;
-        }
-      }
-      p {
-        margin: 0;
-      }
-
-      &.done, &.invalid {
-        opacity: 0.2;
-      }
-
-      .issue-summary {
-        font-weight: bold;
-        color: #555;
-      }
-
-      .issue-description {
-        font-size: small;
-        color: #bbb;
-      }
-
-      .issue-key {
-        display: inline-block;
-        width: 60px;
-      }
-
-      .issue-closed, .issue-done, .issue-invalid {
-        text-decoration: line-through;
-      }
-    }
   }
 }
 

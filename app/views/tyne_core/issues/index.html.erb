@@ -9,7 +9,9 @@
   </div>
 
   <div class="issue-list issue-detailed">
-    <%= render @issues %>
+    <table>
+      <%= render @issues %>
+    </table>
     <%= render_cell :"tyne_core/pagination", :show, :collection => @issues, :total => @total, :current_page => @current_page, :page_count => @page_count, :page_size => @page_size %>
   </div>
 </div>
