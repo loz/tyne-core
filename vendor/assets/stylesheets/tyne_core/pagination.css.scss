@@ -1,5 +1,10 @@
-.pagination {
+.tyne-pagination {
+  form > div {
+    float: left;
+    width: 33%;
+  }
   .page-information {
+    text-align: right;
     display: inline;
     .control-group {
       display: inline;
@@ -10,6 +15,10 @@
           height: 25px;
         }
       }
+    }
+
+    span {
+      vertical-align: top;
     }
   }
 }
