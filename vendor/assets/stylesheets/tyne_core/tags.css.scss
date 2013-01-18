@@ -9,6 +9,16 @@
     background-color: #e7e7f7;
   }
 
+  &.story {
+    color: #A81F5E;
+    background-color: lighten(#A81F5E, 52%);
+  }
+
+  &.task {
+    color: #F2811D;
+    background-color: lighten(#F2811D, 40%);
+  }
+
   &.feature, &.wip {
     color: #008000;
     background-color: #e7f7e7;
