@@ -6,6 +6,7 @@ module TyneCore
     self.responder = ::ApplicationResponder
     respond_to :html, :json
 
+    before_filter :require_login, :only => [:new, :create, :edit, :update, :workflow, :upvote, :downvote, :assign_to_me]
     before_filter :load_user
     before_filter :load_project
     before_filter :load_issue, :only => [:workflow, :edit, :update, :show, :upvote, :downvote, :assign_to_me]
@@ -22,18 +23,22 @@ module TyneCore
       @issues = reflection
     end
 
+    # Displays the new page for issue creation
+    def new
+      add_breadcrumb :new
+
+      @issue = @project.issues.build
+    end
+
     # Creates a new issue
     def create
+      add_breadcrumb :new
+
       @issue = @project.issues.build(params[:issue])
       @issue.reported_by = current_user
       @issue.save
 
       respond_with(@issue, :location => show_path)
-    end
-
-    # Displays the new page for issue creation
-    def new
-      @issue = @project.issues.build
     end
 
     # Performs a workflow transition

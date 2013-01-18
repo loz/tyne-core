@@ -6,6 +6,8 @@ module TyneCore
     self.responder = ::ApplicationResponder
     respond_to :html, :json
 
+    before_filter :require_login
+
     # Displays the index view with the default dashboard
     def index
       @projects = current_user.projects

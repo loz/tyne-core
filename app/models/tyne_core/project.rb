@@ -1,6 +1,8 @@
 module TyneCore
   # Represents a project.
   class Project < ActiveRecord::Base
+    has_associated_audits
+
     attr_accessible :description, :key, :name
 
     validates :key, :name, :user_id, :presence => true

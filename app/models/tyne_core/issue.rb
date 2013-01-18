@@ -7,6 +7,8 @@ module TyneCore
     include TyneCore::Extensions::Issues::Workflow
     include TyneCore::Extensions::Votable
 
+    audited :associated_with => :project, :allow_mass_assignment => true
+
     belongs_to :reported_by, :class_name => "TyneAuth::User"
     belongs_to :project, :class_name => "TyneCore::Project"
     belongs_to :issue_type, :class_name => "TyneCore::IssueType"

@@ -1,1 +1,10 @@
 en:
+  breadcrumbs:
+    tyne_core:
+      dashboards:
+        index: "Dashboard"
+      issues:
+        new: "New Issue"
+      projects:
+        new: "New Project"
+        index: "Dashboard"

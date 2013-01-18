@@ -7,6 +7,7 @@ module TyneCore
     respond_to :html, :json
     helper :"tyne_core/teams"
 
+    before_filter :require_login
     before_filter :load_user, :only => [:admin]
     before_filter :load_project, :only => [:admin]
     before_filter :prepare_breadcrumb, :only => [:admin]
@@ -15,12 +16,16 @@ module TyneCore
 
     # Renders a view to create a new project
     def new
+      add_breadcrumb :new
+
       @project = current_user.projects.new
       respond_with(@project)
     end
 
     # Creates a new project.
     def create
+      add_breadcrumb :new
+
       @project = current_user.projects.new(params[:project])
       @project.save
       respond_with(@project, :location => main_app.backlog_path(:user => current_user.username, :key => @project.key))
