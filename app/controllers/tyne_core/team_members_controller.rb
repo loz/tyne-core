@@ -4,6 +4,7 @@ module TyneCore
     self.responder = ::ApplicationResponder
     respond_to :html, :json
 
+    before_filter :require_login
     before_filter :load_project
     before_filter :require_owner
 

@@ -14,7 +14,7 @@ GIT
 
 GIT
   remote: https://github.com/tyne/tyne-auth.git
-  revision: 328b80c7db4ec206e51a27d4e58d150074c21689
+  revision: 7aa1f11722ac877e046303c7015b9c28c4c5b1e2
   branch: master
   specs:
     tyne_auth (0.0.2)

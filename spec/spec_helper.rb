@@ -44,3 +44,5 @@ RSpec.configure do |config|
   config.include TyneCore::Engine.routes.url_helpers
   config.include Rails.application.routes.url_helpers
 end
+
+RSpec::Matchers::OperatorMatcher.register(ActiveRecord::Relation, '=~', RSpec::Matchers::BuiltIn::MatchArray)

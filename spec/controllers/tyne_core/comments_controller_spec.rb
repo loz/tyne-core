@@ -15,13 +15,6 @@ describe TyneCore::CommentsController do
     TyneCore::Issue.create!(:summary => "Foo", :project_id => project.id, :issue_type_id => 1)
   end
 
-  context :not_logged_in do
-    it "should not allow any actions" do
-      get :create, :user => "Foo", :key => "Foo", :issue_id => 1
-      response.should redirect_to login_path
-    end
-  end
-
   context :logged_in do
     before :each do
       controller.stub(:current_user).and_return(user)

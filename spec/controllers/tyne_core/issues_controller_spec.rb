@@ -1,13 +1,6 @@
 require 'spec_helper'
 
 describe TyneCore::IssuesController do
-  context :not_logged_in do
-    it "should not allow any actions" do
-      get :index, :user => "Foo", :key => "Foo"
-      response.should redirect_to login_path
-    end
-  end
-
   context :logged_in do
     let(:user) do
       TyneAuth::User.create!(:name => "Foo", :username => "Foo", :uid => "foo", :token => "foo")
@@ -43,7 +36,7 @@ describe TyneCore::IssuesController do
 
         get :index, :user => user.username, :key => project.key, :filter => { "issue_type_id" => ["1"] }
 
-        assigns(:issues).should == project.issues.where(:issue_type_id => [1]).order("created_at ASC").limit(25).offset(0)
+        assigns(:issues).should =~ project.issues.where(:issue_type_id => [1]).order("created_at ASC").limit(25).offset(0)
       end
 
       it "should apply sort options when given" do
