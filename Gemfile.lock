@@ -47,7 +47,7 @@ GIT
 
 GIT
   remote: https://github.com/tyne/tyne-ui.git
-  revision: e79fd13419ada52b3858257178ed9ea42f078712
+  revision: c5b148a9655ef26eb4394468a236ac499da258d1
   branch: master
   specs:
     tyne_ui (0.0.3)
@@ -63,6 +63,7 @@ PATH
   remote: .
   specs:
     tyne_core (0.1.1)
+      audited-activerecord
       client_side_validations
       client_side_validations-simple_form
       rack-pjax
@@ -103,6 +104,10 @@ GEM
       multi_json (~> 1.0)
     addressable (2.3.2)
     arel (3.0.2)
+    audited (3.0.0)
+    audited-activerecord (3.0.0)
+      activerecord (~> 3.0)
+      audited (= 3.0.0)
     bourne (1.1.2)
       mocha (= 0.10.5)
     builder (3.0.4)
