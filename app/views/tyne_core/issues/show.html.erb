@@ -17,6 +17,7 @@
   <% end %>
 </div>
 
+<div class="well">
 <h2>
   <%= render_cell :'tyne_core/votes', :show, @issue,
                   :upvote_path   => main_app.upvote_issue_path(:user => @project.user.username, :key => @project.key, :id => @issue.number),
@@ -25,7 +26,9 @@
   <%= @issue.summary %>
 </h2>
 
-<p><%= markup_to_html(@issue.description) %></p>
+<%= render_cell :pod, :collapsable, 'Description', :state => :expanded do |cell| %>
+  <% cell.content = content_tag :p, markup_to_html(@issue.description), :class => :markdown %>
+<% end %>
 <p class="tag-list">
   <%= issue_type(@issue) %>
   <%= issue_priority(@issue) %>
@@ -49,3 +52,4 @@
     <% end %>
   <% end %>
 <% end %>
+</div>
