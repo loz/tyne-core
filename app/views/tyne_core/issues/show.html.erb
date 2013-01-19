@@ -1,4 +1,4 @@
-<% cache ["v13", "view", @issue, can_edit?] do %>
+<% cache ["v14", "view", @issue, can_edit?] do %>
 <div class="options">
   <% if can_edit? %>
   <%= link_to "Edit", main_app.edit_issue_path(:user => @project.user.username, :key => @project.key, :id => @issue.number), :class => 'btn btn-small' %>
