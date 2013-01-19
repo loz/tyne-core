@@ -16,6 +16,11 @@
 
     .ActivityIcon {
       vertical-align: top;
+      padding: 10px 10px 0px 10px;
+
+      img {
+        max-width: none;
+      }
     }
 
     .activity-message {
