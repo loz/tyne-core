@@ -27,7 +27,7 @@ describe TyneCore::DashboardsController do
 
       it "should assign the list of the user's projects" do
         user.projects.create!(:key => "FOO", :name => "Foo")
-        assigns(:projects).should == user.projects
+        assigns(:accessible_projects).should == user.accessible_projects
       end
 
       it "render the correct view" do

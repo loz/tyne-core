@@ -1,5 +1,7 @@
 module TyneCore
+  # Contains logic to format audit messages
   module AuditFormatter
+    # Base class for formatted audit messages
     class Base
       include Rails.application.routes.url_helpers
       include ActionView::Helpers::UrlHelper
@@ -14,10 +16,12 @@ module TyneCore
         @object, @options = object, options
       end
 
+      # Abstract format method. Needs to be overriden in the sub class.
       def format
         raise NotImplementedError
       end
 
+      # Returns details for an audit.
       def details
         nil
       end
@@ -48,22 +52,29 @@ module TyneCore
       end
     end
 
+    # Extends the audit class to have a formatted method.
     module Support
       extend ActiveSupport::Concern
 
+      # Returns the particular formatter constant.
+      #
+      # e.g. TyneCore::Foo => TyneCore::FooAuditFormatter
       def audit_formatter_class
         klass = self.auditable_type
         "#{klass}AuditFormatter".safe_constantize
       end
 
+      # Proxy method for format on the formatter class.
       def formatted
         audit_formatter.format
       end
 
+      # Proxy metho for details on the formatter class
       def details
         audit_formatter.details
       end
 
+      # Returns an instance of formatter class.
       def audit_formatter
         @audit_formatter ||= audit_formatter_class.new(self)
       end
