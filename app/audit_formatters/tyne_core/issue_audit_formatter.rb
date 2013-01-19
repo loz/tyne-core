@@ -36,11 +36,11 @@ module TyneCore
     end
 
     def issue_link
-      link_to issue.summary, issue_path(:user => user.username, :key => project.key, :id => issue.number)
+      link_to issue.summary, issue_path(:user => project.user.username, :key => project.key, :id => issue.number)
     end
 
     def project_link
-      link_to project.name, backlog_path(:user => user.username, :key => project.key)
+      link_to project.name, backlog_path(:user => project.user.username, :key => project.key)
     end
 
     def icon_name

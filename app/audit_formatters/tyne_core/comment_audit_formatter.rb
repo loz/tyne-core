@@ -29,7 +29,7 @@ module TyneCore
     end
 
     def issue_link
-      link_to issue.summary, issue_path(:user => user.username, :key => project.key, :id => issue.number)
+      link_to issue.summary, issue_path(:user => project.user.username, :key => project.key, :id => issue.number)
     end
   end
 end
