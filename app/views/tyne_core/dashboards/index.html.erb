@@ -10,6 +10,7 @@
 <table class="Activities">
   <tbody>
     <%= render :partial => "audit", :collection => @audits %>
+    <%= content_tag :p, "No recent activity" if @audits.count == 0 %>
   </tbody>
 </table>
 </div>
