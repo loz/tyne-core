@@ -13,7 +13,7 @@ module TyneCore
     end
 
     def details
-      return issue.summary if create?
+      return issue.description if create?
     end
 
     # Returns a formatted message for a new issue

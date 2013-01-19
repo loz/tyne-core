@@ -6,7 +6,7 @@ describe TyneCore::IssueAuditFormatter do
   end
 
   it "should format an issue audit" do
-    issue = create(:issue, :summary => "baz")
+    issue = create(:issue, :description => "baz")
     audit = issue.audits.first
     audit.stub(:user).and_return(issue.project.user)
 
