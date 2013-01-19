@@ -39,10 +39,6 @@ module TyneCore
         link_to user.username, overview_path(:user => user.username)
       end
 
-      def avatar_link
-        link_to avatar(user, :url => root_path, :width => 48), overview_path(:user => user.username)
-      end
-
       def view_context
         @view_context ||= ActionView::Base.new
       end
@@ -53,10 +49,6 @@ module TyneCore
 
       def update?
         object.action == 'update'
-      end
-
-      def destroy?
-        object.action == 'destroy'
       end
     end
 

@@ -6,11 +6,13 @@ describe TyneCore::IssueAuditFormatter do
   end
 
   it "should format an issue audit" do
-    issue = create(:issue)
+    issue = create(:issue, :summary => "baz")
     audit = issue.audits.first
     audit.stub(:user).and_return(issue.project.user)
 
     audit.formatted.should_not be_empty
+    audit.details.should == "baz"
+    audit.icon.should =~ /img/
   end
 
   it "should format an issue audit for update" do
@@ -20,5 +22,6 @@ describe TyneCore::IssueAuditFormatter do
     audit.stub(:action).and_return(:update)
 
     audit.formatted.should_not be_empty
+    audit.icon.should =~ /img/
   end
 end

@@ -9,5 +9,9 @@ describe TyneCore::AuditFormatter::Base do
     expect do
       subject.format
     end.to raise_error NotImplementedError
+
+    expect do
+      subject.icon
+    end.to raise_error NotImplementedError
   end
 end

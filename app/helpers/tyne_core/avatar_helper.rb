@@ -6,7 +6,6 @@ module TyneCore
     # @param [TyneAuth::User] user
     # @param [Hash] options
     def avatar_url(user, options={})
-
       default_url = "#{options[:url]}assets/guest.png"
 
       return default_url unless user.gravatar_id
@@ -20,7 +19,7 @@ module TyneCore
     # @param [Hash] options
     def avatar(user, options={})
       options.reverse_merge!(:url => "/", :width => 24)
-      image_tag avatar_url(user, options), :class => 'avatar', :width => 24
+      image_tag avatar_url(user, options), :class => 'avatar', :width => options[:width]
     end
   end
 end

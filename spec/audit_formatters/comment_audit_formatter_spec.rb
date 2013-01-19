@@ -15,5 +15,6 @@ describe TyneCore::CommentAuditFormatter do
 
     audit.formatted.should_not be_empty
     audit.details.should == "Foo"
+    audit.icon.should =~ /img/
   end
 end
