@@ -1,3 +1,34 @@
+table.overview {
+  width: 100%;
+
+  td {
+    vertical-align: top;
+  }
+  td.td-first {
+    width: 30%;
+  }
+}
+
+table.overview-project {
+  td.td-last {
+    width: 35%;
+
+    span {
+      display: block;
+      text-align: left;
+      padding-left: 20px;
+
+      &.overview-project-issues {
+        background: transparent image-url('icon-sweets/16/open-issues.png') 0px 2px no-repeat;
+      }
+
+      &.overview-project-collaborators {
+        background: transparent image-url('icon-sweets/16/collaborators.png') 0px 2px no-repeat;
+      }
+    }
+  }
+}
+
 .overview {
   .user-name {
     display: inline-block;

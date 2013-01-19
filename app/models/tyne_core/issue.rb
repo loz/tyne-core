@@ -10,7 +10,7 @@ module TyneCore
     audited :associated_with => :project, :allow_mass_assignment => true
 
     belongs_to :reported_by, :class_name => "TyneAuth::User"
-    belongs_to :project, :class_name => "TyneCore::Project"
+    belongs_to :project, :class_name => "TyneCore::Project", :touch => true
     belongs_to :issue_type, :class_name => "TyneCore::IssueType"
     belongs_to :issue_priority, :class_name => "TyneCore::IssuePriority"
     belongs_to :assigned_to, :class_name => "TyneAuth::User"

@@ -11,6 +11,14 @@ en:
       admin_html: "Owners have <b>full access</b> to the project and can <b>administrate</b> it."
       default_html: "Contributors can be <b>assigned</b> to issues and contribute to the project. Contributors <b>don't have access to administrate</b> a project."
 
+  overview:
+    open_issues:
+      one: "%{count} Open Issue"
+      other: "%{count} Open Issues"
+    collaborators:
+      one: "%{count} Collaborator"
+      other: "%{count} Collaborators"
+
   states:
     open: "Open"
     reopened: "Reopened"
