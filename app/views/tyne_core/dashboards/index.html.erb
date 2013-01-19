@@ -1,20 +1,15 @@
 <% content_for :sidebar do %>
   <ul class="nav nav-list">
-    <li class="nav-header">My projects (<%= @projects.count %>)</li>
-    <%= render :partial => "project", :collection => @projects %>
+    <li class="nav-header">My projects (<%= @accessible_projects.count %>)</li>
+    <%= render :partial => "project", :collection => @accessible_projects %>
   </ul>
   <%= link_to "New project", new_project_path, :class => 'btn btn-inverse btn-small' %>
 <% end %>
 
-<h1>Activity</h1>
-<% activities = merge_activities(@created_projects, @updated_projects, @created_issues, @updated_issues, @created_comments) %>
+<div class="well">
 <table class="Activities">
   <tbody>
-    <% activities.each do |activity| %>
-      <tr class="Activity">
-        <td class="ActivityDescription"><%= activity[1].html_safe %></td>
-        <td class="ActivityDate"><%= activity[0] %></td>
-      </tr>
-    <% end %>
+    <%= render :partial => "audit", :collection => @audits %>
   </tbody>
 </table>
+</div>

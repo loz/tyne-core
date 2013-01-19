@@ -27,5 +27,9 @@ module TyneCore
         TyneCore::ApplicationController.send(:include, TyneCore::Extensions::ActionController::Pagination)
       end
     end
+
+    initializer "tyne_core.audit_formatter" do |app|
+      require "tyne_core/audit_formatter"
+    end
   end
 end

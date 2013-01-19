@@ -8,4 +8,5 @@ require "tyne_core/extensions/action_controller/pagination"
 
 # Contains core functionality
 module TyneCore
+  autoload :AuditFormatter, "tyne_core/audit_formatter"
 end

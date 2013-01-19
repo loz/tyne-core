@@ -1,0 +1,9 @@
+<% cache ["v1", "dashboard", "audit", audit] do %>
+<tr class="Activity">
+  <td class="ActivityDescription">
+    <%= content_tag :p, audit.formatted %>
+    <%= content_tag :p, audit.details, :class => "audit-details" if audit.details %>
+  </td>
+  <td class="ActivityDate"><%= audit.created_at %></td>
+</tr>
+<% end %>
