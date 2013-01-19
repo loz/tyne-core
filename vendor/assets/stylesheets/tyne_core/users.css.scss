@@ -10,6 +10,11 @@ table.overview {
 }
 
 table.overview-project {
+  .description {
+    font-size: small;
+    color: #888;
+  }
+
   td.td-last {
     width: 35%;
 
