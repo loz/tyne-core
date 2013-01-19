@@ -8,14 +8,22 @@ module TyneCore
       try(object.action)
     end
 
+    def icon
+      image_tag "icon-sweets/32/#{icon_name}"
+    end
+
+    def details
+      return issue.summary if create?
+    end
+
     # Returns a formatted message for a new issue
     def create
-      "#{avatar_link} #{user_link} has reported #{issue_link} for project #{project_link}".html_safe
+      "#{user_link} has reported #{issue_link} for project #{project_link}".html_safe
     end
 
     # Returns a formatted message for an updated issue
     def update
-      "#{avatar_link} #{user_link} has updated issue #{issue_link} for project #{project_link}".html_safe
+      "#{user_link} has updated issue #{issue_link} for project #{project_link}".html_safe
     end
 
     private
@@ -33,6 +41,11 @@ module TyneCore
 
     def project_link
       link_to project.name, backlog_path(:user => user.username, :key => project.key)
+    end
+
+    def icon_name
+      return "issue-created.png" if create?
+      return "issue-updated.png" if update?
     end
   end
 end

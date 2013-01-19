@@ -4,36 +4,33 @@
 
   .Activity {
     border-bottom: 1px solid #EEE;
+    padding: 10px;
+
+    &.even {
+      background-color: #f4f4f4;
+    }
 
     td {
       padding: 5px 0px;
     }
 
-    .ActivityDescription {
+    .ActivityIcon {
       vertical-align: top;
-
-      .comment-message {
-        color: #AAA;
-        padding: 0px 0px 0px 40px;
-        font-style: italic;
-        font-size: 10px;
-
-        > p:before, p:after {
-          content: "'";
-        }
-
-        > p {
-          margin: 0px;
-          padding: 0px;
-        }
-      }
     }
 
-    .ActivityDate {
+    .activity-message {
+      font-weight: bold;
+    }
+
+    .activity-details {
+      color: #888;
+    }
+
+    .activity-date {
       vertical-align: top;
-      text-align: right;
       color: #AAA;
-      white-space: nowrap;
+      display: block;
+      font-size: small;
     }
   }
 }

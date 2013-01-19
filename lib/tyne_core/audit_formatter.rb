@@ -5,12 +5,11 @@ module TyneCore
     class Base
       include Rails.application.routes.url_helpers
       include ActionView::Helpers::UrlHelper
-      include ActionView::Helpers::AssetTagHelper
       include TyneCore::AvatarHelper
 
-      @@default_url_options = {:host => 'www.example.com'}
-
       attr_reader :object, :options
+
+      delegate :controller, :image_tag, :to => :view_context
 
       def initialize(object, options={})
         @object, @options = object, options
@@ -26,6 +25,11 @@ module TyneCore
         nil
       end
 
+      # Returns an image_tag with the correct icon
+      def icon
+        raise NotImplementedError
+      end
+
       private
       def user
         @user ||= object.user
@@ -39,16 +43,20 @@ module TyneCore
         link_to avatar(user, :url => root_path, :width => 48), overview_path(:user => user.username)
       end
 
-      def url_options
-        @@default_url_options
+      def view_context
+        @view_context ||= ActionView::Base.new
       end
 
-      def controller
-        @controller ||= ActionController::Base.new
+      def create?
+        object.action == 'create'
       end
 
-      def config
-        @config ||= Rails.application.config
+      def update?
+        object.action == 'update'
+      end
+
+      def destroy?
+        object.action == 'destroy'
       end
     end
 
@@ -69,9 +77,14 @@ module TyneCore
         audit_formatter.format
       end
 
-      # Proxy metho for details on the formatter class
+      # Proxy method for details on the formatter class
       def details
         audit_formatter.details
+      end
+
+      # Proxy method for icon
+      def icon
+        audit_formatter.icon
       end
 
       # Returns an instance of formatter class.

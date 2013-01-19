@@ -3,7 +3,11 @@ module TyneCore
   class CommentAuditFormatter < AuditFormatter::Base
     # Converts a comment audit into a user readable message
     def format
-      "#{avatar_link} #{user_link} commented on #{issue_link}".html_safe
+      "#{user_link} commented on #{issue_link}".html_safe
+    end
+
+    def icon
+      image_tag "icon-sweets/32/comments.png"
     end
 
     # Returns the comment message.

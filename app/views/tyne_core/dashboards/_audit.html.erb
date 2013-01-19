@@ -1,9 +1,16 @@
 <% cache ["v1", "dashboard", "audit", audit] do %>
-<tr class="Activity">
-  <td class="ActivityDescription">
-    <%= content_tag :p, audit.formatted %>
-    <%= content_tag :p, audit.details, :class => "audit-details" if audit.details %>
+<tr class="Activity <%= cycle("odd", "even") %>">
+  <td class="ActivityIcon">
+    <%= audit.icon %>
   </td>
-  <td class="ActivityDate"><%= time_ago_in_words(audit.created_at) %></td>
+  <td class="ActivityDescription">
+    <span class="activity-date"><%= time_ago_in_words(audit.created_at) %> ago</span>
+    <span class="activity-message">
+      <%= audit.formatted %>
+    </span>
+    <p class="activity-details">
+    <%= avatar(audit.user) %> <%= audit.details if audit.details %>
+    </p>
+  </td>
 </tr>
 <% end %>
