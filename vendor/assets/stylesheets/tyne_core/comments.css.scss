@@ -1,8 +1,7 @@
 .comments {
+  width: 100%;
   margin-bottom: 5px;
   .comment {
-    overflow: auto;
-    width: 100%;
 
     border-bottom: 1px solid #ccc;
     > div {
@@ -11,6 +10,12 @@
 
     .comment-avatar {
       margin: 5px 10px 5px 0px;
+      width: 60px;
+      vertical-align: top;
+    }
+
+    .comment-date {
+      color: #AAA;
     }
 
     .comment-body {
