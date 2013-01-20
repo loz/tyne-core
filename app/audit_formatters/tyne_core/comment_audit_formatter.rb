@@ -2,6 +2,8 @@ module TyneCore
   # Formats comment audits
   class CommentAuditFormatter < AuditFormatter::Base
     # Converts a comment audit into a user readable message
+    #
+    # @return [String] localised audit message as html
     def format
       message = "#{i18n_base_scope}.create_html"
       return t(message, :user => user_link, :issue => issue_link, :project => project_link)
@@ -30,7 +32,7 @@ module TyneCore
     end
 
     def issue_link
-      link_to issue.summary, issue_path(:user => project.user.username, :key => project.key, :id => issue.number)
+      link_to "#{issue.key} - #{issue.summary}", issue_path(:user => project.user.username, :key => project.key, :id => issue.number)
     end
 
     def project_link

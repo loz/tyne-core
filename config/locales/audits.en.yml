@@ -2,11 +2,11 @@ en:
   audits:
     tyne_core/issue:
       create:
-        default_html: "%{user} has reported %{issue} for project %{project}"
-        bug_html: "%{user} has raised a Bug (%{issue}) for project %{project}"
-        story_html: "%{user} has created a new user story (%{issue}) for project %{project}"
+        default_html: "%{user} has reported %{issue}"
+        bug_html: "%{user} has raised bug %{issue}"
+        story_html: "%{user} has created user story %{issue}"
       update:
-        default_html: "%{user} has updated issue %{issue} for project %{project}"
+        default_html: "%{user} has updated issue %{issue}"
         assigned_to_id_html: "%{issue} is now assigned to %{assignee}"
         state:
           default_html: "%{user} has changed the workflow state for %{issue}"

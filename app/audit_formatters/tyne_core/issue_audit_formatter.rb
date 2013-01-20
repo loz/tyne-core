@@ -51,7 +51,7 @@ module TyneCore
     end
 
     def issue_link
-      link_to issue.summary, issue_path(:user => project.user.username, :key => project.key, :id => issue.number)
+      link_to "#{issue.key} - #{issue.summary}", issue_path(:user => project.user.username, :key => project.key, :id => issue.number)
     end
 
     def project_link
