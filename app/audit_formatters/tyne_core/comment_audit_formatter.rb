@@ -3,7 +3,8 @@ module TyneCore
   class CommentAuditFormatter < AuditFormatter::Base
     # Converts a comment audit into a user readable message
     def format
-      "#{user_link} commented on #{issue_link}".html_safe
+      message = "#{i18n_base_scope}.create_html"
+      return t(message, :user => user_link, :issue => issue_link, :project => project_link)
     end
 
     def icon
@@ -30,6 +31,10 @@ module TyneCore
 
     def issue_link
       link_to issue.summary, issue_path(:user => project.user.username, :key => project.key, :id => issue.number)
+    end
+
+    def project_link
+      link_to project.name, backlog_path(:user => project.user.username, :key => project.key)
     end
   end
 end

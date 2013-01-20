@@ -18,12 +18,27 @@ module TyneCore
 
     # Returns a formatted message for a new issue
     def create
-      "#{user_link} has reported #{issue_link} for project #{project_link}".html_safe
+      defaults = []
+      message = "#{i18n_base_scope}.create.#{issue.issue_type.name.underscore}_html"
+
+      defaults << :"#{i18n_base_scope}.create.default_html"
+
+      return t(message, :user => user_link, :issue => issue_link, :project => project_link, :default => defaults).html_safe
     end
 
     # Returns a formatted message for an updated issue
     def update
-      "#{user_link} has updated issue #{issue_link} for project #{project_link}".html_safe
+      lookup = "#{i18n_base_scope}.update"
+      options = { :user => user_link, :issue => issue_link, :project => project_link }
+
+      if assignee_changed?
+        options[:assignee] = TyneAuth::User.find(object.audited_changes["assigned_to_id"].last).username
+        return t("#{lookup}.assigned_to_id_html", options).html_safe
+      end
+
+      return t("#{lookup}.state.#{object.audited_changes["state"].last}_html", options).html_safe if workflow_state_changed?
+
+      t("#{lookup}.default_html", options).html_safe
     end
 
     private
@@ -46,6 +61,14 @@ module TyneCore
     def icon_name
       return "issue-created.png" if create?
       return "issue-updated.png" if update?
+    end
+
+    def assignee_changed?
+      object.audited_changes.include?("assigned_to_id")
+    end
+
+    def workflow_state_changed?
+      object.audited_changes.include?("state")
     end
   end
 end

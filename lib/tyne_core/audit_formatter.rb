@@ -6,6 +6,7 @@ module TyneCore
       include Rails.application.routes.url_helpers
       include ActionView::Helpers::UrlHelper
       include TyneCore::AvatarHelper
+      include ActionView::Helpers::TranslationHelper
 
       attr_reader :object, :options
 
@@ -49,6 +50,10 @@ module TyneCore
 
       def update?
         object.action == 'update'
+      end
+
+      def i18n_base_scope
+        "audits.#{object.auditable_type.underscore}"
       end
     end
 
