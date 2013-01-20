@@ -7,6 +7,11 @@ table.overview {
   td.td-first {
     width: 30%;
   }
+
+  .portrait {
+    border: 10px solid #EEEEEE;
+    @include border-radius(8px);
+  }
 }
 
 table.overview-project {
