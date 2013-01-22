@@ -14,6 +14,7 @@ module TyneCore
     has_many :teams, :class_name => "TyneCore::Team", :autosave => true
     has_many :workers, :class_name => "TyneCore::TeamMember", :through => :teams, :source => :members
     has_many :owners, :class_name => "TyneCore::TeamMember", :through => :teams, :conditions => { :tyne_core_teams => { :admin_privileges => true } }, :source => :members
+    has_many :sprints, :class_name => "TyneCore::Sprint"
 
     before_create :create_teams
 

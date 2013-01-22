@@ -29,7 +29,20 @@ class TyneCore::ApplicationController < ApplicationController
   end
 
   def is_owner?
+    return false unless @project
     @project.owners.map { |x| x.user }.include? current_user
   end
   helper_method :is_owner?
+
+  def is_collaborator?
+    return false unless @project
+
+    users = @project.workers.uniq { |x| x.user_id }.map { |x| x.user }
+    users.include?(current_user)
+  end
+  helper_method :is_collaborator?
+
+  def ensure_can_collaborate
+    redirect_to main_app.root_path unless is_collaborator?
+  end
 end
