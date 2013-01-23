@@ -10,8 +10,11 @@ module TyneCore
     before_filter :prepare_breadcrumb
     before_filter :ensure_can_collaborate
 
+    helper :"tyne_core/issues"
+
     def index
       @sprints = @project.sprints
+      @issues = @project.issues.not_completed
     end
 
     def create

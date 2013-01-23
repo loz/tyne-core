@@ -1,16 +1,20 @@
-<% content_for :sidebar do %>
-  <ul class="nav nav-list">
-    <li class="nav-header">My projects (<%= @accessible_projects.count %>)</li>
-    <%= render :partial => "project", :collection => @accessible_projects %>
-  </ul>
-  <%= link_to "New project", new_project_path, :class => 'btn btn-inverse btn-small' %>
-<% end %>
+<div class="span3">
+  <div class="well">
+    <ul class="nav nav-list">
+      <li class="nav-header">My projects (<%= @accessible_projects.count %>)</li>
+      <%= render :partial => "project", :collection => @accessible_projects %>
+    </ul>
+    <%= link_to "New project", new_project_path, :class => 'btn btn-inverse btn-small' %>
+  </div>
+</div>
 
-<div class="well">
-<table class="Activities">
-  <tbody>
-    <%= render :partial => "audit", :collection => @audits %>
-    <%= content_tag :p, "No recent activity" if @audits.count == 0 %>
-  </tbody>
-</table>
+<div class="span9">
+  <div class="well">
+  <table class="Activities">
+    <tbody>
+      <%= render :partial => "audit", :collection => @audits %>
+      <%= content_tag :p, "No recent activity" if @audits.count == 0 %>
+    </tbody>
+  </table>
+  </div>
 </div>

@@ -1,8 +1,19 @@
-<div class="planning">
-  <%= render @sprints %>
-  <%= render :partial => "sprint_placeholder" %>
+<div class="span6">
+  <div class="well no-padding backlog">
+    <div class="backlog-headline">
+      <span class="backlog-headline-content">Backlog</span>
+      <span class="backlog-headline-issue-count"><%= pluralize(@issues.count, "Issue") %></span>
+    </div>
 
-  <div class="well planning-backlog">
-    <h1>Backlog</h1>
+    <table class="backlog-items">
+      <%= render :partial => "issue", :collection => @issues %>
+    </table>
+  </div>
+</div>
+
+<div class="span6">
+  <div class="planning">
+    <%= render @sprints %>
+    <%= render :partial => "sprint_placeholder" %>
   </div>
 </div>

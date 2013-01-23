@@ -1,14 +1,84 @@
 .planning {
   .planning-new {
     padding: 20px;
-    border: 4px dashed #CCC;
+    border: 3px dashed #CCC;
     cursor: pointer;
     color: #CCC;
     text-align: center;
     font-size: 1em;
+
+    &:hover {
+      border-color: #BBB;
+      color: #BBB;
+    }
   }
 
-  .planning-backlog {
-    margin-top: 10px;
+  .planning-sprint {
+    .planning-sprint-name {
+      padding: 10px;
+      display: inline-block;
+    }
+    .planning-sprint-drag-information {
+      margin: 10px;
+      border: 3px dashed #CCC;
+      color: #CCC;
+      padding: 20px;
+      text-align: center;
+    }
+  }
+}
+
+.backlog {
+  .backlog-headline {
+    padding: 10px;
+    border-bottom: 1px solid #CCC;
+    .backlog-headline-content {
+      color: #333;
+      font-size: 1.7em;
+      padding-left: 10px;
+    }
+  }
+
+  .backlog-items {
+    width: 100%;
+    tr.issue {
+      border-bottom: 1px solid #CCC;
+
+      &.state-bug {
+        td:first-child { background-color: #F03826; }
+      }
+
+      &.state-feature {
+        td:first-child { background-color: #44A143; }
+      }
+
+      &.state-enhancement {
+        td:first-child { background-color: #3A5A64; }
+      }
+
+      &.state-story {
+        td:first-child { background-color: #A81F5E; }
+      }
+
+      &.state-task {
+        td:first-child { background-color: #F2811D; }
+      }
+
+      &:hover {
+        background-color: #EEE;
+        cursor: move;
+      }
+
+      td:first-child {
+        width: 8px;
+        padding: 0px;
+        background: image-url('drag.png') 3px 2px repeat-y;
+      }
+
+      p {
+        padding: 2px;
+        margin: 0px;
+      }
+    }
   }
 }
