@@ -1,7 +1,7 @@
 <% cache ["v12", issue] do %>
-<tr class="backlog-issue issue <%= issue.state %> state-<%= issue.issue_type.name.downcase %>">
-  <td class="td-first dragger"></td>
-  <td class="td-second">
+<li class="backlog-issue issue <%= issue.state %> state-<%= issue.issue_type.name.downcase %>">
+  <div class="td-first dragger"></div>
+  <div class="td-second">
     <p class="issue-headline issue-line-1">
       <span class="issue-type-short">
         <%= issue_type(issue, true) %>
@@ -10,6 +10,6 @@
       <%= issue_id(issue) %>
       <span class="issue-summary"><%= content_tag :span, issue.summary, :class => "issue-#{issue.state}" %></span>
     </p>
-  </td>
-</tr>
+  </div>
+</li>
 <% end %>

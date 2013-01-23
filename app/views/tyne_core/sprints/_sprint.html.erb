@@ -1,7 +1,13 @@
 <div class="well no-padding planning-sprint" data-cell="SprintDeletion">
-  <span class="planning-sprint-name"><%= sprint.name %></span>
-  <%= link_to "&times;".html_safe, main_app.sprint_path(:user => @project.user.username, :key => @project.key, :id => sprint.id), :class => "delete-sprint close", :confirm => "Are you sure you want to delete this sprint?", :method => :delete, :remote => true, :data => { :"confirm-title" => "Delete #{sprint.name}", :"confirm-proceed" => "Delete", :"confirm-proceed-class" => "btn-danger" } %>
-  <div class="planning-sprint-drag-information">
-    Drag items from the backlog into this area to add it to the sprint.
+  <div class="sprint-header">
+    <span class="planning-sprint-name"><%= sprint.name %></span>
+    <span>0 Issues</span>
+    <%= link_to "&times;".html_safe, main_app.sprint_path(:user => @project.user.username, :key => @project.key, :id => sprint.id), :class => "delete-sprint close", :confirm => "Are you sure you want to delete this sprint?", :method => :delete, :remote => true, :data => { :"confirm-title" => "Delete #{sprint.name}", :"confirm-proceed" => "Delete", :"confirm-proceed-class" => "btn-danger" } %>
   </div>
+
+  <ul class="planning-sprint-items backlog-sortable backlog-connected">
+    <li class="planning-sprint-drag-information">
+      Drag items from the backlog into this area to add it to the sprint.
+    </li>
+  </table>
 </div>

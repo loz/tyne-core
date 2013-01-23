@@ -15,15 +15,24 @@
 
   .planning-sprint {
     .planning-sprint-name {
+      color: #333;
+      font-size: 1.7em;
       padding: 10px;
       display: inline-block;
     }
+
+    .sprint-header {
+      border-bottom: 1px solid #ccc;
+    }
+
     .planning-sprint-drag-information {
-      margin: 10px;
-      border: 3px dashed #CCC;
-      color: #CCC;
-      padding: 20px;
-      text-align: center;
+
+      td {
+        margin: 10px;
+        color: #CCC;
+        padding: 20px;
+        text-align: center;
+      }
     }
   }
 }
@@ -35,50 +44,69 @@
     .backlog-headline-content {
       color: #333;
       font-size: 1.7em;
+    }
+  }
+}
+
+.backlog-items, .planning-sprint-items {
+  width: 100%;
+  padding: 0px;
+  margin: 0px;
+  list-style-type: none;
+
+  li.issue {
+    border-bottom: 1px solid #CCC;
+    position: relative;
+
+    &.state-bug {
+      div:first-child { background-color: #F03826; }
+    }
+
+    &.state-feature {
+      div:first-child { background-color: #44A143; }
+    }
+
+    &.state-enhancement {
+      div:first-child { background-color: #3A5A64; }
+    }
+
+    &.state-story {
+      div:first-child { background-color: #A81F5E; }
+    }
+
+    &.state-task {
+      div:first-child { background-color: #F2811D; }
+    }
+
+    &:hover {
+      background-color: #EEE;
+      cursor: move;
+    }
+
+    div:first-child {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 8px;
+      height: 26px;
+      padding: 0px;
+      display: block;
+      background: image-url('drag.png') 3px 2px repeat-y;
+    }
+
+    div:last-child {
       padding-left: 10px;
     }
-  }
 
-  .backlog-items {
-    width: 100%;
-    tr.issue {
-      border-bottom: 1px solid #CCC;
-
-      &.state-bug {
-        td:first-child { background-color: #F03826; }
-      }
-
-      &.state-feature {
-        td:first-child { background-color: #44A143; }
-      }
-
-      &.state-enhancement {
-        td:first-child { background-color: #3A5A64; }
-      }
-
-      &.state-story {
-        td:first-child { background-color: #A81F5E; }
-      }
-
-      &.state-task {
-        td:first-child { background-color: #F2811D; }
-      }
-
-      &:hover {
-        background-color: #EEE;
-        cursor: move;
-      }
-
-      td:first-child {
-        width: 8px;
-        padding: 0px;
-        background: image-url('drag.png') 3px 2px repeat-y;
-      }
-
-      p {
-        padding: 2px;
-        margin: 0px;
-      }
+    p {
+      padding: 2px;
+      margin: 0px;
     }
   }
+}
+
+.backlog-placeholder-element {
+  height: 27px;
+  background-color: lighten(#44A143, 52%);
+  border-bottom: 1px solid #CCC;
 }

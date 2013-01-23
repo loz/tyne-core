@@ -21,6 +21,7 @@
       type: "POST",
       success: function(data, textStatus, jqXHR) {
         new SprintDeletion($(data).insertBefore(_this.$target));
+        IssueOrdering.initialize();
       }
     }
 

@@ -5,9 +5,9 @@
       <span class="backlog-headline-issue-count"><%= pluralize(@issues.count, "Issue") %></span>
     </div>
 
-    <table class="backlog-items">
+    <ul class="backlog-items backlog-sortable backlog-connected">
       <%= render :partial => "issue", :collection => @issues %>
-    </table>
+    </ul>
   </div>
 </div>
 
