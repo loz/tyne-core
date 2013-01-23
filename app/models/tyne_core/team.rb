@@ -3,7 +3,7 @@ module TyneCore
   # A team can allow a member to have admin privileges.
   class Team < ActiveRecord::Base
     belongs_to :project, :touch => true
-    has_many :members, :class_name => "TyneCore::TeamMember", :autosave => true
+    has_many :members, :class_name => "TyneCore::TeamMember", :autosave => true, :dependent => :destroy
 
     validates :project, :presence => true
     attr_accessible :name

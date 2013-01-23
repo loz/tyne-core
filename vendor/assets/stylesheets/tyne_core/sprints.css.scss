@@ -25,14 +25,10 @@
       border-bottom: 1px solid #ccc;
     }
 
-    .planning-sprint-drag-information {
-
-      td {
-        margin: 10px;
-        color: #CCC;
-        padding: 20px;
-        text-align: center;
-      }
+    div.planning-sprint-drag-information {
+      color: #CCC;
+      padding: 20px;
+      text-align: center;
     }
   }
 }
@@ -52,6 +48,7 @@
   width: 100%;
   padding: 0px;
   margin: 0px;
+  min-height: 50px;
   list-style-type: none;
 
   li.issue {

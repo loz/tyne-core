@@ -15,7 +15,7 @@ module TyneCore
     belongs_to :issue_priority, :class_name => "TyneCore::IssuePriority"
     belongs_to :assigned_to, :class_name => "TyneAuth::User"
     belongs_to :sprint, :class_name => "TyneCore::Sprint"
-    has_many :comments, :class_name => "TyneCore::Comment"
+    has_many :comments, :class_name => "TyneCore::Comment", :dependent => :destroy
 
     attr_accessible :project_id, :summary, :description, :issue_type_id, :issue_priority_id, :assigned_to_id
 
