@@ -10,7 +10,8 @@ module TyneCore
     validates :key, :format => { :with => /^[a-zA-Z\d\s]*$/ }
 
     belongs_to :user, :class_name => "TyneAuth::User"
-    has_many :issues, :class_name => "TyneCore::Issue", :dependent => :destroy
+    has_many :issues, :class_name => "TyneCore::BacklogItem", :dependent => :destroy, :order => 'position'
+    has_many :sprint_items, :class_name => "TyneCore::SprintItem", :dependent => :destroy, :order => 'sprint_position'
     has_many :teams, :class_name => "TyneCore::Team", :autosave => true, :dependent => :destroy
     has_many :workers, :class_name => "TyneCore::TeamMember", :through => :teams, :source => :members
     has_many :owners, :class_name => "TyneCore::TeamMember", :through => :teams, :conditions => { :tyne_core_teams => { :admin_privileges => true } }, :source => :members

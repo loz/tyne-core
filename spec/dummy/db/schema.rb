@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130122230424) do
+ActiveRecord::Schema.define(:version => 20130123231449) do
 
   create_table "audits", :force => true do |t|
     t.integer  "auditable_id"
@@ -113,6 +113,7 @@ ActiveRecord::Schema.define(:version => 20130122230424) do
     t.integer  "issue_priority_id"
     t.integer  "assigned_to_id"
     t.integer  "sprint_id"
+    t.integer  "ranking"
   end
 
   add_index "tyne_core_issues", ["issue_priority_id"], :name => "index_tyne_core_issues_on_issue_priority_id"

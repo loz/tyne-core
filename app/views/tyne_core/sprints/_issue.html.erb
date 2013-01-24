@@ -1,5 +1,5 @@
-<% cache ["v12", issue] do %>
-<li class="backlog-issue issue <%= issue.state %> state-<%= issue.issue_type.name.downcase %>">
+<% cache ["v1", "backlog", issue] do %>
+<li class="backlog-issue issue <%= issue.state %> state-<%= issue.issue_type.name.downcase %>" data-id="<%= issue.id %>">
   <div class="td-first dragger"></div>
   <div class="td-second">
     <p class="issue-headline issue-line-1">

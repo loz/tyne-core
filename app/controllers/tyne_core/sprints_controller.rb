@@ -14,7 +14,7 @@ module TyneCore
 
     def index
       @sprints = @project.sprints
-      @issues = @project.issues.not_completed
+      @issues = @project.issues.not_completed.where(:sprint_id => nil)
     end
 
     def create
@@ -29,6 +29,17 @@ module TyneCore
         render :json => :ok
       else
         render :json => { :errors => @sprint.errors }, :status => :entity_unprocessable
+      end
+    end
+
+    def reorder
+      @issue = @project.sprint_items.find(params[:issue_id])
+      @issue.sprint_id = @project.sprints.find(params[:id]).id
+      @issue.insert_at(params[:position].to_i)
+      if @issue.save
+        render :json => :ok
+      else
+        render :json => { :errors => @issue.errors }, :status => :entity_unprocessable
       end
     end
 

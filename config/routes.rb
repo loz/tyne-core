@@ -18,16 +18,14 @@ Rails.application.routes.draw do
     resources :issues, :controller => 'tyne_core/issues' do
       collection do
         get :dialog
-      end
-
-      member do
-        post :assign_to_me
+        post :reorder
       end
 
       member do
         get :workflow
         post :upvote
         post :downvote
+        post :assign_to_me
       end
 
       resources :comments, :controller => 'tyne_core/comments'
@@ -37,6 +35,10 @@ Rails.application.routes.draw do
       resources :team_members, :controller => 'tyne_core/team_members'
     end
 
-    resources :sprints, :controller => 'tyne_core/sprints'
+    resources :sprints, :controller => 'tyne_core/sprints' do
+      member do
+        post :reorder
+      end
+    end
   end
 end

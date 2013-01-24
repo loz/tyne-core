@@ -89,6 +89,17 @@ module TyneCore
       respond_with(@issue, :location => show_path)
     end
 
+    def reorder
+      @issue = @project.issues.find(params[:issue_id])
+      @issue.insert_at(params[:position].to_i)
+      @issue.sprint_id = nil
+      if @issue.save
+        render :json => :ok
+      else
+        render :json => { :errors => @issue.errors }, :status => :entity_unprocessable
+      end
+    end
+
     private
     def show_path
       main_app.issue_path(:user => @project.user.username, :key => @project.key, :id => @issue.number)

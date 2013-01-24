@@ -23,6 +23,7 @@ Gem::Specification.new do |s|
   s.add_dependency "state_machine"
   s.add_dependency "twitter-bootstrap-rails-confirm"
   s.add_dependency "audited-activerecord"
+  s.add_dependency "acts_as_list"
 
   s.add_development_dependency "sqlite3"
 end
