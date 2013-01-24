@@ -23,6 +23,13 @@ module TyneCore
       render @sprint
     end
 
+    # Upates a sprint
+    def update
+      @sprint = @project.sprints.find(params[:id])
+      @sprint.update_attributes(params[:sprint])
+      respond_with(@sprint)
+    end
+
     def destroy
       @sprint = @project.sprints.find(params[:id])
       if @sprint.destroy

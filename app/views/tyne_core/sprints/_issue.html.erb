@@ -9,7 +9,6 @@
 
       <%= issue_id(issue) %>
       <span class="issue-summary"><%= content_tag :span, issue.summary, :class => "issue-#{issue.state}" %></span>
-      <%= issue.position || issue.sprint_position %>
     </p>
   </div>
 </li>
