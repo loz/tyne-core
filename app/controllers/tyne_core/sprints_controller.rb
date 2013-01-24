@@ -14,7 +14,7 @@ module TyneCore
 
     def index
       @sprints = @project.sprints
-      @issues = @project.issues.not_completed.where(:sprint_id => nil)
+      @issues = @project.backlog_items.not_completed.where(:sprint_id => nil)
     end
 
     def create
@@ -41,7 +41,7 @@ module TyneCore
 
     def reorder
       @issue = @project.sprint_items.find(params[:issue_id])
-      @issue.project.issues.find(params[:issue_id]).remove_from_list
+      @issue.project.backlog_items.find(params[:issue_id]).remove_from_list
 
       @issue.sprint_id = @project.sprints.find(params[:id]).id
       @issue.save

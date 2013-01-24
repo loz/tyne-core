@@ -90,7 +90,7 @@ module TyneCore
     end
 
     def reorder
-      @issue = @project.issues.find(params[:issue_id])
+      @issue = @project.backlog_items.find(params[:issue_id])
       @issue.sprint.issues.find(params[:issue_id]).remove_from_list if @issue.sprint
 
       @issue.reload
