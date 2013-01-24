@@ -91,9 +91,13 @@ module TyneCore
 
     def reorder
       @issue = @project.issues.find(params[:issue_id])
-      @issue.insert_at(params[:position].to_i)
+      @issue.sprint.issues.find(params[:issue_id]).remove_from_list if @issue.sprint
+
+      @issue.reload
       @issue.sprint_id = nil
-      if @issue.save
+      @issue.save
+
+      if @issue.insert_at(params[:position].to_i)
         render :json => :ok
       else
         render :json => { :errors => @issue.errors }, :status => :entity_unprocessable
