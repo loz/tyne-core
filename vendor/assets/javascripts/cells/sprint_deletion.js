@@ -1,7 +1,6 @@
 (function($) {
   var SprintDeletion = Cell.create('SprintDeletion');
 
-
   SprintDeletion.prototype.initialize = function() {
     this.$button = this.$target.find('.delete-sprint');
 

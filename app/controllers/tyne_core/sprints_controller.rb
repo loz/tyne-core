@@ -53,6 +53,13 @@ module TyneCore
       end
     end
 
+    def start
+      @sprint = @project.sprints.find(params[:id])
+      @sprint.start
+
+      respond_with(@sprint, :location => main_app.sprints_path(:user => @project.user.username, :key => @project.key))
+    end
+
     private
     def prepare_breadcrumb
       add_breadcrumb "Planning"

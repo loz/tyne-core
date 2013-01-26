@@ -23,6 +23,7 @@
 
     .sprint-header {
       border-bottom: 1px solid #ccc;
+      padding-right: 5px;
     }
 
     div.planning-sprint-drag-information {
@@ -55,6 +56,10 @@
     border-bottom: 1px solid #CCC;
     position: relative;
 
+    .issue-details {
+      border-top: 1px solid #EFE;
+    }
+
     &.state-bug {
       div:first-child { background-color: #F03826; }
     }
@@ -76,8 +81,26 @@
     }
 
     &:hover {
-      background-color: #EEE;
-      cursor: move;
+      .td-first, .td-second {
+        background-color: #EEE;
+        cursor: move;
+      }
+    }
+
+    &.collapsed {
+      background: image-url("arrow_state_grey_collapsed-2.png") 99% 5px no-repeat;
+
+      .issue-details {
+        display: none;
+      }
+    }
+
+    &.expanded {
+      background: image-url("arrow_state_grey_expanded.png") 99% 5px no-repeat;
+
+      .issue-details {
+        display: block;
+      }
     }
 
     div:first-child {
@@ -91,7 +114,7 @@
       background: image-url('drag.png') 3px 2px repeat-y;
     }
 
-    div:last-child {
+    div.td-second {
       padding-left: 10px;
     }
 

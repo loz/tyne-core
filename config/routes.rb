@@ -38,6 +38,7 @@ Rails.application.routes.draw do
     resources :sprints, :controller => 'tyne_core/sprints' do
       member do
         post :reorder
+        post :start
       end
     end
   end

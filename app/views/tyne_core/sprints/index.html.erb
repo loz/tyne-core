@@ -1,4 +1,8 @@
 <div class="span6">
+  <div class="options">
+    <%= link_to "Create", main_app.new_issue_path, :class => "btn btn-small" if current_user %>
+  </div>
+
   <div class="well no-padding backlog">
     <div class="backlog-headline">
       <span class="backlog-headline-content">Backlog</span>

@@ -5,5 +5,9 @@ module TyneCore
     has_many :issues, :class_name => 'TyneCore::SprintItem', :order => 'sprint_position'
 
     validates :name, :project_id, :presence => true
+
+    def start
+      save
+    end
   end
 end
