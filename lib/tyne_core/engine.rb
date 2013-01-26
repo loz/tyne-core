@@ -1,6 +1,7 @@
 require 'audited-activerecord'
 require 'state_machine'
 require 'twitter-bootstrap-rails-confirm'
+require 'jquery-cookie-rails'
 require 'tyne_ui'
 
 module TyneCore

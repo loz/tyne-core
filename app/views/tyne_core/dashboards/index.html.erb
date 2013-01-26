@@ -6,7 +6,8 @@
   <%= link_to "New project", new_project_path, :class => 'btn btn-inverse btn-small' %>
 <% end %>
 
-<div class="well">
+<div class="well" data-cell="DashboardTour">
+  <div class="activities-anchor"></div>
 <table class="Activities">
   <tbody>
     <%= render :partial => "audit", :collection => @audits %>
