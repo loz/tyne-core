@@ -14,7 +14,7 @@
       </div>
       <h5>Public projects</h5>
       <table class="table overview-project">
-        <% @user.projects.each do |project| %>
+        <% @user.projects.order("name").each do |project| %>
           <tr>
             <td>
               <%= link_to(project.name, main_app.backlog_path(:user => @user.username, :key => project.key)) %>
