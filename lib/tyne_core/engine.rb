@@ -3,6 +3,7 @@ require 'state_machine'
 require 'twitter-bootstrap-rails-confirm'
 require 'acts_as_list'
 require 'best_in_place'
+require 'jquery-cookie-rails'
 require 'tyne_ui'
 
 module TyneCore

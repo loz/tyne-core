@@ -2,8 +2,12 @@
   width: 100%;
   margin-bottom: 5px;
   .comment {
+    border-bottom: 1px dashed #ded;
 
-    border-bottom: 1px solid #ccc;
+    td {
+      padding-top: 10px;
+    }
+
     > div {
       float: left;
     }

@@ -1,18 +1,4 @@
 GIT
-  remote: https://github.com/plataformatec/responders.git
-  revision: a3d0640aea263c96606fe3ed61878b56829da8c1
-  specs:
-    responders (0.9.3)
-      railties (~> 3.1)
-
-GIT
-  remote: https://github.com/rails-api/active_model_serializers.git
-  revision: e3bfd07ac47b76c69a22a7a4c357c053cd935b91
-  specs:
-    active_model_serializers (0.5.2)
-      activemodel (>= 3.0)
-
-GIT
   remote: https://github.com/tyne/tyne-auth.git
   revision: 7aa1f11722ac877e046303c7015b9c28c4c5b1e2
   branch: master
@@ -68,6 +54,7 @@ PATH
       best_in_place
       client_side_validations
       client_side_validations-simple_form
+      jquery-cookie-rails
       rack-pjax
       rails (~> 3.2.8)
       simple_form
@@ -198,6 +185,10 @@ GEM
       coffee-rails
       haml
     journey (1.0.4)
+    jquery-cookie-rails (0.1.1)
+      jquery-rails (~> 2.0)
+      railties (>= 3.2.0, < 5.0)
+      thor (~> 0.14)
     jquery-rails (2.1.4)
       railties (>= 3.0, < 5.0)
       thor (>= 0.14, < 2.0)
@@ -296,6 +287,8 @@ GEM
       json (~> 1.4)
     redcarpet (2.2.2)
     ref (1.0.2)
+    responders (0.9.3)
+      railties (~> 3.1)
     rspec (2.12.0)
       rspec-core (~> 2.12.0)
       rspec-expectations (~> 2.12.0)
@@ -380,7 +373,6 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  active_model_serializers!
   client_side_validations
   client_side_validations-simple_form
   compass-rails
@@ -393,7 +385,7 @@ DEPENDENCIES
   pg
   rb-inotify (~> 0.8.8)
   redcarpet
-  responders!
+  responders
   sass-rails
   shoulda-matchers
   simple_form
