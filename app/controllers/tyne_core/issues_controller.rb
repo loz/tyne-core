@@ -34,13 +34,13 @@ module TyneCore
     def create
       add_breadcrumb :new
 
-      redirect_to_path = params[:issue].delete(:redirect_to) || show_path
+      redirect_to_path = params[:issue].delete(:redirect_to)
 
       @issue = @project.backlog_items.build(params[:issue])
       @issue.reported_by = current_user
       @issue.save
 
-      respond_with(@issue, :location => redirect_to_path)
+      respond_with(@issue, :location => redirect_to_path || show_path)
     end
 
     # Performs a workflow transition
