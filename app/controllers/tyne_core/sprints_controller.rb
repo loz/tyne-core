@@ -12,11 +12,13 @@ module TyneCore
 
     helper :"tyne_core/issues"
 
+    # Displays the planning page.
     def index
       @sprints = @project.sprints
       @issues = @project.backlog_items.not_completed.where(:sprint_id => nil)
     end
 
+    # Creates a new sprint.
     def create
       @sprint = @project.sprints.create(:name => "Unnamed sprint")
 
@@ -30,6 +32,7 @@ module TyneCore
       respond_with(@sprint)
     end
 
+    # Destroys a sprint
     def destroy
       @sprint = @project.sprints.find(params[:id])
       if @sprint.destroy
@@ -39,9 +42,12 @@ module TyneCore
       end
     end
 
+    # Changes the ranking inside a particular sprint. If the item is not already
+    # in the sprint it will be added.
+    # The item will get removed from the backlog if it used to be there.
     def reorder
       @issue = @project.sprint_items.find(params[:issue_id])
-      @issue.project.backlog_items.find(params[:issue_id]).remove_from_list
+      @issue.becomes(TyneCore::BacklogItem).remove_from_list
 
       @issue.sprint_id = @project.sprints.find(params[:id]).id
       @issue.save
@@ -53,6 +59,7 @@ module TyneCore
       end
     end
 
+    # Starts a new sprint.
     def start
       @sprint = @project.sprints.find(params[:id])
       @sprint.start

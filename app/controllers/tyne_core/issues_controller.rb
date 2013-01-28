@@ -89,9 +89,12 @@ module TyneCore
       respond_with(@issue, :location => show_path)
     end
 
+    # Changes the ranking of an issue inside the backlog.
+    # If the item is not already in the backlog it will be added.
+    # It will also get removed from any sprint.
     def reorder
       @issue = @project.backlog_items.find(params[:issue_id])
-      @issue.sprint.issues.find(params[:issue_id]).remove_from_list if @issue.sprint
+      @issue.becomes(TyneCore::SprintItem).remove_from_list if @issue.sprint
 
       @issue.reload
       @issue.sprint_id = nil
