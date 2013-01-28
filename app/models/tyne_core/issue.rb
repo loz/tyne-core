@@ -26,6 +26,7 @@ module TyneCore
     default_scope includes(:project).includes(:reported_by).includes(:issue_type).includes(:comments).includes(:issue_priority)
 
     after_initialize :set_defaults
+    after_create :send_to_bottom
     before_validation :set_number, :on => :create
 
     scope :sort_by_issue_type, lambda { |sord| joins(:issue_type).order("tyne_core_issue_types.name #{sord}") }

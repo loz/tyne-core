@@ -4,7 +4,7 @@ $(function() {
       $(".backlog-sortable").sortable({
         connectWith: ".backlog-connected",
         placeholder: "backlog-placeholder-element",
-        receive: function(event, ui) {
+        update: function(event, ui) {
           var list = ui.item.parent();
           var items = list.find("li");
           var newIndex = items.index(ui.item) + 1;
@@ -20,6 +20,12 @@ $(function() {
 
           $.ajax(url, options);
         }
+
+          // var senderList = ui.sender;
+          // var receiverList = ui.item.closest("ul");
+
+          // senderList.closest("div").find(".issue-count").text(I18n.t("misc.issue", { count: senderList.find("li").length }));
+          // receiverList.closest("div").find(".issue-count").text(I18n.t("misc.issue", { count: receiverList.find("li").length }));
       }).disableSelection();
     }
   }

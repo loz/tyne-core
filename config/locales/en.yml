@@ -41,3 +41,12 @@ en:
       dates: "Dates"
       workflow: "Workflow"
       people: "People"
+
+  misc:
+    issue:
+      one: "%{count} Issue"
+      other: "%{count} Issues"
+
+  activerecord:
+    models:
+      tyne_core/issue: "Issue"

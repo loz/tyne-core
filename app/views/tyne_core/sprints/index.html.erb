@@ -6,7 +6,7 @@
   <div class="well no-padding backlog">
     <div class="backlog-headline">
       <span class="backlog-headline-content">Backlog</span>
-      <span class="backlog-headline-issue-count"><%= pluralize(@issues.count, "Issue") %></span>
+      <span class="backlog-headline-issue-count issue-count"><%= pluralize(@issues.count, "Issue") %></span>
     </div>
 
     <ul class="backlog-items backlog-sortable backlog-connected" data-reorder-url="<%= main_app.reorder_issues_path(:user => @project.user.username, :key => @project.key) %>">

@@ -49,6 +49,8 @@ module TyneCore
       @issue = @project.sprint_items.find(params[:issue_id])
       @issue.becomes(TyneCore::BacklogItem).remove_from_list
 
+      @issue.remove_from_list
+
       @issue.sprint_id = @project.sprints.find(params[:id]).id
       @issue.save
 
