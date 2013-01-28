@@ -114,6 +114,8 @@ ActiveRecord::Schema.define(:version => 20130123231449) do
     t.integer  "assigned_to_id"
     t.integer  "sprint_id"
     t.integer  "ranking"
+    t.integer  "position"
+    t.integer  "sprint_position"
   end
 
   add_index "tyne_core_issues", ["issue_priority_id"], :name => "index_tyne_core_issues_on_issue_priority_id"
