@@ -4,6 +4,7 @@ require 'twitter-bootstrap-rails-confirm'
 require 'acts_as_list'
 require 'best_in_place'
 require 'jquery-cookie-rails'
+require 'responders'
 require 'tyne_ui'
 
 module TyneCore

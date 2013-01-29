@@ -26,6 +26,7 @@ Gem::Specification.new do |s|
   s.add_dependency "acts_as_list"
   s.add_dependency "best_in_place"
   s.add_dependency "jquery-cookie-rails"
+  s.add_dependency "responders"
 
   s.add_development_dependency "sqlite3"
 end
