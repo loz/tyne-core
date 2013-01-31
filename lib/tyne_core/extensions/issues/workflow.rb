@@ -59,6 +59,8 @@ module TyneCore
             current
           end
 
+          scope :to_do, where(:state => ["open", "reopened"])
+          scope :in_progress, where(:state => ["wip"])
           scope :not_completed, where(:state => ["open", "wip", "reopened"])
           scope :closed, where(:state => ["done", "invalid"])
         end

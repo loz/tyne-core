@@ -32,6 +32,9 @@ Rails.application.routes.draw do
     end
 
     resources :teams, :controller => 'tyne_core/teams' do
+      member do
+        get :suggest_user
+      end
       resources :team_members, :controller => 'tyne_core/team_members'
     end
 
@@ -39,6 +42,10 @@ Rails.application.routes.draw do
       member do
         post :reorder
         put :start
+        put :finish
+      end
+      collection do
+        get :current
       end
     end
   end

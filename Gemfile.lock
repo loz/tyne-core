@@ -33,7 +33,7 @@ GIT
 
 GIT
   remote: https://github.com/tyne/tyne-ui.git
-  revision: 7095f6cc07ae3f3baf565a76b0cb89624134bcba
+  revision: 93901af9b7c83cfc3a238ab8c024fc92cef11990
   branch: master
   specs:
     tyne_ui (0.0.3)
@@ -57,6 +57,7 @@ PATH
       jquery-cookie-rails
       rack-pjax
       rails (~> 3.2.8)
+      responders
       simple_form
       state_machine
       twitter-bootstrap-rails-confirm

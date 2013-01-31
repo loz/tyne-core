@@ -19,14 +19,14 @@ $(function() {
           };
 
           $.ajax(url, options);
-        }
+        },
+        receive: function() {
+          var senderList = ui.sender;
+          var receiverList = ui.item.closest("ul");
 
-          // var senderList = ui.sender;
-          // var receiverList = ui.item.closest("ul");
-
-          // senderList.closest("div").find(".issue-count").text(I18n.t("misc.issue", { count: senderList.find("li").length }));
-          // receiverList.closest("div").find(".issue-count").text(I18n.t("misc.issue", { count: receiverList.find("li").length }));
-      }).disableSelection();
+          senderList.closest("div").find(".issue-count").text(I18n.t("misc.issue", { count: senderList.find("li").length }));
+          receiverList.closest("div").find(".issue-count").text(I18n.t("misc.issue", { count: receiverList.find("li").length }));
+      }}).disableSelection();
     }
   }
 

@@ -20,6 +20,10 @@ module TyneCore
 
     before_create :create_teams
 
+    def any_running?
+      sprints.where(:active => true).count > 0
+    end
+
     private
     def create_teams
       owners = self.teams.build(:name => "Owners") do |team|

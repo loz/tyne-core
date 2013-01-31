@@ -18,6 +18,7 @@ module TyneCore
     # @param [TyneAuth::User] user
     # @param [Hash] options
     def avatar(user, options={})
+      return unless user
       options.reverse_merge!(:url => "/", :width => 24)
       image_tag avatar_url(user, options), :class => 'avatar', :width => options[:width]
     end

@@ -7,14 +7,15 @@ module TyneCore
     before_filter :require_login
     before_filter :load_user
     before_filter :load_project
-    before_filter :prepare_breadcrumb
     before_filter :ensure_can_collaborate
 
     helper :"tyne_core/issues"
 
     # Displays the planning page.
     def index
-      @sprints = @project.sprints
+      add_breadcrumb "Planning"
+
+      @sprints = @project.sprints.not_running
       @issues = @project.backlog_items.not_completed.where(:sprint_id => nil)
     end
 
@@ -64,14 +65,27 @@ module TyneCore
     # Starts a new sprint.
     def start
       @sprint = @project.sprints.find(params[:id])
-      @sprint.start
+      @sprint.start(params[:sprint][:start_date], params[:sprint][:end_date])
+
+      respond_with(@sprint, :location => main_app.current_sprints_path(:user => @project.user.username, :key => @project.key))
+    end
+
+    # Finishes a sprint.
+    def finish
+      @sprint = @project.sprints.find(params[:id])
+      @sprint.finish
 
       respond_with(@sprint, :location => main_app.sprints_path(:user => @project.user.username, :key => @project.key))
     end
 
+    # Displays the agile board
+    def current
+      add_breadcrumb "Current Sprint"
+      @sprint = @project.sprints.find_by_active(true)
+    end
+
     private
     def prepare_breadcrumb
-      add_breadcrumb "Planning"
     end
   end
 end

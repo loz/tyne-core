@@ -16,6 +16,15 @@ module TyneCore
       respond_with(@team)
     end
 
+    def suggest_user
+      scope = TyneAuth::User.scoped
+      scope = scope.where("username LIKE ?", "%#{params[:term]}%")
+      @team.members.all.each do |member|
+        scope = scope.where(TyneAuth::User.arel_table[:id].not_eq(member.user.id))
+      end
+      respond_with(scope.all.map{|x| {:label => x.username, :value => x.id}})
+    end
+
     private
 
     def load_team
