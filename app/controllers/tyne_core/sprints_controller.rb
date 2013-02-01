@@ -83,9 +83,5 @@ module TyneCore
       add_breadcrumb "Current Sprint"
       @sprint = @project.sprints.find_by_active(true)
     end
-
-    private
-    def prepare_breadcrumb
-    end
   end
 end

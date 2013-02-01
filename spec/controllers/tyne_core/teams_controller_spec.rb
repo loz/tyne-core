@@ -29,5 +29,18 @@ describe TyneCore::TeamsController do
         response.should render_template "teams/show"
       end
     end
+
+    describe :suggest_user do
+      before :each do
+        TyneAuth::User.create!(:name => "Bar", :username => "Bar", :uid => "bar", :token => "bar")
+        controller.stub(:require_owner).and_return(true)
+        get :suggest_user, :user => user.username, :key => project.key, :id => 1, :term => "Ba", :use_route => :tyne_core, :format => :json
+      end
+
+      it "should return user that match with the term" do
+        hash = JSON.parse(response.body)
+        hash[0]['label'].should == "Bar"
+      end
+    end
   end
 end

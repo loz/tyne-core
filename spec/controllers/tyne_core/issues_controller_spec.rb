@@ -165,6 +165,27 @@ describe TyneCore::IssuesController do
       end
     end
 
+    describe :reorder do
+      it "should reorder the issue in the sprint" do
+        put :reorder, :user => user.username, :key => project.key, :issue_id => issue.id, :position => 1
+
+        issue.reload
+
+        issue.sprint.should be_nil
+        issue.position.should == 1
+
+        response.should be_success
+      end
+
+      it "should respond with an error if the issue cannot be reordered" do
+        TyneCore::BacklogItem.any_instance.should_receive(:insert_at).and_return(false)
+
+        put :reorder, :user => user.username, :key => project.key, :issue_id => issue.id, :position => 1
+
+        response.should_not be_success
+      end
+    end
+
     context :votes do
       before(:each) { issue.votes.destroy_all }
 

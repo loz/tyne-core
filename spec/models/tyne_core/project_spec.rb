@@ -14,4 +14,18 @@ describe TyneCore::Project do
     contributors = teams.detect { |x| x.name == "Contributors" }
     contributors.should be_present
   end
+
+  describe :any_running do
+    it "should determine wether there is a running sprint or not" do
+      user = stub_model(TyneAuth::User)
+      project = user.projects.create!(:key => "FOO", :name => "Foo")
+      sprint = project.sprints.create!(:name => "Foo")
+
+      sprint.start(Date.today, 3.days.from_now)
+      project.any_running?.should be_true
+
+      sprint.finish
+      project.any_running?.should be_false
+    end
+  end
 end
