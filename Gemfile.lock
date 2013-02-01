@@ -50,7 +50,7 @@ GIT
 PATH
   remote: .
   specs:
-    tyne_core (0.1.1)
+    tyne_core (0.2.0)
       acts_as_list
       audited-activerecord
       best_in_place
