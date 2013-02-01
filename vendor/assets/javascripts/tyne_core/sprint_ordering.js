@@ -20,7 +20,7 @@ $(function() {
 
           $.ajax(url, options);
         },
-        receive: function() {
+        receive: function(event, ui) {
           var senderList = ui.sender;
           var receiverList = ui.item.closest("ul");
 
