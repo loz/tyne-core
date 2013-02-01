@@ -16,6 +16,8 @@ module TyneCore
       respond_with(@team)
     end
 
+    # Returns all list of users that can be part of the team.
+    # Excludes user which are already part of the team.
     def suggest_user
       scope = TyneAuth::User.scoped
       scope = scope.where("username LIKE ?", "%#{params[:term]}%")
