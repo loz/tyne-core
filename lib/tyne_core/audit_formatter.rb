@@ -37,6 +37,7 @@ module TyneCore
       end
 
       def user_link
+        return "Unknown" unless user
         link_to user.username, overview_path(:user => user.username)
       end
 
