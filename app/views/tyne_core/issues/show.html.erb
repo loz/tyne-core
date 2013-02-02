@@ -1,15 +1,15 @@
 <div class="span3">
   <div class="well">
     <% cache ["v4", "view", @issue, "sidebar"] do %>
-      <%= render_cell :pod, :collapsable, I18n.t("pod.titles.people") do |cell| %>
+      <%= render_cell :pod, :collapsable, t("pod.titles.people") do |cell| %>
         <% cell.content = render :partial => 'people', :locals => { :issue => @issue } %>
       <% end %>
 
-      <%= render_cell :pod, :collapsable, I18n.t("pod.titles.dates") do |cell| %>
+      <%= render_cell :pod, :collapsable, t("pod.titles.dates") do |cell| %>
         <% cell.content = render :partial => 'dates', :locals => { :issue => @issue } %>
       <% end %>
 
-      <%= render_cell :pod, :collapsable, I18n.t("pod.titles.workflow") do |cell| %>
+      <%= render_cell :pod, :collapsable, t("pod.titles.workflow") do |cell| %>
         <% cell.content = render :partial => 'workflow', :locals => { :issue => @issue } %>
       <% end %>
     <% end %>
@@ -20,7 +20,7 @@
   <% cache ["v14", "view", @issue, can_edit?] do %>
     <div class="options">
       <% if can_edit? %>
-      <%= link_to "Edit", main_app.edit_issue_path(:user => @project.user.username, :key => @project.key, :id => @issue.number), :class => 'btn btn-small' %>
+      <%= link_to t("actions.edit"), main_app.edit_issue_path(:user => @project.user.username, :key => @project.key, :id => @issue.number), :class => 'btn btn-small' %>
       <div class="btn-group">
         <%= default_action(@issue) %>
         <button class="btn btn-small dropdown-toggle" data-toggle="dropdown">
@@ -32,7 +32,7 @@
           <% end %>
         </ul>
       </div>
-      <%= link_to "Assign to me", main_app.assign_to_me_issue_path(:user => @project.user.username, :key => @project.key, :id => @issue.number), :class => 'btn btn-small', :method => :post %>
+      <%= link_to t("actions.assign_to_me"), main_app.assign_to_me_issue_path(:user => @project.user.username, :key => @project.key, :id => @issue.number), :class => 'btn btn-small', :method => :post %>
       <% end %>
     </div>
 
@@ -45,7 +45,7 @@
       <%= @issue.summary %>
     </h2>
 
-    <%= render_cell :pod, :collapsable, 'Description', :state => :expanded do |cell| %>
+    <%= render_cell :pod, :collapsable, t('pod.titles.description'), :state => :expanded do |cell| %>
       <% cell.content = content_tag :p, markup_to_html(@issue.description), :class => :markdown %>
     <% end %>
     <p class="tag-list">

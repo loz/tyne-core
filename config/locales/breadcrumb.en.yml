@@ -5,6 +5,10 @@ en:
         index: "Dashboard"
       issues:
         new: "New Issue"
+      sprints:
+        planning: "Planning"
+        current: "Current Sprint"
       projects:
         new: "New Project"
         index: "Dashboard"
+        admin: "Admin"

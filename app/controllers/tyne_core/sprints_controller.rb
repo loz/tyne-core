@@ -13,7 +13,7 @@ module TyneCore
 
     # Displays the planning page.
     def index
-      add_breadcrumb "Planning"
+      add_breadcrumb :planning
 
       @sprints = @project.sprints.not_running
       @issues = @project.backlog_items.not_completed.where(:sprint_id => nil)
@@ -80,7 +80,7 @@ module TyneCore
 
     # Displays the agile board
     def current
-      add_breadcrumb "Current Sprint"
+      add_breadcrumb :current
       @sprint = @project.sprints.find_by_active(true)
     end
   end

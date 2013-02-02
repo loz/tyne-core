@@ -10,7 +10,7 @@
       <%= issue_comments(issue) %>
       <%= issue_id(issue) %>
       <span class="issue-summary"><%= content_tag :span, issue.summary, :class => "issue-#{issue.state}" %></span>
-      <span class="issue-assigned_to"><%= issue.assigned_to.try(:name) || "Not assigned" %></span>
+      <span class="issue-assigned_to"><%= issue.assigned_to.try(:name) || t("issues.not_assigned") %></span>
     </p>
     <p class="issue-description issue-line-2">
       <%= issue.description %>

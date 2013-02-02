@@ -26,11 +26,12 @@ module TyneCore
 
     private
     def create_teams
-      owners = self.teams.build(:name => "Owners") do |team|
+      i18n_scope = "teams.names.defaults"
+      owners = self.teams.build(:name => I18n.t("#{i18n_scope}.owners")) do |team|
         team.admin_privileges = true
       end
       owners.members.build(:user_id => self.user_id)
-      self.teams.build(:name => "Contributors")
+      self.teams.build(:name => I18n.t("#{i18n_scope}.contributors"))
     end
   end
 end

@@ -12,7 +12,7 @@
         <span class="user-name"><%= @user.name %></span>
         <span class="user-nickname"><%= @user.username %> (<%= link_to "Github", "http://github.com/#{@user.username}" %>)</span>
       </div>
-      <h5>Public projects</h5>
+      <%= content_tag :h5, t("overview.public_projects") %>
       <table class="table overview-project">
         <% @user.projects.order("name").each do |project| %>
           <tr>

@@ -7,10 +7,10 @@
         <td><%= f.input :key %></td>
       </tr>
       <tr>
-        <td colspan="2">The project key is used to identify your project and is used to build a unique issue key.</td>
+        <td colspan="2"><%= t("hints.project_key") %></td>
       </tr>
       <tr>
-        <td colspan="2"><%= f.input :description, :hint => "Markdown is enabled." %></td>
+        <td colspan="2"><%= f.input :description, :hint => t("hints.markdown_enabled") %></td>
       </tr>
     </table>
     <%= f.button :submit, :class => "btn btn-success" %>

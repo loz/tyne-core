@@ -3,7 +3,7 @@ module TyneCore
   module IssuesHelper
     # Displays a label with the issue reporter
     def issue_reported_by(issue)
-      issue_label("Reporter", issue.reported_by.name)
+      issue_label(t("labels.reporter"), issue.reported_by.name)
     end
 
     # Displays a label with the issue type
@@ -15,7 +15,7 @@ module TyneCore
              end
       classes = [issue.issue_type.name.underscore]
       classes << "tag-short" if short
-      issue_label("Type", name, classes) if issue.issue_type
+      issue_label(t("labels.type"), name, classes) if issue.issue_type
     end
 
     # Displays a label with the issue priority
@@ -29,24 +29,24 @@ module TyneCore
              end
       classes = [issue.issue_priority.name.underscore]
       classes << "tag-short" if short
-      issue_label("Priority", name, classes) if issue.issue_priority
+      issue_label(t("labels.priority"), name, classes) if issue.issue_priority
     end
 
     # Displays a label with the date when the issue has been reported
     def issue_reported_at(issue)
       date = issue.created_at.to_date
       content = if date.today?
-                  "Today"
+                  t("labels.today")
                 else
                   date
                 end
-      issue_label("Opened", content)
+      issue_label(t("labels.opened"), content)
     end
 
     # Displays a label for the current state
     def issue_state(issue)
       content = I18n.t("states.#{issue.state}")
-      issue_label("State", content, [issue.state.to_s.underscore])
+      issue_label(t("labels.state"), content, [issue.state.to_s.underscore])
     end
 
 
@@ -77,7 +77,7 @@ module TyneCore
     def issue_comments(issue)
       klasses = ["tag-short"]
       klasses << "comments-present" if issue.comments.count > 0
-      issue_label("Comments", issue.comments.count, klasses)
+      issue_label(t("labels.comments"), issue.comments.count, klasses)
     end
 
     # Returns the list of user which can be assigned to an issue.
