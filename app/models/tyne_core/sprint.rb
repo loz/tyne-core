@@ -8,7 +8,7 @@ module TyneCore
     has_many :issues, :class_name => 'TyneCore::SprintItem', :order => 'sprint_position', :dependent => :nullify
 
     validates :name, :start_date, :end_date, :project_id, :presence => true
-    validates :active, :uniqueness => true, :if => :active
+    validates :active, :uniqueness => { :scope => :project_id }, :if => :active
 
     after_initialize :set_dates
 
