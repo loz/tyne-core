@@ -12,3 +12,5 @@ en:
         new: "New Project"
         index: "Dashboard"
         admin: "Admin"
+      teams:
+        admin: "Admin"
