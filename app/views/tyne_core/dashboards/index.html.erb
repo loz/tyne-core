@@ -1,10 +1,18 @@
 <div class="span3">
-  <div class="well">
+  <div class="well no-padding">
+    <div class="top-bar">
+      <%= link_to t("misc.new_project"), new_project_path, :class => 'btn btn-inverse btn-small new-project' %>
+      <h2>My projects <em>(<%= @accessible_projects.count %>)</em></h2>
+    </div>
     <ul class="nav nav-list">
-      <li class="nav-header">My projects (<%= @accessible_projects.count %>)</li>
       <%= render :partial => "project", :collection => @accessible_projects %>
     </ul>
-    <%= link_to t("misc.new_project"), new_project_path, :class => 'btn btn-inverse btn-small' %>
+    <div class="top-bar">
+      <h2>Most active projects</h2>
+    </div>
+    <ul class="nav nav-list">
+      <%= render :partial => "project", :collection => @most_active_projects %>
+    </ul>
   </div>
 </div>
 
