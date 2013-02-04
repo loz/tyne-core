@@ -104,7 +104,7 @@ module TyneCore
       @issue.save
 
       if @issue.insert_at(params[:position].to_i)
-        render :json => :ok
+        render :json => @issue
       else
         render :json => { :errors => @issue.errors }, :status => :entity_unprocessable
       end
