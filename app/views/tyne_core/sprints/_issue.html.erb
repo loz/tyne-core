@@ -1,4 +1,4 @@
-<% cache ["v2", "backlog", issue] do %>
+<% cache ["v3", "backlog", issue] do %>
 <li class="backlog-issue issue <%= issue.state %> state-<%= issue.issue_type.name.downcase %>" data-id="<%= issue.id %>" data-cell="BacklogItem">
   <div class="td-first dragger"></div>
   <div class="td-second">
@@ -8,7 +8,7 @@
       </span>
 
       <%= issue_id(issue) %>
-      <span class="issue-summary"><%= content_tag :span, issue.summary, :class => "issue-#{issue.state}", :date => { :position => issue.position, :sprint_position => issue.sprint_position } %></span>
+      <span class="issue-summary"><%= content_tag :span, issue.summary, :class => "issue-#{issue.state}", :data => { :position => issue.position, :sprint_position => issue.sprint_position } %></span>
     </p>
   </div>
 </li>
