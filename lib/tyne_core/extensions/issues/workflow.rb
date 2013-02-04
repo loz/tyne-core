@@ -17,6 +17,14 @@ module TyneCore
 
         included do
           state_machine :state, :initial => :open do
+            after_transition [:open, :reopened, :wip] => [:done, :invalid] do |issue, transition|
+              issue.becomes(TyneCore::BacklogItem).remove_from_list unless issue.sprint
+            end
+
+            after_transition [:done, :invalid] => [:open, :reopened] do |issue, transition|
+              issue.becomes(TyneCore::BacklogItem).insert_at(1) unless issue.sprint
+            end
+
             event :start_working do
               transition [:open, :reopened] => :wip
             end
