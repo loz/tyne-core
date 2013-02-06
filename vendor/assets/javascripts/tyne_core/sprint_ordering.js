@@ -22,11 +22,24 @@ $(function() {
         },
         receive: function(event, ui) {
           var senderList = ui.sender;
+          var senderCount = senderList.find("li").length;
           var receiverList = ui.item.closest("ul");
+          var receiverCount = receiverList.find("li").length;
 
-          senderList.closest("div").find(".issue-count").text(I18n.t("misc.issue", { count: senderList.find("li").length }));
-          receiverList.closest("div").find(".issue-count").text(I18n.t("misc.issue", { count: receiverList.find("li").length }));
+          senderList.closest("div").find(".issue-count").text(I18n.t("misc.issue", { count: senderCount }));
+          receiverList.closest("div").find(".issue-count").text(I18n.t("misc.issue", { count: receiverCount }));
+
+          receiverCount == 0 ? IssueOrdering.disable(receiverList) : IssueOrdering.enable(receiverList)
+          senderCount == 0 ? IssueOrdering.disable(senderList) : IssueOrdering.enable(senderList)
       }}).disableSelection();
+    },
+    disable: function(list) {
+      var button = list.parent().find("a.btn");
+      if (button) button.attr("disabled", "disabled").attr("title", I18n.t("sprints.zero_issues"));
+    },
+    enable: function(list) {
+      var button = list.parent().find("a.btn");
+      if (button) button.removeAttr("disabled").removeAttr("title");
     }
   }
 

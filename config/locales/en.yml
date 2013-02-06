@@ -105,3 +105,7 @@ en:
       message: "Are you sure you want to delete this project?"
       title: "Delete %{name}?"
       button: "Delete (forever!)"
+
+  sprints:
+    already_running: "You cannot start a new sprint whilst another sprint is running."
+    zero_issues: "You cannot start a new sprint with zero issues."

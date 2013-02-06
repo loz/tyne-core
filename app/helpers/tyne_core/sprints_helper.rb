@@ -25,6 +25,25 @@ module TyneCore
       percent_relative(total, relative)
     end
 
+    def start_sprint_button(sprint)
+      options = { :class => "btn btn-small", :data => { :toggle => 'modal' } }
+
+      title = ""
+      if @project.any_running?
+        options[:disabled] = :disabled
+        title = t("sprints.already_running")
+      end
+
+      if sprint.issues.empty?
+        options[:disabled] = :disabled
+        title = t("sprints.zero_issues")
+      end
+
+      options[:title] = title unless title.empty?
+
+      link_to "Start", "#sprint_#{sprint.id}_dialog", options
+    end
+
     private
     def percent_relative(total, relative)
       ((relative.to_f / total.to_f) * 100)
