@@ -25,6 +25,9 @@ module TyneCore
       percent_relative(total, relative)
     end
 
+    # Renders a start sprint for a particular sprint.
+    # The button will be disabled if either a sprint is already running
+    # or if the sprint is empty (no issues).
     def start_sprint_button(sprint)
       options = { :class => "btn btn-small", :data => { :toggle => 'modal' } }
 
