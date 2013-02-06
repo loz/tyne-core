@@ -29,22 +29,24 @@ module TyneCore
     # The button will be disabled if either a sprint is already running
     # or if the sprint is empty (no issues).
     def start_sprint_button(sprint)
-      options = { :class => "btn btn-small", :data => { :toggle => 'modal' } }
+      options = { :class => "btn btn-small start-sprint", :data => { :toggle => 'modal', :target => "#sprint_#{sprint.id}_dialog" } }
 
       title = ""
-      if @project.any_running?
-        options[:disabled] = :disabled
-        title = t("sprints.already_running")
-      end
 
       if sprint.issues.empty?
         options[:disabled] = :disabled
         title = t("sprints.zero_issues")
       end
 
+      if @project.any_running?
+        options[:disabled] = :disabled
+        options[:data][:running] = true
+        title = t("sprints.already_running")
+      end
+
       options[:title] = title unless title.empty?
 
-      link_to "Start", "#sprint_#{sprint.id}_dialog", options
+      button_tag "Start", options
     end
 
     private

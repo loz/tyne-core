@@ -34,12 +34,12 @@ $(function() {
       }}).disableSelection();
     },
     disable: function(list) {
-      var button = list.parent().find("a.btn");
+      var button = list.parent().find(".start-sprint");
       if (button) button.attr("disabled", "disabled").attr("title", I18n.t("sprints.zero_issues"));
     },
     enable: function(list) {
-      var button = list.parent().find("a.btn");
-      if (button) button.removeAttr("disabled").removeAttr("title");
+      var button = list.parent().find(".start-sprint");
+      if (button && !button.is('[data-running="true"]')) button.removeAttr("disabled").removeAttr("title");
     }
   }
 
