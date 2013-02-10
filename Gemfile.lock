@@ -34,13 +34,14 @@ GIT
 
 GIT
   remote: https://github.com/tyne/tyne-ui.git
-  revision: d7d284eb13a0ec0ba399a8dc498f9cfde549f110
+  revision: 9d8b8ffd18aa47106da284549ad18caa837e2792
   branch: master
   specs:
-    tyne_ui (0.1.0)
+    tyne_ui (0.1.1)
       cells
       coffee-rails
       compass-rails
+      google_visualr (>= 2.1)
       rails (~> 3.2.8)
       sass-rails
       simple_form
@@ -165,6 +166,7 @@ GEM
       activesupport
       rainbow
       thor
+    google_visualr (2.1.6)
     guard (1.6.2)
       listen (>= 0.6.0)
       lumberjack (>= 1.0.2)
@@ -214,7 +216,7 @@ GEM
       redcarpet (>= 2.0)
     metaclass (0.0.1)
     method_source (0.8.1)
-    mime-types (1.19)
+    mime-types (1.21)
     mocha (0.10.5)
       metaclass (~> 0.0.1)
     modernizr-rails (2.6.1)
@@ -252,7 +254,7 @@ GEM
       coderay (~> 1.0.5)
       method_source (~> 0.8)
       slop (~> 3.4)
-    rack (1.4.4)
+    rack (1.4.5)
     rack-cache (1.2)
       rack (>= 0.4)
     rack-pjax (0.7.0)
@@ -284,7 +286,7 @@ GEM
     rb-fsevent (0.9.3)
     rb-inotify (0.8.8)
       ffi (>= 0.5.0)
-    rdoc (3.12)
+    rdoc (3.12.1)
       json (~> 1.4)
     redcarpet (2.2.2)
     ref (1.0.2)
@@ -360,7 +362,7 @@ GEM
     treetop (1.4.12)
       polyglot
       polyglot (>= 0.3.1)
-    twitter-bootstrap-rails (2.2.0)
+    twitter-bootstrap-rails (2.2.1)
       actionpack (>= 3.1)
       execjs
       railties (>= 3.1)

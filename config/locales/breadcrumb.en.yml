@@ -14,3 +14,5 @@ en:
         admin: "Admin"
       teams:
         admin: "Admin"
+      reports:
+        index: "Reports"

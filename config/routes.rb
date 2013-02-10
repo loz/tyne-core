@@ -48,5 +48,7 @@ Rails.application.routes.draw do
         get :current
       end
     end
+
+    resources :reports, :controller => 'tyne_core/reports', :only => [:index]
   end
 end
