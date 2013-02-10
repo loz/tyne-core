@@ -15,5 +15,14 @@ module TyneCore
     def index
       add_breadcrumb :index
     end
+
+    # Displays the issue type ratio report
+    def issue_type_ratio
+      add_breadcrumb :index, main_app.reports_path(:user => @user.username, :key => @project.key)
+      add_breadcrumb :issue_type_ratio
+
+      report = TyneCore::Reports::IssueTypeRatio.new(@project)
+      @chart = report.to_chart
+    end
   end
 end

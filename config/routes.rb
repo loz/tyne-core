@@ -49,6 +49,10 @@ Rails.application.routes.draw do
       end
     end
 
-    resources :reports, :controller => 'tyne_core/reports', :only => [:index]
+    resources :reports, :controller => 'tyne_core/reports', :only => [:index] do
+      collection do
+        get :issue_type_ratio
+      end
+    end
   end
 end

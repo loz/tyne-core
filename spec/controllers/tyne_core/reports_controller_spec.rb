@@ -24,6 +24,20 @@ module TyneCore
           response.should render_template 'tyne_core/reports/index'
         end
       end
+
+      describe :index do
+        before :each do
+          get :issue_type_ratio, :user => user.username, :key => project.key, :use_route => :tyne_core
+        end
+
+        it "render the correct template" do
+          response.should render_template 'tyne_core/reports/issue_type_ratio'
+        end
+
+        it "should assign a pie chart" do
+          assigns(:chart).should be_a GoogleVisualr::Interactive::PieChart
+        end
+      end
     end
   end
 end

@@ -16,3 +16,4 @@ en:
         admin: "Admin"
       reports:
         index: "Reports"
+        issue_type_ratio: "Issue Type Ratio"
