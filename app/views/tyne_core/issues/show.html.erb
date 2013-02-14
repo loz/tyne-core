@@ -17,7 +17,7 @@
 </div>
 
 <div class="span9">
-  <% cache ["v14", "view", @issue, can_edit?] do %>
+  <% cache ["v15", "view", @issue, can_edit?] do %>
     <div class="options">
       <% if can_edit? %>
       <%= link_to t("actions.edit"), main_app.edit_issue_path(:user => @project.user.username, :key => @project.key, :id => @issue.number), :class => 'btn btn-small' %>
@@ -42,7 +42,7 @@
                       :upvote_path   => main_app.upvote_issue_path(:user => @project.user.username, :key => @project.key, :id => @issue.number),
                       :downvote_path => main_app.downvote_issue_path(:user => @project.user.username, :key => @project.key, :id => @issue.number) if current_user %>
 
-      <%= @issue.summary %>
+      <%= best_in_place @issue, :summary, :path => main_app.issue_path(:user => @issue.project.user.username, :key => @issue.project.key) %>
     </h2>
 
     <%= render_cell :pod, :collapsable, t('pod.titles.description'), :state => :expanded do |cell| %>
