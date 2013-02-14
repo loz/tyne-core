@@ -11,6 +11,13 @@ describe TyneCore::Issue do
     it_should_behave_like :votable
   end
 
+  describe :description do
+    it "should convert the description into markdown" do
+      subject.description = "Foo"
+      subject.description_markdown == "<p>Foo</p>"
+    end
+  end
+
   describe :available_transitions do
     context "for a new ticket" do
       it "should return the current state without an action" do

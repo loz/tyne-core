@@ -57,7 +57,9 @@ module TyneCore
     # Updates a given issue
     def update
       @issue.update_attributes(params[:issue])
-      respond_with(@issue, :location => show_path)
+      respond_with(@issue, :location => show_path) do |format|
+        format.json { render :json => @issue.to_json(:methods => [:display_as]) }
+      end
     end
 
     # Displays an existing Issue

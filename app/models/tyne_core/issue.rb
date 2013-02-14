@@ -45,6 +45,13 @@ module TyneCore
       %w(done invalid).include? self.state
     end
 
+    # Returns the description converted into markdown.
+    def description_markdown
+      @@markdown_renderer ||= Redcarpet::Markdown.new(MdEmoji::Render, :autolink => true, :space_after_headers => true, :no_intra_emphasis => true)
+      @@markdown_renderer.render(description).html_safe
+    end
+    alias_method :display_as, :description_markdown
+
     private
     def set_defaults
       self.issue_type_id ||= TyneCore::IssueType.first.id if attributes.include?("issue_type_id")

@@ -46,7 +46,7 @@
     </h2>
 
     <%= render_cell :pod, :collapsable, t('pod.titles.description'), :state => :expanded do |cell| %>
-      <% cell.content = content_tag :p, markup_to_html(@issue.description), :class => :markdown %>
+      <% cell.content = best_in_place @issue, :description, :path => main_app.issue_path(:user => @issue.project.user.username, :key => @issue.project.key), :type => :textarea, :display_as => :description_markdown %>
     <% end %>
     <p class="tag-list">
       <%= issue_type(@issue) %>
