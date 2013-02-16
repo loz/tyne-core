@@ -6,7 +6,7 @@ module TyneCore
     # @param [TyneAuth::User] user
     # @param [Hash] options
     def avatar_url(user, options={})
-      default_url = "#{options[:url]}assets/guest.png"
+      default_url = "retro"
 
       return default_url unless user.gravatar_id
 
