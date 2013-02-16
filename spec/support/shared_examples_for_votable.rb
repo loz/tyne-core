@@ -10,18 +10,18 @@ shared_examples_for :votable do
   describe '#upvotes' do
     it 'should return the sum of all positive vote weights' do
       user = TyneAuth::User.last
-      weights = [-10, -20, -30, 1, 2, 3]
+      weights = [-10, 1, 2, 3]
       weights.each {|weight| subject.votes.create(:user => user, :weight => weight)}
-      subject.upvotes.should == weights.reject{|weight| weight <= 0}.sum
+      subject.upvotes.should == 6
     end
   end
 
   describe '#downvotes' do
     it 'should return the sum of all negative vote weights' do
       user = TyneAuth::User.last
-      weights = [-10, -20, -30, 1, 2, 3]
+      weights = [-10, -20, -30, 1]
       weights.each {|weight| subject.votes.create(:user => user, :weight => weight)}
-      subject.downvotes.should == weights.reject{|weight| weight >= 0}.sum.abs
+      subject.downvotes.should == 60
     end
   end
 
