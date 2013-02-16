@@ -143,6 +143,8 @@
   border: 1px solid #ccc;
   @include border-radius(4px);
   padding: 4px;
+  min-width: 20px;
+  text-align: center;
 }
 
 .form_in_place {

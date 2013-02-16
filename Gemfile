@@ -22,6 +22,7 @@ gem "mousetrap-rails"
 gem 'twitter-bootstrap-rails'
 gem "redcarpet"
 gem "md_emoji"
+gem "best_in_place", :git => 'https://github.com/tyne/best_in_place.git'
 
 # Webserver
 gem 'thin'
