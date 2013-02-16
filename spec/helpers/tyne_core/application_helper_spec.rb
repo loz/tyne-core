@@ -12,4 +12,12 @@ EOS
       content.should have_selector("li", :count => 3)
     end
   end
+
+  describe :path_to_issue do
+    it "should delegate to main_app.issue_path" do
+      issue = FactoryGirl.build_stubbed(:issue)
+      issue.stub(:number).and_return(1)
+      helper.path_to_issue(issue).should == issue_path(:user => issue.project.user.username, :key => issue.project.key, :id => 1)
+    end
+  end
 end

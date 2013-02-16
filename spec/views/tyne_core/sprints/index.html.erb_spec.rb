@@ -12,6 +12,7 @@ describe "tyne_core/sprints/index.html.erb" do
     assign(:issues, [issue])
     view.stub(:issue_type).and_return("Foo")
     view.stub(:issue_id).and_return("Foo")
+    view.stub(:path_to_issue).and_return("Foo")
   end
 
   it "should render a start button" do
