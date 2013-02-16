@@ -42,15 +42,16 @@
                       :upvote_path   => main_app.upvote_issue_path(:user => @project.user.username, :key => @project.key, :id => @issue.number),
                       :downvote_path => main_app.downvote_issue_path(:user => @project.user.username, :key => @project.key, :id => @issue.number) if current_user %>
 
-      <%= best_in_place @issue, :summary, :path => main_app.issue_path(:user => @issue.project.user.username, :key => @issue.project.key) %>
+      <%= best_in_place @issue, :summary, :path => path_to_issue(@issue) %>
     </h2>
 
     <%= render_cell :pod, :collapsable, t('pod.titles.description'), :state => :expanded do |cell| %>
-      <% cell.content = best_in_place @issue, :description, :path => main_app.issue_path(:user => @issue.project.user.username, :key => @issue.project.key), :type => :textarea, :display_as => :description_markdown %>
+      <% cell.content = best_in_place @issue, :description, :path => path_to_issue(@issue), :type => :textarea, :display_as => :description_markdown %>
     <% end %>
     <p class="tag-list">
       <%= issue_type(@issue) %>
       <%= issue_priority(@issue) %>
+      <%= issue_label(TyneCore::Issue.human_attribute_name(:estimate), @issue.estimate) if @issue.estimate %>
     </p>
 
       <%= render :partial => "tabs", :locals => { :issue => @issue } %>

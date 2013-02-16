@@ -8,7 +8,8 @@
       </span>
 
       <%= issue_id(issue) %>
-      <span class="issue-summary"><%= content_tag :span, issue.summary, :class => "issue-#{issue.state}", :data => { :position => issue.position, :sprint_position => issue.sprint_position } %></span>
+      <span class="issue-summary"><%= content_tag :span, issue.summary, :class => "issue-#{issue.state}" %></span>
+      <%= best_in_place issue.becomes(TyneCore::Issue), :estimate, :path => path_to_issue(issue), :inner_class => :estimate, :classes => 'estimates' %>
     </p>
   </div>
 </li>

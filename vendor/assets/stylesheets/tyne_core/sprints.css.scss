@@ -109,7 +109,7 @@
       top: 0;
       left: 0;
       width: 8px;
-      height: 26px;
+      height: 34px;
       padding: 0px;
       display: block;
       background: image-url('drag.png') 3px 2px repeat-y;
@@ -117,6 +117,7 @@
 
     div.td-second {
       padding-left: 10px;
+      height: 34px;
     }
 
     p {
@@ -130,4 +131,24 @@
   height: 27px;
   background-color: lighten(#44A143, 52%);
   border-bottom: 1px solid #CCC;
+}
+
+.estimates {
+  position: absolute;
+  right: 5px;
+}
+
+.estimates:not(.editing_in_place) {
+  background: #fafafa;
+  border: 1px solid #ccc;
+  @include border-radius(4px);
+  padding: 4px;
+}
+
+.form_in_place {
+  display: inline;
+  .estimate {
+    width: 20px;
+    margin-bottom: 0px;
+  }
 }

@@ -17,10 +17,11 @@ module TyneCore
     belongs_to :sprint, :class_name => "TyneCore::Sprint"
     has_many :comments, :class_name => "TyneCore::Comment", :dependent => :destroy
 
-    attr_accessible :project_id, :summary, :description, :issue_type_id, :issue_priority_id, :assigned_to_id
+    attr_accessible :project_id, :summary, :description, :issue_type_id, :issue_priority_id, :assigned_to_id, :estimate
 
     validates :project_id, :summary, :issue_type_id, :number, :presence => true
     validates :number, :uniqueness => { :scope => :project_id }
+    validates :estimate, :inclusion => { :in => [0, 0.5, 1, 2, 3, 5, 8, 13, 20, 40, 100] }, :allow_blank => true
     validate :security_assigned_to
 
     default_scope includes(:project).includes(:reported_by).includes(:issue_type).includes(:comments).includes(:issue_priority)

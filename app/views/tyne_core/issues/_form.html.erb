@@ -10,7 +10,8 @@
       <td><%= f.association :issue_priority, :prompt => false %></td>
     </tr>
     <tr>
-      <td colspan="2"><%= f.association :assigned_to, :collection => users_to_assign(issue) %></td>
+      <td class="half"><%= f.association :assigned_to, :collection => users_to_assign(issue) %></td>
+      <td class="half"><%= f.input :estimate %></td>
     </tr>
     <tr>
       <td colspan="2"><%= f.input :description, :hint => "Markdown enabled" %></td>

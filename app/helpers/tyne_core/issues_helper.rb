@@ -86,7 +86,6 @@ module TyneCore
       issue.project.workers.map { |x| x.user }.uniq { |x| x.id }
     end
 
-    private
     def issue_label(name, value, classes=[])
       classes << "tag" unless classes.include? "tag"
       title = "#{name}: #{value}"
