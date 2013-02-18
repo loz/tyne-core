@@ -1,17 +1,9 @@
 <% if @sprint %>
-  <%= link_to "Finish", main_app.finish_sprint_path(:user => @sprint.project.user.username, :key => @sprint.project.key, :id => @sprint.id), :class => "btn btn-small", :confirm => "Are you sure you wish to finish your sprint?", :method => :put, :data => { :"confirm-title" => "Finish sprint #{@sprint.name}", :"confirm-proceed" => "Finish", :"confirm-proceed-class" => "btn-success" } %>
+  <div class="options">
+    <%= link_to "Finish", main_app.finish_sprint_path(:user => @sprint.project.user.username, :key => @sprint.project.key, :id => @sprint.id), :class => "btn btn-small", :confirm => "Are you sure you wish to finish your sprint?", :method => :put, :data => { :"confirm-title" => "Finish sprint #{@sprint.name}", :"confirm-proceed" => "Finish", :"confirm-proceed-class" => "btn-success" } %>
+  </div>
 
   <div class="board">
-    <div class="row-fluid">
-      <div class="span12">
-        <div class="progress">
-          <div class="bar bar-success" style="width: <%= percent_done(@sprint.issues) %>%;"></div>
-          <div class="bar bar-warning" style="width: <%= percent_wip(@sprint.issues) %>%;"></div>
-          <div class="bar bar-danger" style="width: <%= percent_todo(@sprint.issues) %>%;"></div>
-        </div>
-      </div>
-    </div>
-
     <div class="row-fluid">
     <div class="span4">
       <div class="well">
