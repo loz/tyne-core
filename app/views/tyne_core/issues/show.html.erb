@@ -17,10 +17,10 @@
 </div>
 
 <div class="span9">
-  <% cache ["v15", "view", @issue, can_edit?] do %>
+  <% cache ["v16", "view", @issue, can_edit?] do %>
     <div class="options">
       <% if can_edit? %>
-      <%= link_to t("actions.edit"), main_app.edit_issue_path(:user => @project.user.username, :key => @project.key, :id => @issue.number), :class => 'btn btn-small' %>
+      <%= link_to t("actions.edit"), main_app.edit_issue_path(:user => @issue.project.user.username, :key => @issue.project.key, :id => @issue.number), :class => 'btn btn-small' %>
       <div class="btn-group">
         <%= default_action(@issue) %>
         <button class="btn btn-small dropdown-toggle" data-toggle="dropdown">
@@ -28,11 +28,11 @@
         </button>
         <ul class="dropdown-menu">
           <% @issue.state_transitions.each do |transition| %>
-            <li><%= link_to I18n.t("states.transitions.#{transition.event}"), main_app.workflow_issue_path(:user => @project.user.username, :key => @project.key, :id => @issue.number, :transition => transition.event) %></li>
+            <li><%= link_to I18n.t("states.transitions.#{transition.event}"), main_app.workflow_issue_path(:user => @issue.project.user.username, :key => @issue.project.key, :id => @issue.number, :transition => transition.event) %></li>
           <% end %>
         </ul>
       </div>
-      <%= link_to t("actions.assign_to_me"), main_app.assign_to_me_issue_path(:user => @project.user.username, :key => @project.key, :id => @issue.number), :class => 'btn btn-small', :method => :post %>
+      <%= link_to t("actions.assign_to_me"), main_app.assign_to_me_issue_path(:user => @issue.project.user.username, :key => @issue.project.key, :id => @issue.number), :class => 'btn btn-small', :method => :post %>
       <% end %>
     </div>
 
@@ -42,11 +42,11 @@
                       :upvote_path   => main_app.upvote_issue_path(:user => @project.user.username, :key => @project.key, :id => @issue.number),
                       :downvote_path => main_app.downvote_issue_path(:user => @project.user.username, :key => @project.key, :id => @issue.number) if current_user %>
 
-      <%= best_in_place @issue, :summary, :path => path_to_issue(@issue) %>
+      <%= best_in_place_if can_edit?, @issue, :summary, :path => path_to_issue(@issue) %>
     </h2>
 
     <%= render_cell :pod, :collapsable, t('pod.titles.description'), :state => :expanded do |cell| %>
-      <% cell.content = best_in_place @issue, :description, :path => path_to_issue(@issue), :type => :textarea, :display_as => :description_markdown %>
+      <% cell.content = best_in_place_if can_edit?, @issue, :description, :path => path_to_issue(@issue), :type => :textarea, :display_as => :description_markdown %>
     <% end %>
     <p class="tag-list">
       <%= issue_type(@issue) %>
