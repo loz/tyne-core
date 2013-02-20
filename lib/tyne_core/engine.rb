@@ -6,6 +6,8 @@ require 'best_in_place'
 require 'jquery-cookie-rails'
 require 'responders'
 require 'tyne_ui'
+require 'evergreen' if Rails.env.test?
+require 'capybara/poltergeist' if Rails.env.test?
 
 module TyneCore
   # Core engine
@@ -18,7 +20,9 @@ module TyneCore
       g.integration_tool = :rspec
     end
 
-    isolate_namespace TyneCore
+    Evergreen.configure do |c|
+      c.driver = :poltergeist
+    end if defined?(Evergreen)
 
     config.autoload_paths << File.expand_path('../../', __FILE__)
     Mime::Type.register_alias "text/html", :pjax
@@ -35,5 +39,6 @@ module TyneCore
     initializer "tyne_core.audit_formatter" do |app|
       require "tyne_core/audit_formatter"
     end
+    isolate_namespace TyneCore
   end
 end

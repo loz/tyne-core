@@ -23,6 +23,7 @@ gem 'twitter-bootstrap-rails'
 gem "redcarpet"
 gem "md_emoji"
 gem "best_in_place", :git => 'https://github.com/tyne/best_in_place.git'
+gem 'evergreen', :require => 'evergreen/rails'
 
 # Webserver
 gem 'thin'
@@ -34,7 +35,7 @@ end
 # Testing
 group :test, :development do
   gem 'tyne_dev', :git => 'https://github.com/tyne/tyne-dev.git', :branch => 'master'
-  gem 'evergreen', :require => 'evergreen/rails'
   gem 'rb-inotify', '~> 0.8.8'
   gem 'shoulda-matchers'
+  gem 'poltergeist'
 end
