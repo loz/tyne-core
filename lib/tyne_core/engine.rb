@@ -6,7 +6,6 @@ require 'best_in_place'
 require 'jquery-cookie-rails'
 require 'responders'
 require 'tyne_ui'
-require 'evergreen' if Rails.env.test?
 require 'capybara/poltergeist' if Rails.env.test?
 
 module TyneCore
