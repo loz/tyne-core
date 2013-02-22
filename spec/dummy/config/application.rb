@@ -8,7 +8,6 @@ require "active_resource/railtie"
 require "sprockets/railtie"
 # require "rails/test_unit/railtie"
 
-Bundler.require
 require "tyne_core"
 
 module Dummy
