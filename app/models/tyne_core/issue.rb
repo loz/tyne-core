@@ -1,6 +1,3 @@
-require 'redcarpet'
-require 'md_emoji'
-
 require "tyne_core/extensions/issues/workflow"
 
 module TyneCore

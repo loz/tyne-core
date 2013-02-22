@@ -1,5 +1,3 @@
-require 'evergreen/rails'
-
 Rails.application.routes.draw do
   mount TyneCore::Engine   => "/core"
   mount Evergreen::Railtie => '/evergreen'

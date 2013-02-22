@@ -1,6 +1,3 @@
-require 'redcarpet'
-require 'md_emoji'
-
 module TyneCore
   # Provides global view helpers for the core engine.
   module ApplicationHelper
