@@ -30,10 +30,10 @@ class TyneCore::CacheKeyGenerator
 
 
   def max_updated
-    collection.max {|a,b| a.updated_at <=> b.updated_at }.updated_at.to_i.to_s
+    collection.map(&:updated_at).max.to_i
   end
 
   def max_created
-    collection.max {|a,b| a.created_at <=> b.created_at }.created_at.to_i.to_s
+    collection.map(&:created_at).max.to_i
   end
 end
